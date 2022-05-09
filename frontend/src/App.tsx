@@ -9,6 +9,8 @@ interface TodoItem {
   isComplete: boolean;
 }
 
+const API_URL = `http://${process.env.API_HOSTNAME ?? "localhost"}:5000/api`
+
 function App() {
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
   const [modifiedTodoItems, setModifiedTodoItems] = useState<TodoItem[]>([]);
@@ -17,7 +19,7 @@ function App() {
 
   async function getTodoItems() {
     try {
-      const newTodoItems = await axios.get("https://localhost:7265/api/todoitems");
+      const newTodoItems = await axios.get(`${API_URL}/todoitems`);
       setTodoItems(newTodoItems.data)
     } catch {
       setTodoItems([]);

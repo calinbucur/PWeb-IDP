@@ -6,7 +6,23 @@ services:
     restart: always
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=db
+    env_file:
+      - .env
+  api:
+    depends_on:
+      - database
+    build:
+      context: ./API
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
+    env_file:
+    - .env
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    env_file:
+    - .env

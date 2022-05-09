@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -11,9 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+string dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";
+string dbUsername = Environment.GetEnvironmentVariable("POSTGRES_USER") ?? "user";
+string dbPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "password";
+string dbDatabase = Environment.GetEnvironmentVariable("POSTGRES_DB") ?? "db";
 builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(@"Host=localhost;Username=user;Password=password;Database=db"));
+            options.UseNpgsql(@$"Host={dbHostname};Username={dbUsername};Password={dbPassword};Database={dbDatabase}"));
 
 builder.Services.AddCors(options =>
 {
@@ -27,6 +31,13 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dataContext.Database.Migrate();
+}
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -35,10 +46,12 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors(MyAllowSpecificOrigins);
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.Run();
