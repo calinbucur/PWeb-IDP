@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "zk+jfSa253+VrEyUsle9vVjW5Z+84H0YBqH4ReXvPvkfzEOsfUzjhBNlkxHb9ePluwuuRZPBIYhYjeFUXpUYVg==",
+  "dgSpecHash": "o/wdScPASpU+jbk3vQQTbsz1PUNiw0HMDQQMqwYuv6vbBoqRl3beTpJmtw4iNxrrw5INoF2e8DS9u20h5dKXaQ==",
   "success": true,
-  "projectFilePath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\Petaway.Core.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

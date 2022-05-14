@@ -7,5 +7,6 @@
         Task AddAsync(TAggregateCreateCommand command, CancellationToken cancellationToken);
         Task<DomainOfAggregate<TAggregate>?> GetAsync(int aggregateId, CancellationToken cancellationToken);
         Task SaveAsync(CancellationToken cancellationToken);
+        Task DeleteAsync(int aggregateId, CancellationToken cancellationToken);
     } 
 }

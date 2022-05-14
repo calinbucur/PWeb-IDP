@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\Petaway.Core.csproj": {}
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj": {}
   },
   "projects": {
-    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\Petaway.Core.csproj": {
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\Petaway.Core.csproj",
+        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj",
         "projectName": "Petaway.Core",
-        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\Petaway.Core.csproj",
+        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Core\\obj\\",
+        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -43,6 +43,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
