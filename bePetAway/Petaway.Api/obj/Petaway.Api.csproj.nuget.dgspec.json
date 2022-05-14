@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\Petaway.Api.csproj": {}
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\Petaway.Api.csproj": {}
   },
   "projects": {
-    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\Petaway.Api.csproj": {
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\Petaway.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\Petaway.Api.csproj",
+        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\Petaway.Api.csproj",
         "projectName": "Petaway.Api",
-        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\Petaway.Api.csproj",
+        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\Petaway.Api.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\obj\\",
+        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

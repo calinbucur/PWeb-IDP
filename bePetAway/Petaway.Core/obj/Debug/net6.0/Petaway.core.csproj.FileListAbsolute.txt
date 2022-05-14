@@ -10,3 +10,15 @@ G:\Cata\FACULTATE\LaZi\PWeb\Proiect\src\Petaway.Core\obj\Debug\net6.0\Petaway.Co
 G:\Cata\FACULTATE\LaZi\PWeb\Proiect\src\Petaway.Core\obj\Debug\net6.0\refint\Petaway.Core.dll
 G:\Cata\FACULTATE\LaZi\PWeb\Proiect\src\Petaway.Core\obj\Debug\net6.0\Petaway.Core.pdb
 G:\Cata\FACULTATE\LaZi\PWeb\Proiect\src\Petaway.Core\obj\Debug\net6.0\ref\Petaway.Core.dll
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\bin\Debug\net6.0\Petaway.Core.deps.json
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\bin\Debug\net6.0\Petaway.Core.dll
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\bin\Debug\net6.0\Petaway.Core.pdb
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.csproj.AssemblyReference.cache
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.GeneratedMSBuildEditorConfig.editorconfig
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.AssemblyInfoInputs.cache
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.AssemblyInfo.cs
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.csproj.CoreCompileInputs.cache
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.dll
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\refint\Petaway.Core.dll
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\Petaway.Core.pdb
+G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Core\obj\Debug\net6.0\ref\Petaway.Core.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aakUPrtuDXUXoVrKFK677D2L1+j9el7CbKtwqAIZmUdOMm/l3sg+PHqJdbjHeiVB5KULmYh+v8bLL4svMeGTkQ==",
+  "dgSpecHash": "QRe7btI+ADo0p+BZhg570oyUVSFsAuX9I7MFHrwdBBEWoSKzyOBpm9p8zfjf3L6QWUvJux3SLxGmO6p+BUp3Rw==",
   "success": true,
-  "projectFilePath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\src\\Petaway.Api\\Petaway.Api.csproj",
+  "projectFilePath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Api\\Petaway.Api.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
