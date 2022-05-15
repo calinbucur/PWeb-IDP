@@ -3,7 +3,7 @@
 
 Petaway is a web platform aiming to help animals stuck in the Ukraine conflict.
 
-![petaway](res/logo.jpg)
+![petaway](res/logo.png)
 
 # Project team
 
