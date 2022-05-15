@@ -1,22 +1,23 @@
-# PWeb-IDP
-Repository for the joint team project on PWeb and IDP
 
+# Petaway
+
+Petaway is a web platform aiming to help animals stuck in the Ukraine conflict.
+
+![petaway](res/logo.jpg)
+
+# Project team
+
+PWEB
 * Calin-Andrei BUCUR 342C4
 * Catalin-Mihail CHIRU 342C4
+  
+IDP
 * Carapcea Andrei-Antonio 342C1
 * Rusu Bianca-Ana-Maria 342C2
 
-
-
-
 # Architecture
 
-API: .NET
-Frontend: React
-Mail Service: Node.js
-Database: PostrgreSQL
-DatabaseAdmin: Pgadmin
-Message Queue: RabbitMQ
+![architecture](res/architecture.png)
 
 
 # Running instructions
