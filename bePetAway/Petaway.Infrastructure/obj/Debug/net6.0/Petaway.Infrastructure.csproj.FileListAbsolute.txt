@@ -1,5 +1,0 @@
-G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Infrastructure\obj\Debug\net6.0\Petaway.Infrastructure.csproj.AssemblyReference.cache
-G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Infrastructure\obj\Debug\net6.0\Petaway.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Infrastructure\obj\Debug\net6.0\Petaway.Infrastructure.AssemblyInfoInputs.cache
-G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Infrastructure\obj\Debug\net6.0\Petaway.Infrastructure.AssemblyInfo.cs
-G:\Cata\FACULTATE\LaZi\PWeb\Proiect\PWeb-IDP\bePetAway\Petaway.Infrastructure\obj\Debug\net6.0\Petaway.Infrastructure.csproj.CoreCompileInputs.cache

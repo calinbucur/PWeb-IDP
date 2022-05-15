@@ -18,7 +18,7 @@ async function main() {
         sendMessageToChannel(
             `{
                 "subject": "subject ${i}",
-                "to": "andy070799@gmail.com",
+                "to": "petaway.test@gmail.com",
                 "body": "body ${i}"
             }`,
             channel,
