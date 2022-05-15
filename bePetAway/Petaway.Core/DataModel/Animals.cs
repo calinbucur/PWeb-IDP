@@ -18,6 +18,7 @@ namespace Petaway.Core.DataModel
             Location = location;
         }
 //        public int AnimalId { get; set; }
+        public int OwnerId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
         public bool IsHome { get; set; }
