@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uyLNvr8CuCLIoT4aPSsxCM10GbD0C+zdA5lxDahdEJsyaZ8WFODenR4NlTQsS7Gho+aGDBEkgKOOJSq5Y5C3ug==",
+  "dgSpecHash": "x+ReVg4FPkddsTz7ca+/MJ9Ad1K6aUgBalF8HLVm64PSovGiJ9FFSuBIx7qVtzYgyunCJOI2pUpD23WcmpkEjg==",
   "success": true,
   "projectFilePath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,8 @@
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\npgsql\\6.0.4\\npgsql.6.0.4.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\6.0.4\\npgsql.entityframeworkcore.postgresql.6.0.4.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.collections.immutable\\6.0.0\\system.collections.immutable.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"

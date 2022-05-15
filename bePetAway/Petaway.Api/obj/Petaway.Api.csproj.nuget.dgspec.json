@@ -31,6 +31,95 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
+            "projectReferences": {
+              "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj": {
+                "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj"
+              },
+              "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj": {
+                "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "MediatR.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj",
+        "projectName": "Petaway.Core",
+        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
             "projectReferences": {}
           }
         },
@@ -43,6 +132,94 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj",
+        "projectName": "Petaway.Infrastructure",
+        "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\Petaway.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj": {
+                "projectPath": "G:\\Cata\\FACULTATE\\LaZi\\PWeb\\Proiect\\PWeb-IDP\\bePetAway\\Petaway.Core\\Petaway.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
