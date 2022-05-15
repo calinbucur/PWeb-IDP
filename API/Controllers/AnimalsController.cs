@@ -6,53 +6,53 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TodoApi.Models;
+using API.Models;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TodoItemsController : ControllerBase
+    public class AnimalsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public TodoItemsController(AppDbContext context)
+        public AnimalsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/TodoItems
+        // GET: api/Animals
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<Animal>>> GetAnimals()
         {
-            return await _context.TodoItems.ToListAsync();
+            return await _context.Animals.ToListAsync();
         }
 
-        // GET: api/TodoItems/5
+        // GET: api/Animals/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
+        public async Task<ActionResult<Animal>> GetAnimal(Guid id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+            var animal = await _context.Animals.FindAsync(id);
 
-            if (todoItem == null)
+            if (animal == null)
             {
                 return NotFound();
             }
 
-            return todoItem;
+            return animal;
         }
 
-        // PUT: api/TodoItems/5
+        // PUT: api/Animals/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
+        public async Task<IActionResult> PutAnimal(Guid id, Animal animal)
         {
-            if (id != todoItem.Id)
+            if (id != animal.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(todoItem).State = EntityState.Modified;
+            _context.Entry(animal).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TodoItemExists(id))
+                if (!AnimalExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace API.Controllers
             return NoContent();
         }
 
-        // POST: api/TodoItems
+        // POST: api/Animals
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        public async Task<ActionResult<Animal>> PostAnimal(Animal animal)
         {
-            _context.TodoItems.Add(todoItem);
+            _context.Animals.Add(animal);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            return CreatedAtAction("GetAnimal", new { id = animal.Id }, animal);
         }
 
-        // DELETE: api/TodoItems/5
+        // DELETE: api/Animals/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(long id)
+        public async Task<IActionResult> DeleteAnimal(Guid id)
         {
-            var todoItem = await _context.TodoItems.FindAsync(id);
-            if (todoItem == null)
+            var animal = await _context.Animals.FindAsync(id);
+            if (animal == null)
             {
                 return NotFound();
             }
 
-            _context.TodoItems.Remove(todoItem);
+            _context.Animals.Remove(animal);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool TodoItemExists(long id)
+        private bool AnimalExists(Guid id)
         {
-            return _context.TodoItems.Any(e => e.Id == id);
+            return _context.Animals.Any(e => e.Id == id);
         }
     }
 }
