@@ -4,8 +4,9 @@ namespace Petaway.Core.Domain.Owner
 {
     public record AddAnimalToOwnerCommand : ICreateAggregateCommand
     {
-        public AddAnimalToOwnerCommand(string name, string type, string description, int age, string location, bool isAgg, bool isSick, bool isStray, bool isHome = true)
+        public AddAnimalToOwnerCommand(int ownerId, string name, string type, string description, int age, string location, bool isAgg, bool isSick, bool isStray, bool isHome = true)
         {
+            OwnerId = ownerId;
             Name = name;
             Type = type;
             IsHome = isHome;
@@ -16,7 +17,7 @@ namespace Petaway.Core.Domain.Owner
             Description = description;
             Location = location;
         }
-
+        public int OwnerId { get; set; }
         public string Name { get; init; }
         public string Type { get; init; }
         public bool IsHome { get; init; }

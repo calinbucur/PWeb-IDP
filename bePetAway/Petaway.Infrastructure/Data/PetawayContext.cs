@@ -12,8 +12,7 @@ namespace Petaway.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-// TODO
-//            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PetawayConfiguration).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OwnersConfiguration).Assembly);
         }
 
         public DbSet<Owners> Owners => Set<Owners>();

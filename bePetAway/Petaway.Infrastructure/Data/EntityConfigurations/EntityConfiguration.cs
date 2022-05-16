@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BookLibrary.Infrastructure.Data.EntityConfigurations
+namespace Petaway.Infrastructure.Data.EntityConfigurations
 {
     internal abstract class EntityConfiguration<TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : Entity

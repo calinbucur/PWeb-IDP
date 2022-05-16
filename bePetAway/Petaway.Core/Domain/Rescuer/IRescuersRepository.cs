@@ -3,7 +3,7 @@ using Petaway.Core.SeedWork;
 
 namespace Petaway.Core.Domain.Rescuer
 {
-    public interface IRescuersRepository : IRepositoryOfAggregate<Fosters, RegisterRescuerProfileCommand>
+    public interface IRescuersRepository : IRepositoryOfAggregate<Rescuers, RegisterRescuerProfileCommand>
     {
     }
 }

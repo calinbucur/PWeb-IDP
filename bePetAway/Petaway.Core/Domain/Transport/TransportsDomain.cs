@@ -1,8 +1,7 @@
 ﻿using Petaway.Core.DataModel;
 using Petaway.Core.SeedWork;
-using Petaway.Core.Domain.Transport;
 
-namespace Petaway.Core.Domain.Owner
+namespace Petaway.Core.Domain.Transport
 {
     public class TransportsDomain : DomainOfAggregate<Transports>
     {

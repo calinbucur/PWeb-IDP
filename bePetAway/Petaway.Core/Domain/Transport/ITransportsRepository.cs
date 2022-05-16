@@ -3,7 +3,7 @@ using Petaway.Core.SeedWork;
 
 namespace Petaway.Core.Domain.Transport
 {
-/*    public interface ITransportsRepository : IRepositoryOfAggregate<Transports, RegisterTransportProfileCommand>
+    public interface ITransportsRepository : IRepositoryOfAggregate<Transports, RegisterTransportProfileCommand>
     {
-    }*/
+    }
 }

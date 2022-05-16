@@ -1,7 +1,7 @@
 ﻿using Petaway.Core.DataModel;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace BookLibrary.Infrastructure.Data.EntityConfigurations
+namespace Petaway.Infrastructure.Data.EntityConfigurations
 {
     internal class OwnersConfiguration : EntityConfiguration<Owners>
     {
@@ -30,9 +30,6 @@ namespace BookLibrary.Infrastructure.Data.EntityConfigurations
             builder
                 .Property(x => x.Address)
                 .IsRequired();
-
-            builder
-                .OwnsMany(x => x.Animals);
 
             base.Configure(builder);
         }
