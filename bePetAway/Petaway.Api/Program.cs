@@ -6,8 +6,11 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.AddJsonFile("appsettings.json", false, true);
 
 builder.Services.AddControllers(options =>
 {
@@ -40,7 +43,7 @@ builder.AddPetawayDbContext();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 // Add Repositories
-builder.Services.AddBookLibraryAggregateRepositories();
+builder.Services.AddPetawayAggregateRepositories();
 
 // Add Api Features Handlers
 builder.Services.AddApiFeaturesHandlers();

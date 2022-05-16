@@ -19,7 +19,7 @@ namespace Petaway.Api.Infrastructure
                 opt.UseNpgsql(builder.Configuration.GetConnectionString("PetawayDb")));
         }
 
-        public static void AddBookLibraryAggregateRepositories(this IServiceCollection services)
+        public static void AddPetawayAggregateRepositories(this IServiceCollection services)
         {
             services.AddTransient<IOwnersAnimalsRepository, OwnersAnimalsRepository>();
             services.AddTransient<IFostersRepository, FostersRepository>();

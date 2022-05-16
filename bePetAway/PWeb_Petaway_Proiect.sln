@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petaway.Api", "Petaway.Api\Petaway.Api.csproj", "{C49B789A-366B-46BA-A6EF-60714E3348DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petaway.Core", "Petaway.Core\Petaway.Core.csproj", "{2BFD4AF5-55B4-41FF-BA45-98DFD8BE8359}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petaway.Core", "Petaway.Core\Petaway.Core.csproj", "{2BFD4AF5-55B4-41FF-BA45-98DFD8BE8359}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petaway.Infrastructure", "Petaway.Infrastructure\Petaway.Infrastructure.csproj", "{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petaway.Infrastructure", "Petaway.Infrastructure\Petaway.Infrastructure.csproj", "{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
