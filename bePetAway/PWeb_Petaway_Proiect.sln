@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petaway.Core", "Petaway.Cor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petaway.Infrastructure", "Petaway.Infrastructure\Petaway.Infrastructure.csproj", "{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petaway.Tests", "Petaway.Tests\Petaway.Tests.csproj", "{5936D2A1-076F-4B47-8FFA-BA062954918F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C7995B-1076-43E7-B6DD-4BA6DD4D5240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5936D2A1-076F-4B47-8FFA-BA062954918F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5936D2A1-076F-4B47-8FFA-BA062954918F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5936D2A1-076F-4B47-8FFA-BA062954918F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5936D2A1-076F-4B47-8FFA-BA062954918F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
