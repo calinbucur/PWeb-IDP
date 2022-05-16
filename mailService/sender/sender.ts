@@ -1,9 +1,9 @@
 import { connectToChannel, sendMessageToChannel } from "../services/rabbitMqService";
 
-const username = process.env.RABBITMQ_USERNAME ?? "username"
-const password = process.env.RABBITMQ_PASSWORD ?? "password"
-const hostname = process.env.RABBITMQ_HOSTNAME ?? "localhost"
-const queue = process.env.RABBITMQ_QUEUE ?? "queue"
+const username = process.env.RABBITMQ_USERNAME ?? "username";
+const password = process.env.RABBITMQ_PASSWORD ?? "password";
+const hostname = process.env.RABBITMQ_HOSTNAME ?? "localhost";
+const queue = process.env.RABBITMQ_QUEUE ?? "queue";
 
 
 async function main() {
@@ -23,8 +23,8 @@ async function main() {
             }`,
             channel,
             queue
-        )
+        );
     }
 }
 
-main()
+main();

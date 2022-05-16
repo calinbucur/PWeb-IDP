@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import SMTPTransport from 'nodemailer/lib/smtp-transport';
+import nodemailer from "nodemailer";
+import SMTPTransport from "nodemailer/lib/smtp-transport";
 
 export async function connectToMailServer(
     hostname: string,
@@ -12,11 +12,11 @@ export async function connectToMailServer(
         secure: false,
         requireTLS: true,
         auth: {
-          user: username,
-          pass: password,
+            user: username,
+            pass: password,
         },
         logger: true
-      });
+    });
 }
 
 export async function sendMail(
@@ -26,19 +26,19 @@ export async function sendMail(
     subject: string,
     body: string
 ) {
-    console.log("Sending mail")
+    console.log("Sending mail");
     console.log(JSON.stringify({
         from,
         to,
         subject,
         body
-    }))
+    }));
     transporter.sendMail({
         from: `"PetAway" ${from}`,
         to,
         subject,
         text: body,
-      }).then(info => {
+    }).then(info => {
         console.log({info});
-      }).catch(console.error);
+    }).catch(console.error);
 }
