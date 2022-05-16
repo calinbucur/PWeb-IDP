@@ -41,3 +41,20 @@ jobs:
         run: cd bePetAway && dotnet build
       - name: api tests
         run: cd bePetAway && dotnet test
+  
+  mailService:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: setup node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.x
+    - name: install mail service dependencies
+      run: cd mailService && npm ci
+    - name: lint mailService
+      run: cd mailService && npm run lint
+    - name: build mailService
+      run: cd mailService && npm run build --if-present
+    - name: mailService tests
+      run: cd mailService && npm run test
