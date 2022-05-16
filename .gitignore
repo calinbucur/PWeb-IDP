@@ -1,1 +1,5 @@
-**/node_modules
+**/bin/
+**/obj/
+**/out/
+**/TestResults/
+**/node_modules/
