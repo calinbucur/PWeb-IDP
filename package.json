@@ -8,6 +8,8 @@
     "dev:frontend": "cd pweb_frontend && npm run dev:start",
     "dev:api": "cd bePetAway && npm run dev:start",
     "dev:mail": "cd mailService && npm run dev:start",
+    "test:frontend": "cd pweb_frontend && npm run test",
+    "test:api": "cd bePetAway && npm run test",
     "docker:api:build": "cd bePetAway && npm run docker:build",
     "docker:frontend:build": "cd pweb_frontend && npm run docker:build",
     "docker:mail:build": "cd mailService && npm run docker:build",
