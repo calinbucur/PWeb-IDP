@@ -21,7 +21,7 @@ jobs:
     - name: install frontend dependencies
       run: cd pweb_frontend && npm ci
     - name: lint frontend
-      run: cd pweb_frontend && npm lint
+      run: cd pweb_frontend && npm run lint
     - name: build frontend
       run: cd pweb_frontend && npm run build --if-present
     - name: frontend tests
