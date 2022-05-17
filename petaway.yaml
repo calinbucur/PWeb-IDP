@@ -34,13 +34,13 @@ services:
       - rabbitmqdata:/var/lib/rabbitmq/
       - rabbitmqlogs:/var/log/rabbitmq/
   api:
-    image: petaway-api
+    image: api
     ports:
       - 5000:5000
   mail:
-    image: petaway-mail
+    image: mail-service
   frontend:
-    image: petaway-frontend
+    image: frontend
     ports:
       - 3000:3000
 
