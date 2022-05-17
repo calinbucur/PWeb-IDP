@@ -60,6 +60,7 @@ jobs:
       run: cd mailService && npm run test
 
   deploy:
+    needs: [frontend, mailService, api]
     runs-on: ubuntu-latest
 
     steps:
