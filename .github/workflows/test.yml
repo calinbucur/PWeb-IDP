@@ -100,8 +100,6 @@ jobs:
           push: ${{ github.ref == 'refs/heads/main' }}
 
       - name: Deploy to server
-        uses: fjogeleit/http-request-action@v1
+        uses: wei/curl@v1
         with:
-          url: ${{secrets.DEV_WEBHOOK}}
-          method: 'POST'
-          preventFailureOnNoResponse: 'true'
+          args: -X POST --insecure ${{secrets.DEV_WEBHOOK}}
