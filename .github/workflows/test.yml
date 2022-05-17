@@ -82,18 +82,18 @@ jobs:
         with:
           context: ./bePetAway
           tags: idpreg.azurecr.io/api
-          # push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
       
       - name: Build and push frontend docker image
         uses: docker/build-push-action@v2
         with:
           context: ./pweb_frontend
           tags: idpreg.azurecr.io/frontend
-          # push: ${{ github.ref == 'refs/heads/main' }}
+          push: ${{ github.ref == 'refs/heads/main' }}
       
       - name: Build and push mail service docker image
         uses: docker/build-push-action@v2
         with:
           context: ./mailService
-          tags: idpreg.azurecr.io/mailService
-          # push: ${{ github.ref == 'refs/heads/main' }}
+          tags: idpreg.azurecr.io/mail-service
+          push: ${{ github.ref == 'refs/heads/main' }}
