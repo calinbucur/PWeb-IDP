@@ -97,3 +97,8 @@ jobs:
           context: ./mailService
           tags: idpreg.azurecr.io/mail-service
           push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Deploy to server
+        uses: distributhor/workflow-webhook@v2
+        env:
+          webhook_url: ${{secrets.DEV_WEBHOOK}}
