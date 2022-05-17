@@ -5,9 +5,9 @@ namespace Petaway.Core.Domain.Rescuer
 {
     public record RegisterRescuerProfileCommand : ICreateAggregateCommand
     {
-        public RegisterRescuerProfileCommand(string rescuerId, string email, string name, string phoneNumber, string address, string password, int maxCapacity, string type = "all", string isAgg = "all", string isSick = "all", string isStray = "all")
+        public RegisterRescuerProfileCommand(string userId, string email, string name, string phoneNumber, string address, string password, int maxCapacity, string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all")
         {
-            UserId = rescuerId;
+            UserId = userId;
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
@@ -16,12 +16,10 @@ namespace Petaway.Core.Domain.Rescuer
             VirtualCapacity = 0;
             MaxCapacity = maxCapacity;
 
-            //In case we don't use PREFERENCES keyword to search: NOPREFS
-            /*if ((type == null) || (isAgg == null) || (isSick == null) || (isStray == null)) {
-                Preferences = null;
-            }*/
-
-            Preferences = new Preferences(type, isAgg, isSick, isStray);
+            AnimalType = animalType; /*all, cat, dog, rodent, bird, domestic, exotic*/
+            IsAggresive = isAggresive; /*all, aggressive, calm*/
+            IsSick = isSick; /*all, healthy, sick*/
+            IsStray = isStray; /*all, healthy, sick*/
         }
 
         public string UserId { get; set; }
@@ -32,6 +30,9 @@ namespace Petaway.Core.Domain.Rescuer
         public int CrtCapacity { get; set; }
         public int VirtualCapacity { get; set; }
         public int MaxCapacity { get; set; }
-        public Preferences Preferences { get; set; }
+        public string AnimalType { get; set; }
+        public string IsAggresive { get; set; }
+        public string IsSick { get; set; }
+        public string IsStray { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     public class Owners : Users
     {
-        public Owners(string ownerId, string email, string name, string phoneNumber, string address) : base(ownerId, email, name, phoneNumber, address)
+        public Owners(string userId, string email, string name, string phoneNumber, string address) : base(userId, email, name, phoneNumber, address)
         {
             NumberOfAnimals = 0;
         }

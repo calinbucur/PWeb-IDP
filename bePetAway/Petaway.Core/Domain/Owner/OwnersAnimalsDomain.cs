@@ -26,9 +26,9 @@ namespace Petaway.Core.Domain.Owner
             }
         }
 
-        public void UpdateOwnerProfile(string ownerId, string email, string name, string phoneNumber, string address, string password)
+        public void UpdateOwnerProfile(string userId, string email, string name, string phoneNumber, string address, string password)
         {
-            aggregate.UserId = ownerId;
+            aggregate.UserId = userId;
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;

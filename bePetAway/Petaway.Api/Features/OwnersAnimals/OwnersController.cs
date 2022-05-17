@@ -10,19 +10,21 @@ namespace Petaway.Api.Features.Owner
     [Route("api/v1/[controller]")]
     public class OwnersController : ControllerBase
     {
-        private readonly IAddAnimalCommandHandler addAnimalCommandHandler;
+  //      private readonly IAddAnimalCommandHandler addAnimalCommandHandler;
         private readonly IRegisterOwnerCommandHandler registerOwnerCommandHandler;
 
         public OwnersController(
-            IAddAnimalCommandHandler addAnimalCommandHandler,
+
             IRegisterOwnerCommandHandler registerOwnerCommandHandler
             )
+
+//                        IAddAnimalCommandHandler addAnimalCommandHandler,
         {
-            this.addAnimalCommandHandler = addAnimalCommandHandler;
+//            this.addAnimalCommandHandler = addAnimalCommandHandler;
             this.registerOwnerCommandHandler = registerOwnerCommandHandler;
         }
 
-        [HttpPost("addAnimal")]
+/*        [HttpPost("addAnimal")]
         [Authorize] //(Policy = "OwnerAccess")
         public async Task<IActionResult> AddBookAsync([FromBody] AddAnimalCommand command, CancellationToken cancellationToken)
         {
@@ -30,12 +32,13 @@ namespace Petaway.Api.Features.Owner
 
             return StatusCode((int)HttpStatusCode.Created);
         }
-
+*/
 
         [HttpPost("registerOwner")]
-        [Authorize] //(Policy = "OwnerAccess")
-        public async Task<IActionResult> RegisterOwnerAsync([FromBody] RegisterOwnerCommand command, CancellationToken cancellationToken)
+        //[Authorize] //(Policy = "OwnerAccess")
+        public async Task<IActionResult> RegisterOwnerAsync(RegisterOwnerCommand command, CancellationToken cancellationToken)
         {
+
             await registerOwnerCommandHandler.HandleAsync(command, cancellationToken);
             return StatusCode((int)HttpStatusCode.Created);
         }

@@ -32,17 +32,16 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
-                .Property(x => x.Preferences.Type);
+                .Property(x => x.AnimalType);
 
             builder
-                .Property(x => x.Preferences.IsAggresive);
+                .Property(x => x.IsAggresive);
 
             builder
-                .Property(x => x.Preferences.IsSick);
+                .Property(x => x.IsSick);
 
             builder
-                .Property(x => x.Preferences.IsStray);
-
+                .Property(x => x.IsStray);
 
 
             base.Configure(builder);

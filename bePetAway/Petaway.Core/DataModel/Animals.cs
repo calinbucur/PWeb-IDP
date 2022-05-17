@@ -4,12 +4,12 @@ namespace Petaway.Core.DataModel
 {
     public class Animals : Entity
     {
-        public Animals(string name, string type, string description, int age, string location, bool isAgg, bool isSick, bool isStray, string status = "home") //, int animalId)
+        public Animals(string name, string type, string description, int age, string location, bool isAggresive, bool isSick, bool isStray, string status = "home") //, int animalId)
         {
             Name = name;
             Type = type;
             Status = status;
-            IsAggresive = isAgg;
+            IsAggresive = isAggresive;
             IsSick = isSick;
             IsStray = isStray;
             Age = age;

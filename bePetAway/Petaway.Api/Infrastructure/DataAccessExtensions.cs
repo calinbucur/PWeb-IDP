@@ -20,8 +20,9 @@ namespace Petaway.Api.Infrastructure
             string dbPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "password";
             string dbDatabase = Environment.GetEnvironmentVariable("POSTGRES_DB") ?? "db";
 
+
             builder.Services.AddDbContext<PetawayContext>(opt =>
-                opt.UseNpgsql(builder.Configuration.GetConnectionString(@$"Host={dbHostname};Username={dbUsername};Password={dbPassword};Database={dbDatabase}")));
+                opt.UseNpgsql(@$"Host={dbHostname};Username={dbUsername};Password={dbPassword};Database={dbDatabase}"));
         }
 
         public static void AddPetawayAggregateRepositories(this IServiceCollection services)
