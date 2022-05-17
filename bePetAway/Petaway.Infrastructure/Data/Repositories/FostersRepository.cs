@@ -16,9 +16,9 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterFosterProfileCommand command, CancellationToken cancellationToken)
         {
-            var user = new Fosters(command.UserId, command.Email, command.Name, command.PhoneNumber, command.Address, command.Password, command.MaxCapacity);
+            var foster = new Fosters(command.UserId, command.Email, command.Name, command.PhoneNumber, command.Address, command.MaxCapacity, command.Preferences);
 
-            await context.Fosters.AddAsync(user);
+            await context.Fosters.AddAsync(foster);
             await SaveAsync(cancellationToken);
         }
 

@@ -1,14 +1,14 @@
 ﻿using Petaway.Core.DataModel;
 using MediatR;
 
-namespace Petaway.Core.Domain.Foster
+namespace Petaway.Core.Domain.Owner
 {
-    public class FosterAcceptTransportEvent : INotification
+    public class OwnerProposeTransportEvent : INotification
     {
         public int TransportId;
         public int OwnerId;
         public int AnimalId;
-        public FosterAcceptTransportEvent(int transportId, int ownerId, int animalId)
+        public OwnerProposeTransportEvent(int transportId, int ownerId, int animalId)
         {
             TransportId = transportId;
             OwnerId = ownerId;

@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterRescuerProfileCommand command, CancellationToken cancellationToken)
         {
-            var user = new Rescuers(command.UserId, command.Email, command.Name, command.PhoneNumber, command.Address, command.Password, command.MaxCapacity);
+            var user = new Rescuers(command.UserId, command.Email, command.Name, command.PhoneNumber, command.Address, command.MaxCapacity, command.Preferences);
 
             await context.Rescuers.AddAsync(user);
             await SaveAsync(cancellationToken);

@@ -24,16 +24,26 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsUnique();
 
             builder
-                .Property(x => x.Password)
-                .IsRequired();
-
-            builder
                 .Property(x => x.Address)
                 .IsRequired();
 
             builder
                 .Property(x => x.MaxCapacity)
                 .IsRequired();
+
+            builder
+                .Property(x => x.Preferences.Type);
+
+            builder
+                .Property(x => x.Preferences.IsAggresive);
+
+            builder
+                .Property(x => x.Preferences.IsSick);
+
+            builder
+                .Property(x => x.Preferences.IsStray);
+
+
 
             base.Configure(builder);
         }

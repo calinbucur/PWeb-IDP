@@ -3,10 +3,10 @@ using MediatR;
 
 namespace Petaway.Core.Domain.Rescuer
 {
-    public class RescuerAcceptTransportEvent : INotification
+    public class RescuerFinishTransportEvent : INotification
     {
         public int TransportId;
-        public RescuerAcceptTransportEvent(int transportId)
+        public RescuerFinishTransportEvent(int transportId)
         {
             TransportId = transportId;
         }

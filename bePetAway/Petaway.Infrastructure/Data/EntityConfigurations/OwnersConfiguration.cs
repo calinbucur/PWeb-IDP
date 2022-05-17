@@ -24,10 +24,6 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsUnique();
 
             builder
-                .Property(x => x.Password)
-                .IsRequired();
-
-            builder
                 .Property(x => x.Address)
                 .IsRequired();
 

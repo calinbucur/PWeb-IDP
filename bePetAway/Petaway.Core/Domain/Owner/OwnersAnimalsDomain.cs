@@ -18,7 +18,7 @@ namespace Petaway.Core.Domain.Owner
 
                 foreach (Animals animal in aggregate.Animals)
                 {
-                    if (animal.IsHome)
+                    if (animal.Status == "home")
                     {
                         animal.Location = address;
                     }
@@ -32,7 +32,6 @@ namespace Petaway.Core.Domain.Owner
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
-            aggregate.Password = password;
             UpdateOwnerAddress(address);
         }
 
@@ -59,63 +58,53 @@ namespace Petaway.Core.Domain.Owner
             {
                 throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
-            animal.IsHome = false;
+
+            animal.Status = "pending";
         }
 
-        public OwnerAcceptTransportEvent AcceptTransport(Transports proposedTransport)
+        public OwnerAcceptTransportEvent AcceptTransport(int transportId, int fosterId, int animalId)
         {
-            if (proposedTransport == null)
-            {
-                throw new TransportIsNullException();
-            }
-
-            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == proposedTransport.AnimalId);
+            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
             {
-                throw new AnimalNotFoundException(aggregate.Name, proposedTransport.AnimalId);
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
 
-            if (!animal.IsHome)
+            if (animal.Status != "home")
             {
-                throw new AnimalNotHomeException(aggregate.Name, proposedTransport.AnimalId);
+                throw new AnimalNotHomeException(aggregate.Name, animalId);
             }
 
-            proposedTransport.TransportState = 1;
-            proposedTransport.OwnerId = aggregate.Id;
-            proposedTransport.AnimalId = animal.Id;
-            proposedTransport.Animals.Add(animal);
-            return new OwnerAcceptTransportEvent(proposedTransport);
+            animal.CrtTransportId = transportId;
+            animal.CrtFosterId = fosterId;
+            
+            return new OwnerAcceptTransportEvent(transportId, fosterId, animalId);
         }
-        public OwnerRejectTransportEvent RejectTransport(Transports proposedTransport)
+        public OwnerRejectTransportEvent RejectTransport(int transportId, int fosterId, int animalId)
         {
-            if (proposedTransport == null)
-            {
-                throw new TransportIsNullException();
-            }
-
-            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == proposedTransport.AnimalId);
+            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
             {
-                throw new AnimalNotFoundException(aggregate.Name, proposedTransport.AnimalId);
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
 
-            if (!animal.IsHome)
+            if (animal.Status != "home")
             {
-                throw new AnimalNotHomeException(aggregate.Name, proposedTransport.AnimalId);
+                throw new AnimalNotHomeException(aggregate.Name, animalId);
             }
 
-            proposedTransport.TransportState = 0;
-            return new OwnerRejectTransportEvent(proposedTransport);
-
+            return new OwnerRejectTransportEvent(transportId, fosterId, animalId);
         }
 
-        //Ramane de vazut (Propune doar spre Foster)
-        public Transports? ProposeTransport(int ownerId)
+        public OwnerProposeTransportEvent ProposeTransport(int fosterId, int animalId)
         {
-            Transports? proposedTransport = null;
+            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
+            if (animal == null)
+            {
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
+            }
 
-
-            return proposedTransport;
+            return new OwnerProposeTransportEvent(fosterId, aggregate.Id, animalId);
         }
     }
 }

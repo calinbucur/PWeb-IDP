@@ -6,7 +6,6 @@ namespace Petaway.Core.DataModel
     {
         public Transports(int ownerId, int animalId, int fosterId, int rescuerId, string startPoint, string endPoint)
         {
-            TransportState = -1;
             OwnerId = ownerId;
             AnimalId = animalId;
             FosterId = fosterId;
@@ -15,8 +14,11 @@ namespace Petaway.Core.DataModel
             EndPoint = endPoint;
         }
 
-        //Shows if the transport is accepted(1), rejected(0) or pending(-1)
-        public int TransportState { get; set; }
+        //Set to true if an Owner rejects the transport if there aren't any animals in that transport
+        //Set to true if a Foster rejects the transport if there is no Rescuer involved yet (rescuerId = -1)
+        //Deleted if RejectedByOwnerOrFoster = true
+        public bool RejectedByOwnerOrFoster { get; set; } = false;
+        public bool IsFinished { get; set; } = false;
         public int OwnerId { get; set; }
         public int AnimalId { get; set; }
         public int FosterId { get; set; }

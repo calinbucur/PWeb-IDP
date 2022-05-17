@@ -3,14 +3,14 @@ using MediatR;
 
 namespace Petaway.Core.Domain.Foster
 {
-    public class FosterAcceptTransportEvent : INotification
+    public class FosterProposeTransportEvent : INotification
     {
-        public int TransportId;
+        public int FosterId;
         public int OwnerId;
         public int AnimalId;
-        public FosterAcceptTransportEvent(int transportId, int ownerId, int animalId)
+        public FosterProposeTransportEvent(int fosterId, int ownerId, int animalId)
         {
-            TransportId = transportId;
+            FosterId = fosterId;
             OwnerId = ownerId;
             AnimalId = animalId;
         }

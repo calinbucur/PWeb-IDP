@@ -39,6 +39,9 @@ builder.AddAuthenticationAndAuthorization();
 // Add Database Context
 builder.AddPetawayDbContext();
 
+// Add RabbitMQ
+builder.AddRabbitMQ();
+
 // Add MediatR
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 

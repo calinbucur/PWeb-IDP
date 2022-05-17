@@ -5,10 +5,14 @@ namespace Petaway.Core.Domain.Owner
 {
     public class OwnerRejectTransportEvent : INotification
     {
-        public Transports Transport;
-        public OwnerRejectTransportEvent(Transports transport)
+        public int TransportId;
+        public int FosterId;
+        public int AnimalId;
+        public OwnerRejectTransportEvent(int transportId, int fosterId, int animalId)
         {
-            Transport = transport;
+            TransportId = transportId;
+            FosterId = fosterId;
+            AnimalId = animalId;
         }
     }
 }

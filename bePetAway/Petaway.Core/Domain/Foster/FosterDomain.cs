@@ -29,42 +29,36 @@ namespace Petaway.Core.Domain.Foster
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
-            aggregate.Password = password;
             aggregate.MaxCapacity = maxCapacity;
             UpdateFosterAddress(address);
         }
-        
-        public FosterAcceptTransportEvent AcceptTransport(Transports proposedTransport)
+
+        public FosterAcceptTransportEvent AcceptTransport(int transportId, int ownerId, int animalId)
         {
-            if (proposedTransport == null)
+            if (aggregate.MaxCapacity < aggregate.CrtCapacity + 1)
             {
-                throw new TransportIsNullException();
+                throw new FosterFullCapacityException(aggregate.Id);
             }
 
-            proposedTransport.TransportState = 1;
-            proposedTransport.FosterId = aggregate.Id;
-            return new FosterAcceptTransportEvent(proposedTransport);
+            aggregate.CrtCapacity++;
+
+            return new FosterAcceptTransportEvent(transportId, ownerId, animalId);
         }
-        public FosterRejectTransportEvent RejectTransport(Transports proposedTransport)
+
+        public FosterRejectTransportEvent RejectTransport(int transportId, int ownerId, int animalId)
         {
-            if (proposedTransport == null)
+            return new FosterRejectTransportEvent(transportId, ownerId, animalId);
+        }
+
+        public FosterProposeTransportEvent ProposeTransport(int ownerId, int animalId)
+        {
+            if (aggregate.MaxCapacity < aggregate.CrtCapacity + 1)
             {
-                throw new TransportIsNullException();
+                throw new FosterFullCapacityException(aggregate.Id);
             }
 
-//            proposedTransport.TransportState = 0;
-            return new FosterRejectTransportEvent(proposedTransport);
-
+            aggregate.CrtCapacity++;
+            return new FosterProposeTransportEvent(aggregate.Id, ownerId, animalId);
         }
-
-        //Ramane de vazut
-        public Transports? ProposeTransport(int ownerId)
-        {
-            Transports? proposedTransport = null;
-
-
-            return proposedTransport;
-        }
-
     }
 }

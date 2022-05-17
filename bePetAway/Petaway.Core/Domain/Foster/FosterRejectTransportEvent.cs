@@ -5,10 +5,14 @@ namespace Petaway.Core.Domain.Foster
 {
     public class FosterRejectTransportEvent : INotification
     {
-        public Transports Transport;
-        public FosterRejectTransportEvent(Transports transport)
+        public int TransportId;
+        public int OwnerId;
+        public int AnimalId;
+        public FosterRejectTransportEvent(int transportId, int ownerId, int animalId)
         {
-            Transport = transport;
+            TransportId = transportId;
+            OwnerId = ownerId;
+            AnimalId = animalId;
         }
     }
 }

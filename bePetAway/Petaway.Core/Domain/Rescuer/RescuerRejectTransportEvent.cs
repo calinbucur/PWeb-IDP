@@ -5,10 +5,10 @@ namespace Petaway.Core.Domain.Rescuer
 {
     public class RescuerRejectTransportEvent : INotification
     {
-        public Transports Transport;
-        public RescuerRejectTransportEvent(Transports transport)
+        public int TransportId;
+        public RescuerRejectTransportEvent(int transportId)
         {
-            Transport = transport;
+            TransportId = transportId;
         }
     }
 }

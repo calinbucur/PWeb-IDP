@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
-                .Property(x => x.IsHome)
+                .Property(x => x.Status)
                 .IsRequired();
 
             builder

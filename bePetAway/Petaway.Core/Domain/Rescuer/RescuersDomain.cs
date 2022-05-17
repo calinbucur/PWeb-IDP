@@ -22,37 +22,28 @@ namespace Petaway.Core.Domain.Rescuer
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.Address = address;
-            aggregate.Password = password;
         }
 
-        public RescuerAcceptTransportEvent AcceptTransport(Transports proposedTransport)
+        public RescuerAcceptTransportEvent AcceptTransport(int transportId)
         {
-            if (proposedTransport == null)
+            if (aggregate.MaxCapacity < aggregate.CrtCapacity + 1)
             {
-                throw new TransportIsNullException();
+                throw new RescuerFullCapacityException(aggregate.Id);
             }
 
-            proposedTransport.TransportState = 1;
-            proposedTransport.RescuerId = aggregate.Id;
-            return new RescuerAcceptTransportEvent(proposedTransport);
+            aggregate.CrtTransportId = transportId;
+            return new RescuerAcceptTransportEvent(transportId);
         }
-        public RescuerRejectTransportEvent RejectTransport(Transports proposedTransport)
+        public RescuerRejectTransportEvent RejectTransport(int transportId)
         {
-            if (proposedTransport == null)
-            {
-                throw new TransportIsNullException();
-            }
-
-            return new RescuerRejectTransportEvent(proposedTransport);
+            return new RescuerRejectTransportEvent(transportId);
         }
 
-        //Ramane de vazut (Ar trebui o functie si de Propose curentTransport)
-        public Transports? ProposeTransport(int ownerId)
+        public RescuerFinishTransportEvent FinishTransport(int transportId)
         {
-            Transports? proposedTransport = null;
-
-
-            return proposedTransport;
+            aggregate.CrtCapacity = 0;
+            return new RescuerFinishTransportEvent(transportId);
         }
+
     }
 }
