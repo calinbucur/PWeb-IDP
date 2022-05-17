@@ -104,3 +104,4 @@ jobs:
         with:
           url: ${{secrets.DEV_WEBHOOK}}
           method: 'POST'
+          preventFailureOnNoResponse: 'true'
