@@ -1,6 +1,4 @@
-import nodemailer from "nodemailer";
-import 'dotenv/config'
-import client, {Connection} from 'amqplib'
+import "dotenv/config";
 import { connectToChannel } from "./services/rabbitMqService";
 import { connectToMailServer, sendMail } from "./services/mailService";
 import Ajv, { JSONSchemaType } from "ajv";
@@ -20,21 +18,21 @@ const rabbitMqMsgSchema: JSONSchemaType<RabbitMqMessage> = {
     },
     required: ["to", "subject", "body"],
     additionalProperties: false,
-}
+};
 
-const ajv = new Ajv()
+const ajv = new Ajv();
 
-const validateRabbitMqMsg = ajv.compile(rabbitMqMsgSchema)
+const validateRabbitMqMsg = ajv.compile(rabbitMqMsgSchema);
 
 async function main() {   
     const email_hostname = process.env.MAIL_HOSTNAME ?? "smtp.gmail.com";
     const email_username = process.env.MAIL_USERNAME ?? "petaway.test@gmail.com";
     const email_password = process.env.MAIL_PASSWORD ?? "6C2XzHvuqDk7Nd8X95ME8jH7pj7Q";
 
-    const rabbitmq_username = process.env.RABBITMQ_USERNAME ?? "username"
-    const rabbitmq_password = process.env.RABBITMQ_PASSWORD ?? "password"
-    const rabbitmq_hostname = process.env.RABBITMQ_HOSTNAME ?? "localhost"
-    const rabbitmq_queue = process.env.RABBITMQ_QUEUE ?? "queue"
+    const rabbitmq_username = process.env.RABBITMQ_USERNAME ?? "username";
+    const rabbitmq_password = process.env.RABBITMQ_PASSWORD ?? "password";
+    const rabbitmq_hostname = process.env.RABBITMQ_HOSTNAME ?? "localhost";
+    const rabbitmq_queue = process.env.RABBITMQ_QUEUE ?? "queue";
 
     const mailServer = await connectToMailServer(
         email_hostname,
@@ -61,18 +59,18 @@ async function main() {
                         content.to,
                         content.subject,
                         content.body
-                    )
+                    );
                     channel.ack(msg);
                     return;
                 }
-                channel.nack(msg)
+                channel.nack(msg);
             } catch {
-                channel.nack(msg)
+                channel.nack(msg);
             }
         }
-    })
+    });
 }
 
-main()
+main();
 
 

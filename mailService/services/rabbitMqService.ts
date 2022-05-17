@@ -1,5 +1,5 @@
 import { Connection } from "amqplib";
-import client from 'amqplib';
+import client from "amqplib";
 
 export async function connectToChannel(
     username: string,
@@ -23,5 +23,5 @@ export async function sendMessageToChannel(
     channel: client.Channel,
     queue: string
 ) {
-    channel.sendToQueue(queue, Buffer.from(msg))
+    channel.sendToQueue(queue, Buffer.from(msg));
 }
