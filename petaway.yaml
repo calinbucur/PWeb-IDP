@@ -37,6 +37,7 @@ services:
     image: idpreg.azurecr.io/api
     ports:
       - 5000:5000
+      - 5001:5001
   mail:
     image: idpreg.azurecr.io/mail-service
   frontend:
