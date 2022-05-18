@@ -10,7 +10,7 @@ namespace Petaway.Core.DataModel
             AnimalId = animalId;
             FosterId = fosterId;
             RescuerId = rescuerId;
-            StartingPoint = startPoint;
+            StartPoint = startPoint;
             EndPoint = endPoint;
         }
 
@@ -23,7 +23,7 @@ namespace Petaway.Core.DataModel
         public int AnimalId { get; set; }
         public int FosterId { get; set; }
         public int RescuerId { get; set; }
-        public string StartingPoint { get; set; }
+        public string StartPoint { get; set; }
         public string EndPoint { get; set; }
         public string? CrtLocation { get; set; }
         public virtual ICollection<Animals> Animals { get; set; } = new List<Animals>();
