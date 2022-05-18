@@ -60,6 +60,7 @@ jobs:
       run: cd mailService && npm run test
 
   deploy:
+    needs: [frontend, mailService, api]
     runs-on: ubuntu-latest
 
     steps:
@@ -97,3 +98,8 @@ jobs:
           context: ./mailService
           tags: idpreg.azurecr.io/mail-service
           push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Deploy to server
+        uses: wei/curl@v1
+        with:
+          args: -X POST --insecure ${{secrets.DEV_WEBHOOK}}

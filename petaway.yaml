@@ -34,13 +34,13 @@ services:
       - rabbitmqdata:/var/lib/rabbitmq/
       - rabbitmqlogs:/var/log/rabbitmq/
   api:
-    image: api
+    image: idpreg.azurecr.io/api
     ports:
       - 5000:5000
   mail:
-    image: mail-service
+    image: idpreg.azurecr.io/mail-service
   frontend:
-    image: frontend
+    image: idpreg.azurecr.io/frontend
     ports:
       - 3000:3000
 
