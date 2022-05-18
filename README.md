@@ -15,9 +15,20 @@ IDP
 * Carapcea Andrei-Antonio 342C1
 * Rusu Bianca-Ana-Maria 342C2
 
+
+
+
 # Architecture
 
 ![architecture](res/architecture.png)
+
+# Backend Architecture
+
+![backend_architecture](res/backend_architecture.png)
+
+# Tactical Domain Driven Design
+
+![tddd](res/backend_architecture.png)
 
 
 # Running instructions
