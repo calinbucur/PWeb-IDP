@@ -25,7 +25,6 @@ namespace Petaway.Core.DataModel
         public int RescuerId { get; set; }
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
-        public string? CrtLocation { get; set; }
         public virtual ICollection<Animals> Animals { get; set; } = new List<Animals>();
     }
 }

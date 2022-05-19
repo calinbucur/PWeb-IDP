@@ -15,21 +15,21 @@ namespace Petaway.Core.Domain.Rescuer
             aggregate.Address = address;
         }
 
-        public void UpdateRescuerProfile(string ownerId, string email, string name, string phoneNumber, string address, string password)
+        public void UpdateRescuerProfile(string email, string name, string phoneNumber, string address, string photoPath)
         {
-            aggregate.UserId = ownerId;
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.Address = address;
+            aggregate.PhotoPath = photoPath;
         }
 
         public RescuerAcceptTransportEvent AcceptTransport(int transportId)
         {
-            if (aggregate.MaxCapacity < aggregate.CrtCapacity + 1)
+            /*if (aggregate.MaxCapacity < aggregate.CrtCapacity + 1)
             {
                 throw new RescuerFullCapacityException(aggregate.Id);
-            }
+            }*/
 
             aggregate.CrtTransportId = transportId;
             return new RescuerAcceptTransportEvent(transportId);
@@ -41,7 +41,7 @@ namespace Petaway.Core.Domain.Rescuer
 
         public RescuerFinishTransportEvent FinishTransport(int transportId)
         {
-            aggregate.CrtCapacity = 0;
+//            aggregate.CrtCapacity = 0;
             return new RescuerFinishTransportEvent(transportId);
         }
 

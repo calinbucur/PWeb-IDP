@@ -16,10 +16,17 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
+                .Property(x => x.Age)
+                .IsRequired();
+
+            builder
                 .Property(x => x.Status)
                 .IsRequired();
 
             builder
+                .Property(x => x.Description);
+
+/*            builder
                 .Property(x => x.IsAggresive)
                 .IsRequired();
 
@@ -29,18 +36,7 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
 
             builder
                 .Property(x => x.IsStray)
-                .IsRequired();
-
-            builder
-                .Property(x => x.Age)
-                .IsRequired();
-
-            builder
-                .Property(x => x.Description);
-
-            builder
-                .Property(x => x.Location)
-                .IsRequired();
+                .IsRequired();*/
 
             base.Configure(builder);
         }

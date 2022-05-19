@@ -15,23 +15,15 @@ namespace Petaway.Core.Domain.Owner
             if (!String.Equals(aggregate.Address, address))
             {
                 aggregate.Address = address;
-
-                foreach (Animals animal in aggregate.Animals)
-                {
-                    if (animal.Status == "home")
-                    {
-                        animal.Location = address;
-                    }
-                }
             }
         }
 
-        public void UpdateOwnerProfile(string userId, string email, string name, string phoneNumber, string address, string password)
+        public void UpdateOwnerProfile(string email, string name, string phoneNumber, string address, string password, string photoPath)
         {
-            aggregate.UserId = userId;
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
+            aggregate.PhotoPath = photoPath;
             UpdateOwnerAddress(address);
         }
 
@@ -45,9 +37,6 @@ namespace Petaway.Core.Domain.Owner
 
             animal.Name = name;
             animal.Type = type;
-            animal.IsAggresive = isAgg;
-            animal.IsSick = isSick;
-            animal.IsStray = isStray;
             animal.Age = age;
             animal.Description = description;
         }

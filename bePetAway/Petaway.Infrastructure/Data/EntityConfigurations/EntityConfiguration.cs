@@ -11,11 +11,11 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
         {
             builder
                 .Property(x => x.CreatedAt)
-                .ValueGeneratedOnAdd();
-
+                .HasDefaultValueSql("now()"); //getdate() sau now()
+        
             builder
                 .Property(x => x.UpdatedAt)
-                .ValueGeneratedOnAddOrUpdate();
+                .HasDefaultValueSql("now()");
         }
     }
 }

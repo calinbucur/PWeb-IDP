@@ -15,21 +15,16 @@ namespace Petaway.Core.Domain.Foster
             if (!String.Equals(aggregate.Address, address))
             {
                 aggregate.Address = address;
-
-                foreach (Animals animal in aggregate.Animals)
-                {
-                    animal.Location = address;
-                }
             }
         }
 
-        public void UpdateFosterProfile(string userId, string email, string name, string phoneNumber, string address, string password, int maxCapacity)
+        public void UpdateFosterProfile(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity)
         {
-            aggregate.UserId = userId;
             aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.MaxCapacity = maxCapacity;
+            aggregate.PhotoPath = photoPath;
             UpdateFosterAddress(address);
         }
 

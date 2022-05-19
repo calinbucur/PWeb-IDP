@@ -4,29 +4,29 @@ namespace Petaway.Core.DataModel
 {
     public class Animals : Entity
     {
-        public Animals(string name, string type, string description, int age, string location, bool isAggresive, bool isSick, bool isStray, string status = "home") //, int animalId)
+        public Animals(string name, string type, int age, string status, string description) //, bool isAggresive, bool isSick, bool isStray)
         {
             Name = name;
-            Type = type;
+            Type = type; /* cat, dog, rodent, bird, domestic, exotic*/
+            Age = age; 
             Status = status;
-            IsAggresive = isAggresive;
-            IsSick = isSick;
-            IsStray = isStray;
-            Age = age;
             Description = description;
-            Location = location;
+
+/*            IsAggresive = isAggresive;
+            IsSick = isSick;
+            IsStray = isStray; */
         }
-        public int OwnerId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
-        public string Status { get; set; } /*home, pending, travelling, foster*/
-        public string Description { get; set; }
-        public bool IsAggresive { get; set; }
-        public bool IsSick { get; set; }
-        public bool IsStray { get; set; }
         public int Age { get; set; }
-        public string Location { get; set; }
+        public string Status { get; set; } = "home";  /*home, pending, travelling, foster*/
+        public string Description { get; set; }
 
+        /*        public bool IsAggresive { get; set; }
+                public bool IsSick { get; set; }
+                public bool IsStray { get; set; }*/
+
+        public int OwnerId { get; set; } = -1;
         public int CrtTransportId { get; set; } = -1;
         public int CrtFosterId { get; set; } = -1; 
         public int CrtRescuerId { get; set; } = -1;

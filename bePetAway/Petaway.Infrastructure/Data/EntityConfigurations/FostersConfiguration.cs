@@ -8,19 +8,23 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
         public override void Configure(EntityTypeBuilder<Fosters> builder)
         {
             builder
-                .Property(x => x.UserId)
-                .IsRequired();
-
-            builder
-                .HasIndex(x => x.UserId)
-                .IsUnique();
-
-            builder
                 .Property(x => x.Name)
                 .IsRequired();
 
             builder
-                .HasIndex(x => x.Name)
+                .Property(x => x.Email)
+                .IsRequired();
+
+            builder
+                .HasIndex(x => x.Email)
+                .IsUnique();
+
+            builder
+                .Property(x => x.PhoneNumber)
+                .IsRequired();
+
+            builder
+                .HasIndex(x => x.PhoneNumber)
                 .IsUnique();
 
             builder
@@ -28,10 +32,13 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
+                .Property(x => x.PhotoPath);
+
+            builder
                 .Property(x => x.MaxCapacity)
                 .IsRequired();
 
-            builder
+            /*builder
                 .Property(x => x.AnimalType);
 
             builder
@@ -41,8 +48,7 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .Property(x => x.IsSick);
 
             builder
-                .Property(x => x.IsStray);
-
+                .Property(x => x.IsStray);*/
 
             base.Configure(builder);
         }
