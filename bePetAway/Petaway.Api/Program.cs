@@ -61,7 +61,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseHttpsRedirection();
+    // app.UseHttpsRedirection();
 }
 
 if (app.Environment.IsDevelopment())
