@@ -128,3 +128,4 @@ volumes:
   pgadmindata:
   grafana-volume:
   loki-data:
+  loki-wal:
