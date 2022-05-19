@@ -43,7 +43,7 @@ services:
   frontend:
     image: idpreg.azurecr.io/frontend
     ports:
-      - 3000:3000
+      - 80:3000
   kong:
     image: kong:latest
     volumes:
@@ -64,6 +64,59 @@ services:
         constraints: [node.role == manager] #constrangerea de rulare doar pe master, pentru a nu exista conflict la nivel de volume
     # networks:
     #   - internal
+  prometheus:
+    image: prom/prometheus
+    volumes:
+        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/prometheus/prometheus-nexporter-cadvisor-testapp.yml:/etc/prometheus/prometheus.yml
+    ports:
+        - 9090:9090
+    # networks:
+    #     - monitoring
+    #     - visualizing
+
+  node_exporter:
+    image: prom/node-exporter
+    deploy:
+        mode: global
+    volumes:
+        - /proc:/host/proc:ro
+        - /sys:/host/sys:ro
+        - /:/rootfs:ro
+    command:
+        - '--path.procfs=/host/proc'
+        - '--path.rootfs=/rootfs'
+        - '--path.sysfs=/host/sys'
+        - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    ports:
+        - 9100:9100
+    # networks:
+    #     - monitoring
+  loki:
+    image: grafana/loki
+    volumes:
+        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/loki/loki.yml:/etc/config/loki.yml
+    entrypoint:
+        - /usr/bin/loki
+        - -config.file=/etc/config/loki.yml
+    ports:
+        - 3100:3100
+    # networks:
+    #     - logging
+    #     - visualizing
+
+  grafana:
+    image: grafana/grafana
+    volumes:
+        - grafana-volume:/var/lib/grafana
+    ports:
+        - 3000:3000
+    depends_on:
+        - loki
+    deploy:
+        placement:
+            constraints: [node.role == manager]
+    # networks:
+    #     - visualizing
 
 
 volumes:
@@ -71,3 +124,4 @@ volumes:
   rabbitmqdata:
   rabbitmqlogs:
   pgadmindata:
+  grafana-volume:
