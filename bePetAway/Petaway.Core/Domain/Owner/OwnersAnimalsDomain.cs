@@ -41,6 +41,17 @@ namespace Petaway.Core.Domain.Owner
             animal.Description = description;
         }
 
+        public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string status = "home")
+        {
+            Animals new_animal = new Animals(name, type, age, status, description)
+            {
+                OwnerId = aggregate.Id
+            };
+            aggregate.Animals.Add(new_animal);
+            
+
+            return new AddAnimalToOwnerCommand(aggregate.Id, name, type, age, description, status);
+        }
         public void MarkAnimalAsTaken(int animalId) {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)

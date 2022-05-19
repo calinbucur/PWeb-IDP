@@ -8,7 +8,7 @@ namespace Petaway.Api.Features.Owners
     {
         internal static void AddOwnersAnimalsHandlers(this IServiceCollection services)
         {
-//            services.AddTransient<IAddAnimalCommandHandler, AddAnimalCommandHandler>();
+            services.AddTransient<IAddAnimalCommandHandler, AddAnimalCommandHandler>();
 
             services.AddTransient<IRegisterOwnerCommandHandler, RegisterOwnerCommandHandler>();
         }
