@@ -95,7 +95,7 @@ services:
     image: grafana/loki
     volumes:
         - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/loki.yml:/etc/config/loki.yml
-        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/loki/wal:/wal
+        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/wal:/wal
     entrypoint:
         - /usr/bin/loki
         - -config.file=/etc/config/loki.yml
