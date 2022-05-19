@@ -5,17 +5,15 @@ namespace Petaway.Core.Domain.Owner
 {
     public record RegisterOwnerProfileCommand : ICreateAggregateCommand
     {
-        public RegisterOwnerProfileCommand(string userId, string email, string name, string phoneNumber, string address)
+        public RegisterOwnerProfileCommand(string email, string name, string phoneNumber, string address, string photoPath)
         {
-            UserId = userId;
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
+            PhotoPath = photoPath;
         }
 
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
         [JsonProperty("email")]
         public string Email { get; set; }
         [JsonProperty("name")]
@@ -24,5 +22,9 @@ namespace Petaway.Core.Domain.Owner
         public string PhoneNumber { get; set; }
         [JsonProperty("address")]
         public string Address { get; set; }
+
+        [JsonProperty("photoPath")]
+        public string PhotoPath { get; set; }
+
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
-namespace Petaway.Api.Features.Owner
+namespace Petaway.Api.Features.Owners
 {
     [ApiController]
     [Route("api/v1/[controller]")]

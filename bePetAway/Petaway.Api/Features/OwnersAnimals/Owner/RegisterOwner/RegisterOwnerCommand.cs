@@ -5,7 +5,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner
 {
     public record RegisterOwnerCommand : RegisterOwnerProfileCommand
     {
-        public RegisterOwnerCommand(string userId, string email, string name, string phoneNumber, string address) : base(userId, email, name, phoneNumber, address)
+        public RegisterOwnerCommand(string email, string name, string phoneNumber, string address, string photoPath) : base(email, name, phoneNumber, address, photoPath)
         {
 
         }

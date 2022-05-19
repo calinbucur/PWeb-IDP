@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterOwnerProfileCommand command, CancellationToken cancellationToken)
         {
-            var user = new Owners(command.UserId, command.Email, command.Name, command.PhoneNumber, command.Address);
+            var user = new Owners(command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
 
             await context.Owners.AddAsync(user);
             await SaveAsync(cancellationToken);

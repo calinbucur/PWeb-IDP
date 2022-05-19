@@ -2,11 +2,11 @@
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Petaway.Api.Features.Owner
+namespace Petaway.Api.Features.Owners
 {
     internal static class OwnersModule
     {
-        internal static void AddAnimalsHandlers(this IServiceCollection services)
+        internal static void AddOwnersAnimalsHandlers(this IServiceCollection services)
         {
 //            services.AddTransient<IAddAnimalCommandHandler, AddAnimalCommandHandler>();
 

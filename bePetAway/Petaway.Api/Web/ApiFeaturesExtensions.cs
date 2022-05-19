@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Petaway.Api.Features.Owner;
+using Petaway.Api.Features.Owners;
+using Petaway.Api.Features.Fosters;
+using Petaway.Api.Features.Rescuers;
 
 
 namespace Petaway.Api.Web
@@ -9,7 +11,11 @@ namespace Petaway.Api.Web
         public static void AddApiFeaturesHandlers(this IServiceCollection services)
         {
             // Add Animals Handlers
-            services.AddAnimalsHandlers();
+            services.AddOwnersAnimalsHandlers();
+            
+            services.AddFostersHandlers();
+
+            services.AddRescuersHandlers();
 
         }
     }
