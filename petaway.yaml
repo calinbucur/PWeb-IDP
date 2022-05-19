@@ -47,7 +47,7 @@ services:
   kong:
     image: kong:latest
     volumes:
-      - ./kong:/usr/local/kong/declarative #injectarea fisierului de configurare la calea specificata
+      - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/kong/:/usr/local/kong/declarative #injectarea fisierului de configurare la calea specificata
     environment:
       KONG_DATABASE: 'off' #obligatoriu, daca se vrea modul DB-less
       KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml #trebuie specificat unde anume se va gasi fisierul de configurare
