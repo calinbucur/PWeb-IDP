@@ -1,0 +1,9 @@
+_format_version: "2.1"
+
+services:
+  - name: backend
+    url: http://petaway_api:5000/api/v1
+    routes:
+      - name: backend-route
+        paths: 
+          - /api
