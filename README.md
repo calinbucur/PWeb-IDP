@@ -83,7 +83,7 @@ The application was deployed on a swarm on Azure, available at: petaway.northeur
 
 We also use a private Docker registry hosted on Azure at: idpreg.azurecr.io.
 
-## Useful links
+# Useful links
 
 - frontend: https://petaway.northeurope.cloudapp.azure.com:8080/
 - backend: http://petaway.northeurope.cloudapp.azure.com:8001/api
