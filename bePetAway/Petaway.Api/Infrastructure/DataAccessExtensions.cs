@@ -13,12 +13,20 @@ namespace Petaway.Api.Infrastructure
 {
     public static partial class DataAccessExtensions
     {
+        private static string? ReadFileFromEnv(string env) {
+            string? path = Environment.GetEnvironmentVariable(env);
+            if (path != null) {
+                return System.IO.File.ReadAllText(path);
+            } else {
+                return null;
+            }
+        }
         public static void AddPetawayDbContext(this WebApplicationBuilder builder)
         {
-            string dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";
-            string dbUsername = Environment.GetEnvironmentVariable("POSTGRES_USER") ?? "user";
-            string dbPassword = Environment.GetEnvironmentVariable("POSTGRES_PASSWORD") ?? "password";
-            string dbDatabase = Environment.GetEnvironmentVariable("POSTGRES_DB") ?? "db";
+            string dbHostname = ReadFileFromEnv("DB_HOSTNAME") ?? "localhost";
+            string dbUsername = ReadFileFromEnv("POSTGRES_USER_FILE") ?? "user";
+            string dbPassword = ReadFileFromEnv("POSTGRES_PASSWORD_FILE") ?? "password";
+            string dbDatabase = ReadFileFromEnv("POSTGRES_DB_FILE") ?? "db";
 
 
             builder.Services.AddDbContext<PetawayContext>(opt =>

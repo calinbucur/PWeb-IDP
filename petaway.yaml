@@ -10,9 +10,9 @@ services:
       - postgres_password
       - postgres_db
     environment:
-      POSTGRES_USER: /run/secrets/postgres_user
-      POSTGRES_PASSWORD: /run/secrets/postgres_password
-      POSTGRES_DB: /run/secrets/postgres_db
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB_FILE: /run/secrets/postgres_db
     volumes:
       - dbvolume:/var/lib/postgresql/data
     networks:
@@ -22,12 +22,9 @@ services:
       - logging
   pgadmin:
     image: dpage/pgadmin4
-    secrets:
-      - pgadmin_default_mail
-      - pgadmin_default_password
     environment:
-      PGADMIN_DEFAULT_EMAIL: /run/secrets/pgadmin_default_mail
-      PGADMIN_DEFAULT_PASSWORD: /run/secrets/pgadmin_default_password
+      PGADMIN_DEFAULT_EMAIL: user@test.com
+      PGADMIN_DEFAULT_PASSWORD: HSgSPdiURk3bcWBq5boNULg3N7P8
     ports:
       - "5050:80"
     depends_on:
@@ -44,8 +41,8 @@ services:
       - rabbitmq_password
       - rabbitmq_username
     environment:
-      RABBITMQ_DEFAULT_PASS: /run/secrets/rabbitmq_password
-      RABBITMQ_DEFAULT_USER: /run/secrets/rabbitmq_username
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
     ports:
       - 15672:15672
       - 5672:5672
@@ -72,11 +69,15 @@ services:
       - postgres_user
       - postgres_password
       - postgres_db
+      - rabbitmq_password
+      - rabbitmq_username
     environment:
-      POSTGRES_USER: /run/secrets/postgres_user
-      POSTGRES_PASSWORD: /run/secrets/postgres_password
-      POSTGRES_DB: /run/secrets/postgres_db
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      POSTGRES_DB_FILE: /run/secrets/postgres_db
       DB_HOSTNAME: database
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
   mail:
     image: idpreg.azurecr.io/mail-service
     networks:
