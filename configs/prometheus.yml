@@ -31,3 +31,7 @@ scrape_configs:
         - filefd
         - filesystem
         - xfs
+
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8007']
