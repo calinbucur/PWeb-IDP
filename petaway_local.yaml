@@ -44,8 +44,8 @@ services:
       - rabbitmq_password
       - rabbitmq_username
     environment:
-      - RABBITMQ_DEFAULT_PASS: /run/secrets/rabbitmq_password
-      - RABBITMQ_DEFAULT_USER: /run/secrets/rabbitmq_username
+      RABBITMQ_DEFAULT_PASS: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER: /run/secrets/rabbitmq_username
     ports:
       - 15672:15672
       - 5672:5672
@@ -90,7 +90,7 @@ services:
       - monitoring
       - logging
     environment:
-      - API_HOSTNAME: kong
+      API_HOSTNAME: kong
   kong:
     image: kong:latest
     volumes:
