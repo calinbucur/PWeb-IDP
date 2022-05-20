@@ -189,6 +189,8 @@ networks:
   internal:
   database:
   dbadmin:
+  mail:
+  rabbitmq:
 
 secrets:
   postgres_user:
