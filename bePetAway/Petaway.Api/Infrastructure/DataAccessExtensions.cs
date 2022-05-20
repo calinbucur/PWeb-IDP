@@ -16,14 +16,18 @@ namespace Petaway.Api.Infrastructure
         private static string? ReadFileFromEnv(string env) {
             string? path = Environment.GetEnvironmentVariable(env);
             if (path != null) {
-                return System.IO.File.ReadAllText(path);
+                try {
+                    return System.IO.File.ReadAllText(path);
+                } catch {
+                    return null;
+                }
             } else {
                 return null;
             }
         }
         public static void AddPetawayDbContext(this WebApplicationBuilder builder)
         {
-            string dbHostname = ReadFileFromEnv("DB_HOSTNAME") ?? "localhost";
+            string dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";
             string dbUsername = ReadFileFromEnv("POSTGRES_USER_FILE") ?? "user";
             string dbPassword = ReadFileFromEnv("POSTGRES_PASSWORD_FILE") ?? "password";
             string dbDatabase = ReadFileFromEnv("POSTGRES_DB_FILE") ?? "db";
