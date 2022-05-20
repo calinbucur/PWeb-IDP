@@ -37,9 +37,9 @@ function readFileFromEnv(path: string | undefined): string | undefined {
 }
 
 async function main() {   
-    const email_hostname = process.env.MAIL_HOSTNAME ?? "";
-    const email_username = process.env.MAIL_USERNAME ?? "";
-    const email_password = process.env.MAIL_PASSWORD ?? "";
+    const email_hostname = readFileFromEnv(process.env.MAIL_HOSTNAME) ?? "";
+    const email_username = readFileFromEnv(process.env.MAIL_USERNAME) ?? "";
+    const email_password = readFileFromEnv(process.env.MAIL_PASSWORD) ?? "";
 
     const rabbitmq_username = readFileFromEnv(process.env.RABBITMQ_DEFAULT_USER_FILE) ?? "username";
     const rabbitmq_password = readFileFromEnv(process.env.RABBITMQ_DEFAULT_PASS_FILE) ?? "password";
