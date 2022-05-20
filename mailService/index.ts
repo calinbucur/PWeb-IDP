@@ -2,7 +2,7 @@ import "dotenv/config";
 import { connectToChannel } from "./services/rabbitMqService";
 import { connectToMailServer, sendMail } from "./services/mailService";
 import Ajv, { JSONSchemaType } from "ajv";
-import { readFileSync } from 'fs';
+import { readFileSync } from "fs";
 
 interface RabbitMqMessage {
     to: string,
@@ -27,7 +27,7 @@ const validateRabbitMqMsg = ajv.compile(rabbitMqMsgSchema);
 
 function readFileFromEnv(path: string | undefined): string | undefined {
     if (!path) {
-        return undefined
+        return undefined;
     }
     try {
         return readFileSync(path, "utf-8");
