@@ -94,7 +94,7 @@ services:
   kong:
     image: kong:latest
     volumes:
-      - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/kong/:/usr/local/kong/declarative #injectarea fisierului de configurare la calea specificata
+      - ./kong/:/usr/local/kong/declarative #injectarea fisierului de configurare la calea specificata
     environment:
       KONG_DATABASE: 'off' #obligatoriu, daca se vrea modul DB-less
       KONG_DECLARATIVE_CONFIG: /usr/local/kong/declarative/kong.yml #trebuie specificat unde anume se va gasi fisierul de configurare
@@ -117,7 +117,7 @@ services:
   prometheus:
     image: prom/prometheus
     volumes:
-        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/prometheus.yml:/etc/prometheus/prometheus.yml
+        - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
         - 9090:9090
     extra_hosts:
@@ -146,7 +146,7 @@ services:
   loki:
     image: grafana/loki
     volumes:
-        - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/loki.yml:/etc/config/loki.yml
+        - ./configs/loki.yml:/etc/config/loki.yml
         - loki-data:/data/loki
         - loki-wal:/wal
     entrypoint:

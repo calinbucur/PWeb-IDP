@@ -25,9 +25,9 @@ const ajv = new Ajv();
 const validateRabbitMqMsg = ajv.compile(rabbitMqMsgSchema);
 
 async function main() {   
-    const email_hostname = process.env.MAIL_HOSTNAME ?? "smtp.gmail.com";
-    const email_username = process.env.MAIL_USERNAME ?? "petaway.test@gmail.com";
-    const email_password = process.env.MAIL_PASSWORD ?? "6C2XzHvuqDk7Nd8X95ME8jH7pj7Q";
+    const email_hostname = process.env.MAIL_HOSTNAME ?? "";
+    const email_username = process.env.MAIL_USERNAME ?? "";
+    const email_password = process.env.MAIL_PASSWORD ?? "";
 
     const rabbitmq_username = process.env.RABBITMQ_USERNAME ?? "username";
     const rabbitmq_password = process.env.RABBITMQ_PASSWORD ?? "password";
