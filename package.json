@@ -1,0 +1,30 @@
+{
+  "name": "pweb-idp",
+  "version": "1.0.0",
+  "description": "Repository for the joint team project on PWeb and IDP",
+  "main": "index.js",
+  "scripts": {
+    "deps": "docker-compose -f deps.yaml up -d",
+    "dev:frontend": "cd pweb_frontend && npm run dev:start",
+    "dev:api": "cd bePetAway && npm run dev:start",
+    "dev:mail": "cd mailService && npm run dev:start",
+    "test:frontend": "cd pweb_frontend && npm run test",
+    "test:api": "cd bePetAway && npm run test",
+    "docker:api:build": "cd bePetAway && npm run docker:build",
+    "docker:frontend:build": "cd pweb_frontend && npm run docker:build",
+    "docker:mail:build": "cd mailService && npm run docker:build",
+    "docker:all:build": "./scripts/build.sh",
+    "setup": "./scripts/setup.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calinbucur/PWeb-IDP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/calinbucur/PWeb-IDP/issues"
+  },
+  "homepage": "https://github.com/calinbucur/PWeb-IDP#readme"
+}

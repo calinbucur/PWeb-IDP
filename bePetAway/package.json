@@ -1,0 +1,16 @@
+{
+  "name": "bepetaway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev:start": "dotnet run --project Petaway.Api",
+    "add-migration": "dotnet ef migrations add",
+    "update-db": "dotnet ef database update",
+    "docker:build": "docker build . -t petaway-api",
+    "test": "dotnet test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

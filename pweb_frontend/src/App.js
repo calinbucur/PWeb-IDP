@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import './App.css';
 import React, { useEffect, useState } from "react";
+=======
+import React from 'react'
+import './App.css'
+>>>>>>> backupidp
 import LoginButton from './LoginButton'
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import logo from './logo.png';
@@ -9,6 +14,7 @@ import LogoutPage from './LogoutPage';
 import Banner from './Banner';
 import Feed from './Feed';
 
+<<<<<<< HEAD
 function Home() {
   return (
     <>
@@ -152,3 +158,27 @@ function App () {
 }
 
 export default App;
+=======
+function App () {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <LoginButton></LoginButton>
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  )
+}
+
+export default App
+>>>>>>> backupidp

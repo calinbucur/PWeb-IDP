@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+  database:
+    image: postgres:14.2-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    volumes:
+      - dbvolume:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@test.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    restart: always
+    ports:
+      - "5050:80"
+    depends_on:
+      - database
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
+  rabbitmq:
+    image: rabbitmq:3.10-management-alpine
+    container_name: 'rabbitmq'
+    restart: always
+    environment:
+      - "RABBITMQ_DEFAULT_PASS=password"
+      - "RABBITMQ_DEFAULT_USER=username"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - rabbitmq_net
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq/
+      - rabbitmqlogs:/var/log/rabbitmq/
+
+networks:
+  rabbitmq_net:
+    driver: bridge
+
+volumes:
+  dbvolume:
+  rabbitmqdata:
+  rabbitmqlogs:
+  pgadmindata:
