@@ -36,7 +36,7 @@ services:
       - monitoring
       - logging
   rabbitmq:
-    image: rabbitmq:3.10-management-alpine
+    image: rabbitmq:3.8-management-alpine
     secrets:
       - rabbitmq_password
       - rabbitmq_username
