@@ -70,6 +70,8 @@ services:
         - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
         - 9090:9090
+    extra_hosts:
+      host.docker.internal: 10.0.2.2
     # networks:
     #     - monitoring
     #     - visualizing
