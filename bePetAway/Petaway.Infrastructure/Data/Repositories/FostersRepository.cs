@@ -25,7 +25,6 @@ namespace Petaway.Infrastructure.Data.Repositories
         public async Task<DomainOfAggregate<Fosters>?> GetAsync(int aggregateId, CancellationToken cancellationToken)
         {
             var foster_entity = await context.Fosters
-                .Include(x => x.Animals)
                 .FirstOrDefaultAsync(x => x.Id == aggregateId, cancellationToken);
 
             if (foster_entity == null)
@@ -35,6 +34,22 @@ namespace Petaway.Infrastructure.Data.Repositories
 
             return new FostersDomain(foster_entity);
         }
+
+        public async Task<DomainOfAggregate<Fosters>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken)
+        {
+            var foster_entity = await context.Fosters
+                .FirstOrDefaultAsync(x => x.Email == aggregateEmail, cancellationToken);
+
+            if (foster_entity == null)
+            {
+                return null;
+            }
+
+            return new FostersDomain(foster_entity);
+        }
+
+
+
 
         public async Task DeleteAsync(int aggregateId, CancellationToken cancellationToken)
         {

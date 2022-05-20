@@ -35,6 +35,21 @@ namespace Petaway.Infrastructure.Data.Repositories
             return new RescuersDomain(rescuer_entity);
         }
 
+        public async Task<DomainOfAggregate<Rescuers>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken)
+        {
+            var rescuer_entity = await context.Rescuers
+                .FirstOrDefaultAsync(x => x.Email == aggregateEmail, cancellationToken);
+
+            if (rescuer_entity == null)
+            {
+                return null;
+            }
+
+            return new RescuersDomain(rescuer_entity);
+        }
+
+
+
         public async Task DeleteAsync(int aggregateId, CancellationToken cancellationToken)
         {
             var rescuer_entity = await context.Rescuers

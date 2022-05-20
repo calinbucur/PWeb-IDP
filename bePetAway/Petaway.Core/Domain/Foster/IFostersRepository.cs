@@ -5,5 +5,6 @@ namespace Petaway.Core.Domain.Foster
 {
     public interface IFostersRepository : IRepositoryOfAggregate<Fosters, RegisterFosterProfileCommand>
     {
+        Task<DomainOfAggregate<Fosters>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken);
     }
 }

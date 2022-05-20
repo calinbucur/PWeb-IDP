@@ -36,6 +36,22 @@ namespace Petaway.Infrastructure.Data.Repositories
             return new OwnersAnimalsDomain(owner_entity);
         }
 
+        public async Task<DomainOfAggregate<Owners>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken)
+        {
+            var owner_entity = await context.Owners
+                .Include(x => x.Animals)
+                .FirstOrDefaultAsync(x => x.Email == aggregateEmail, cancellationToken);
+
+            if (owner_entity == null)
+            {
+                return null;
+            }
+
+            return new OwnersAnimalsDomain(owner_entity);
+        }
+
+
+
         public async Task DeleteAsync(int aggregateId, CancellationToken cancellationToken)
         {
             var owner_entity = await context.Owners

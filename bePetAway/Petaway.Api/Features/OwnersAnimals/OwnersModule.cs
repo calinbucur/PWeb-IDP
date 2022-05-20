@@ -1,4 +1,6 @@
 ﻿using Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal;
+using Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals;
+using Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals;
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +13,11 @@ namespace Petaway.Api.Features.Owners
             services.AddTransient<IAddAnimalCommandHandler, AddAnimalCommandHandler>();
 
             services.AddTransient<IRegisterOwnerCommandHandler, RegisterOwnerCommandHandler>();
+
+            services.AddTransient<IViewOwnerAnimalsCommandHandler, ViewOwnerAnimalsCommandHandler>();
+
+            services.AddTransient<IViewRescuableAnimalsCommandHandler, ViewRescuableAnimalsCommandHandler>();
+
         }
     }
 }
