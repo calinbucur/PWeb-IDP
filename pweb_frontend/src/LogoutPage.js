@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import React from "react";
 import './App.css'
 import logo from './logo.png';
