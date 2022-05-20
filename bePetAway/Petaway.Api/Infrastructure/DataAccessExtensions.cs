@@ -13,7 +13,7 @@ namespace Petaway.Api.Infrastructure
 {
     public static partial class DataAccessExtensions
     {
-        private static string? ReadFileFromEnv(string env) {
+        public static string? ReadFileFromEnv(string env) {
             string? path = Environment.GetEnvironmentVariable(env);
             if (path != null) {
                 try {

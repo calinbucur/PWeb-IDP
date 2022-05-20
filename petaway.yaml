@@ -78,6 +78,8 @@ services:
       DB_HOSTNAME: database
       RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
       RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
+      RABBITMQ_HOSTNAME: rabbitmq
+      RABBITMQ_QUEUE: queue
     logging:
       driver: loki
       options:
@@ -90,6 +92,14 @@ services:
     image: idpreg.azurecr.io/mail-service
     networks:
       - mail
+    secrets:
+      - rabbitmq_password
+      - rabbitmq_username
+    environment:
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
+      RABBITMQ_HOSTNAME: rabbitmq
+      RABBITMQ_QUEUE: queue
   frontend:
     image: idpreg.azurecr.io/frontend
     ports:
