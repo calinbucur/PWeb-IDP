@@ -90,3 +90,5 @@ We also use a private Docker registry hosted on Azure at: idpreg.azurecr.io.
 - pgadmin: http://petaway.northeurope.cloudapp.azure.com:5050
 - prometheus: http://petaway.northeurope.cloudapp.azure.com:9090/graph
 - graphana: http://petaway.northeurope.cloudapp.azure.com:9090/graph
+- portainer: https://petaway.northeurope.cloudapp.azure.com:9443
+- rabbitmq: http://petaway.northeurope.cloudapp.azure.com:15672/
