@@ -117,8 +117,6 @@ services:
         - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
         - 9090:9090
-    extra_hosts:
-      host.docker.internal: 10.0.2.2
     networks:
         - monitoring
         - visualizing
