@@ -83,7 +83,7 @@ function App () {
           <Banner idToken = {idToken}></Banner>
           <Feed></Feed>
           <header className = "App-side-prompt">
-            Hi {idToken ? idToken['https://PetAway.com/role'] : ''}
+            Hey {idToken ? idToken['https://PetAway.com/role'] : ''}
           </header>
         </>} />
       </Routes>
