@@ -4,8 +4,9 @@ namespace Petaway.Core.DataModel
 {
     public class Users : Entity, IAggregateRoot
     {
-        public Users(string email, string name, string phoneNumber, string address, string photoPath)
+        public Users(string identityId,  string email, string name, string phoneNumber, string address, string photoPath)
         {
+            IdentityId = identityId;
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
@@ -13,6 +14,7 @@ namespace Petaway.Core.DataModel
             PhotoPath = photoPath;
         }
 
+        public string IdentityId { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

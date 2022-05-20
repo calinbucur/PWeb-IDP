@@ -1,5 +1,6 @@
 ﻿using Petaway.Api.Authorization;
-using Petaway.Api.Infrastructure;
+using Petaway.Api.Infrastructure.Database;
+using Petaway.Api.Infrastructure.RabbitMQ;
 using Petaway.Api.Web;
 using MediatR;
 using System.Reflection;

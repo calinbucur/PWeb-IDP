@@ -16,13 +16,13 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<ViewOwnerAnimalsDto>> HandleAsync(string ownerEmail, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ViewOwnerAnimalsDto>> HandleAsync(string identityId, CancellationToken cancellationToken)
         {
-            var owner = await dbContext.Owners.FirstOrDefaultAsync(x => x.Email == ownerEmail);
+            var owner = await dbContext.Owners.FirstOrDefaultAsync(x => x.IdentityId == identityId);
 
             if (owner == null)
             {
-                throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {ownerEmail} does not have a registered profile");
+                throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
             var ownerProfileId = owner.Id;

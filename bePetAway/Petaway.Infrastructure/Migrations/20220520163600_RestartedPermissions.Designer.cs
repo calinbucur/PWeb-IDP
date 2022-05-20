@@ -12,8 +12,8 @@ using Petaway.Infrastructure.Data;
 namespace Petaway.Infrastructure.Migrations
 {
     [DbContext(typeof(PetawayContext))]
-    [Migration("20220519040912_DebuggingPostgresDateTime")]
-    partial class DebuggingPostgresDateTime
+    [Migration("20220520163600_RestartedPermissions")]
+    partial class RestartedPermissions
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,6 +117,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("MaxCapacity")
                         .HasColumnType("integer");
 
@@ -143,6 +147,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")
@@ -172,6 +179,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -195,6 +206,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")
@@ -227,6 +241,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -247,6 +265,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")

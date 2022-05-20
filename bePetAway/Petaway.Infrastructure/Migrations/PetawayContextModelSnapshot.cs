@@ -115,6 +115,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<int>("MaxCapacity")
                         .HasColumnType("integer");
 
@@ -141,6 +145,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")
@@ -170,6 +177,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -193,6 +204,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")
@@ -225,6 +239,10 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("IdentityId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -245,6 +263,9 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("IdentityId")
                         .IsUnique();
 
                     b.HasIndex("PhoneNumber")

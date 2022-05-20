@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 
-namespace Petaway.Api.Infrastructure
+namespace Petaway.Api.Infrastructure.Database
 {
     public static partial class DataAccessExtensions
     {

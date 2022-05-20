@@ -8,6 +8,14 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
         public override void Configure(EntityTypeBuilder<Owners> builder)
         {
             builder
+               .Property(x => x.IdentityId)
+               .IsRequired();
+
+            builder
+                .HasIndex(x => x.IdentityId)
+                .IsUnique();
+
+            builder
                 .Property(x => x.Name)
                 .IsRequired();
 

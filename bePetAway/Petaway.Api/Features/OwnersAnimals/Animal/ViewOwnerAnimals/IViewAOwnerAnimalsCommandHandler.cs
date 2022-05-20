@@ -4,6 +4,6 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals
 {
     public interface IViewOwnerAnimalsCommandHandler
     {
-        public Task<IEnumerable<ViewOwnerAnimalsDto>> HandleAsync(string ownerEmail, CancellationToken cancellation);
+        public Task<IEnumerable<ViewOwnerAnimalsDto>> HandleAsync(string identityId, CancellationToken cancellation);
     }
 }
