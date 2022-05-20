@@ -3,9 +3,9 @@ using Petaway.Api.Infrastructure;
 
 namespace Petaway.Api.Features.Email;
 
-[Microsoft.AspNetCore.Components.Route("api/v1/[controller]")]
+[Route("api/v1/[controller]")]
 [ApiController]
-public class EmailController
+public class EmailController : ControllerBase
 {
     private IRabbitMQService _rabbitMqService;
     
@@ -14,7 +14,7 @@ public class EmailController
         _rabbitMqService = rabbitMqService;
     }
     
-    [HttpPost]
+    [HttpGet]
     public void SendMail()
     {
         _rabbitMqService.sendMail("petaway.test@gmail.com", "TEST EMAIL", "SUBJECT");
