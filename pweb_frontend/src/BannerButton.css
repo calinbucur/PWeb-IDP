@@ -1,14 +1,18 @@
 .BannerButton {
     position: absolute;
     width: 10%;
-    height: 80%;
-    left: 85%;
-    top: 10%;
+    height: 60%;
+    left: 84.5%;
+    top: 20%;
     background: #FFDB49;
     border-radius: 10px 10px 10px 10px;
     display: table-cell;
     vertical-align: middle;
     /* align-items: center; */
+}
+
+.Donate {
+    left: 72%;
 }
 
 .ButtonText {

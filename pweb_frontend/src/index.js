@@ -11,8 +11,10 @@ root.render(
   <BrowserRouter>
     <Auth0Provider
       domain="dev-rxvajvsu.us.auth0.com"
-      clientId="vqXaPyLnv7HeXY45yQNfxLdPrh93FFPw"
+      clientId="YyrdH0HdCwE8J5ufDw5lUpIPVH1s9fM6"
       redirectUri={window.location.origin}
+      // audience="https://dev-rxvajvsu.us.auth0.com/api/v2/"
+      // scope="read:current_user update:current_user_metadata"
     >
       <App />
     </Auth0Provider>
