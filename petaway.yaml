@@ -95,7 +95,13 @@ services:
     secrets:
       - rabbitmq_password
       - rabbitmq_username
+      - mail_hostname
+      - mail_password
+      - mail_username
     environment:
+      MAIL_HOSTNAME: /run/secrets/mail_hostname
+      MAIL_PASSWORD: /run/secrets/mail_password
+      MAIL_USERNAME: /run/secrets/mail_username
       RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
       RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
       RABBITMQ_HOSTNAME: rabbitmq
@@ -243,4 +249,10 @@ secrets:
   rabbitmq_password:
     external: true
   rabbitmq_username:
+    external: true
+  mail_hostname:
+    external: true
+  mail_password:
+    external: true
+  mail_username:
     external: true
