@@ -19,11 +19,13 @@ namespace Petaway.Api.Authorization
             });
 
             // Add Authorization configuration: TODO => Pentru Foster/Rescuer/Owner
-/*            builder.Services.AddAuthorization(configure =>
+            builder.Services.AddAuthorization(configure =>
             {
-                configure.AddPolicy("AdminAccess", policy => policy.RequireClaim("permissions", "book-library:admin"));
+                configure.AddPolicy("FosterAccess", policy => policy.RequireClaim("permissions", "access::foster"));
+                configure.AddPolicy("OwnerAccess", policy => policy.RequireClaim("permissions", "access::owner"));
+                configure.AddPolicy("RescuerAccess", policy => policy.RequireClaim("permissions", "access::rescuer"));
             });
-*/
+
         }
 
         public static void UseAuthenticationAndAuthorization(this WebApplication app)

@@ -43,14 +43,14 @@ namespace Petaway.Core.Domain.Owner
 
         public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string status = "home")
         {
-            Animals new_animal = new Animals(name, type, age, status, description)
-            {
-                OwnerId = aggregate.Id
-            };
+            Animals new_animal = new Animals(name, type, age, status, description);
+            new_animal.OwnerId = aggregate.Id;
+
+
             aggregate.Animals.Add(new_animal);
             
 
-            return new AddAnimalToOwnerCommand(aggregate.Email, name, type, age, description, status);
+            return new AddAnimalToOwnerCommand(name, type, age, description, status);
         }
         public void MarkAnimalAsTaken(int animalId) {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);

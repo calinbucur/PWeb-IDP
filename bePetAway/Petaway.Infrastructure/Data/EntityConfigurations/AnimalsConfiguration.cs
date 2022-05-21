@@ -38,6 +38,18 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .Property(x => x.IsStray)
                 .IsRequired();*/
 
+            builder
+                .Property(x => x.OwnerId);
+
+            builder
+                .Property(x => x.CrtTransportId);
+
+            builder
+                .Property(x => x.CrtFosterId);
+
+            builder
+                .Property(x => x.CrtRescuerId);
+
             base.Configure(builder);
         }
     }

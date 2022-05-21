@@ -12,8 +12,8 @@ using Petaway.Infrastructure.Data;
 namespace Petaway.Infrastructure.Migrations
 {
     [DbContext(typeof(PetawayContext))]
-    [Migration("20220520163600_RestartedPermissions")]
-    partial class RestartedPermissions
+    [Migration("20220520180042_RestartMigrations")]
+    partial class RestartMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

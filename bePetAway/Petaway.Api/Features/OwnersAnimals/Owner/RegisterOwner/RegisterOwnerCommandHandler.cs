@@ -11,9 +11,9 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner
             this.OwnersAnimalsRepository = OwnersAnimalsRepository;
         }
 
-        public Task HandleAsync(RegisterOwnerCommand command, CancellationToken cancellationToken)
+        public Task HandleAsync(RegisterOwnerCommand command, string identityId, CancellationToken cancellationToken)
             => OwnersAnimalsRepository.AddAsync(
-                new RegisterOwnerProfileCommand(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
+                new RegisterOwnerProfileCommand(identityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
                 cancellationToken);
     }
     

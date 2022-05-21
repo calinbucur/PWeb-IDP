@@ -42,6 +42,9 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
             builder
                 .Property(x => x.PhotoPath);
 
+            builder
+                .Property(x => x.CrtTransportId);
+
             /*
             builder
                 .Property(x => x.MaxCapacity)
