@@ -92,7 +92,7 @@ function App () {
         const post = () => {
           (async () => {
             const accessToken = await getAccessTokenSilently();
-            // console.log(accessToken)
+            console.log(accessToken)
             axiosInstance
               .post(routes[role]['add' + role], post_obj, {
                 headers: {
