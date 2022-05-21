@@ -46,19 +46,20 @@ const Banner = (props) => {
   //   }, [getAccessTokenSilently, user?.sub]);
   const axiosInstance = axios.create({
     baseURL: 'http://localhost:5000/',
-    timeout: 1000,
+    // timeout: 1000,
   });
   const post = () => {
     (async () => {
       const accessToken = await getAccessTokenSilently();
+      console.log(accessToken)
       axiosInstance
         .post("/api/v1/Owners/registerOwner", {
-          "identityId": "striaffasdang",
-          "email": "strifffddng",
-          "name": "stridffdng",
-          "phoneNumber": "strddffing",
-          "address": "stridffdng",
-          "photoPath": "stridffdng"
+          // "identityId": "striaffasdang",
+          "email": "stg",
+          "name": "stg",
+          "phoneNumber": "stg",
+          "address": "sg",
+          "photoPath": "strig"
         }, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
