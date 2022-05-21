@@ -106,7 +106,7 @@ const Banner = (props) => {
         {profile && <div className = 'App-profile-div' on>
           <img className = "img-responsive App-profile-pic-detail" src={auxData.photoPath ? auxData.photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
           <div className='App-profile-label App-email-label'>Email</div>
-          <input className='App-profile-input App-email-form' value = {auxData.email} />
+          <input className='App-profile-input App-email-form' value = {/*auxData.email*/idToken.email} readOnly/>
           <div className='App-profile-label'>Name</div>
           <input type="text" className='App-profile-input' value = {auxData.name} onChange={(e) => auxData['name'] = e.target.value}/>
           <div className='App-profile-label'>Phone number</div>
@@ -115,15 +115,15 @@ const Banner = (props) => {
           <input type="text" className='App-profile-input' value = {auxData.address} onChange={(e) => auxData['address'] = e.target.value}/>
           <div className='App-profile-label'>Profile picture URL</div>
           <input type="text" className='App-profile-input' value = {auxData.photoPath} onChange={(e) => auxData['photoPath'] = e.target.value}/>
-          {auxData.maxCapacity && <div className='App-profile-label'>Max capacity</div>}
-          {auxData.maxCapacity && <input type="number" className='App-profile-input' value = {auxData.maxCapacity} onChange={(e) => auxData['maxCapacity'] = e.target.value}/>}
+          {auxData.maxCapacity != undefined && <div className='App-profile-label'>Max capacity</div>}
+          {auxData.maxCapacity != undefined && <input type="number" className='App-profile-input' value = {auxData.maxCapacity} onChange={(e) => auxData['maxCapacity'] = e.target.value}/>}
           <button className = "BannerButton Profile-submit" onClick = {() => {
                   (async () => {
                     const role = idToken['https://PetAway.com/role']
                     const accessToken = await getAccessTokenSilently();
-                    // console.log(accessToken)
+                    console.log(accessToken)
                     axiosInstance
-                      .put(routes[role]['add' + role], auxData, {
+                      .put(routes[role]['update' + role], auxData, {
                         headers: {
                           Authorization: `Bearer ${accessToken}`,
                         },
