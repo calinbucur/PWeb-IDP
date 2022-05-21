@@ -1,19 +1,22 @@
-const base = "http://localhost:5000/";
+/* eslint-disable no-undef */
+
+const base = process.env.API_HOSTNAME ? 
+    `http://${process.env.API_HOSTNAME}:8001/api/`: 'http://localhost:5000/api/v1/';
 const routes = {
     owner: {
-        addowner: "/api/v1/Owners/registerOwner",
-        getowner: "/api/v1/Owners/getOwner",
-        updateowner: '/api/v1/Owners/updateOwner',
+        addowner: "Owners/registerOwner",
+        getowner: "Owners/getOwner",
+        updateowner: 'Owners/updateOwner',
     },
     foster: {
-        addfoster: 'api/v1/Fosters/registerFoster',
-        getfoster: 'api/v1/Fosters/getFoster',
-        updatefoster: 'api/v1/Fosters/updateFoster',
+        addfoster: 'Fosters/registerFoster',
+        getfoster: 'Fosters/getFoster',
+        updatefoster: 'Fosters/updateFoster',
     },
     rescuer: {
-        addrescuer: 'api/v1/Rescuers/registerRescuer',
-        getrescuer: 'api/v1/Rescuers/getRescuer',
-        updaterescuer: 'api/v1/Rescuers/updateRescuer',
+        addrescuer: 'Rescuers/registerRescuer',
+        getrescuer: 'Rescuers/getRescuer',
+        updaterescuer: 'Rescuers/updateRescuer',
     },
 };
 
