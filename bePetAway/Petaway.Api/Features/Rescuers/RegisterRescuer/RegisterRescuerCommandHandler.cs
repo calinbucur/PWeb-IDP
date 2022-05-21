@@ -13,7 +13,7 @@ namespace Petaway.Api.Features.Rescuers.RegisterRescuer
 
         public Task HandleAsync(RegisterRescuerCommand command, CancellationToken cancellationToken)
             => RescuersRepository.AddAsync(
-                new RegisterRescuerProfileCommand(command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
+                new RegisterRescuerProfileCommand(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
                 cancellationToken);
     }
     

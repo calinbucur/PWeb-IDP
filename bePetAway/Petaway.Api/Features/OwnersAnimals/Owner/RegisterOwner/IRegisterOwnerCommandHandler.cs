@@ -4,6 +4,6 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner
 {
     public interface IRegisterOwnerCommandHandler
     {
-        public Task HandleAsync(RegisterOwnerCommand command, CancellationToken cancellation);
+        public Task HandleAsync(RegisterOwnerCommand command, string identityId, CancellationToken cancellation);
     }
 }

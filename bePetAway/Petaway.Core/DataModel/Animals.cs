@@ -16,6 +16,7 @@ namespace Petaway.Core.DataModel
             IsSick = isSick;
             IsStray = isStray; */
         }
+
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
         public int Age { get; set; }

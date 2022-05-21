@@ -5,8 +5,9 @@ namespace Petaway.Core.Domain.Foster
 {
     public record RegisterFosterProfileCommand : ICreateAggregateCommand
     {
-        public RegisterFosterProfileCommand(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity) //, string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all")
+        public RegisterFosterProfileCommand(string identityId, string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity) //, string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all")
         {
+            IdentityId = identityId;
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
@@ -21,6 +22,8 @@ namespace Petaway.Core.Domain.Foster
             IsSick = isSick; *//*all, healthy, sick*//*
             IsStray = isStray; *//*all, healthy, sick*/
         }
+
+        public string IdentityId { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
         public string PhoneNumber { get; set; }

@@ -7,5 +7,7 @@ namespace Petaway.Core.Domain.Rescuer
     {
         Task<DomainOfAggregate<Rescuers>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken);
 
+        Task<DomainOfAggregate<Rescuers>?> GetByIdentityIdAsync(string identityId, CancellationToken cancellationToken);
+
     }
 }

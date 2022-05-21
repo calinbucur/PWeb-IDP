@@ -2,7 +2,7 @@
 {
     public class Fosters : Users
     {
-        public Fosters(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity) : base(email, name, phoneNumber, address, photoPath) // string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all") 
+        public Fosters(string identityId, string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity) : base(identityId, email, name, phoneNumber, address, photoPath) // string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all") 
         {
             CrtCapacity = 0;
             MaxCapacity = maxCapacity;

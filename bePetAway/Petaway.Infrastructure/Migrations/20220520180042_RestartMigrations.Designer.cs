@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Petaway.Infrastructure.Data;
@@ -11,9 +12,10 @@ using Petaway.Infrastructure.Data;
 namespace Petaway.Infrastructure.Migrations
 {
     [DbContext(typeof(PetawayContext))]
-    partial class PetawayContextModelSnapshot : ModelSnapshot
+    [Migration("20220520180042_RestartMigrations")]
+    partial class RestartMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

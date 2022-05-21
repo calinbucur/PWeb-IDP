@@ -8,6 +8,14 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
         public override void Configure(EntityTypeBuilder<Rescuers> builder)
         {
             builder
+               .Property(x => x.IdentityId)
+               .IsRequired();
+
+            builder
+                .HasIndex(x => x.IdentityId)
+                .IsUnique();
+
+            builder
                 .Property(x => x.Name)
                 .IsRequired();
 
@@ -33,6 +41,9 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
 
             builder
                 .Property(x => x.PhotoPath);
+
+            builder
+                .Property(x => x.CrtTransportId);
 
             /*
             builder

@@ -7,5 +7,7 @@ namespace Petaway.Core.Domain.Owner
     {
         Task<DomainOfAggregate<Owners>?> GetByEmailAsync(string aggregateEmail, CancellationToken cancellationToken);
 
+        Task<DomainOfAggregate<Owners>?> GetByIdentityIdAsync(string identityId, CancellationToken cancellationToken);
+
     }
 }

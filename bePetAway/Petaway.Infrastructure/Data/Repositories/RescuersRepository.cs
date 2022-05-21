@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterRescuerProfileCommand command, CancellationToken cancellationToken)
         {
-            var user = new Rescuers(command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath); //, command.MaxCapacity, command.AnimalType, command.IsAggresive, command.IsSick, command.IsStray);
+            var user = new Rescuers(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath); //, command.MaxCapacity, command.AnimalType, command.IsAggresive, command.IsSick, command.IsStray);
 
             await context.Rescuers.AddAsync(user);
             await SaveAsync(cancellationToken);
@@ -48,7 +48,18 @@ namespace Petaway.Infrastructure.Data.Repositories
             return new RescuersDomain(rescuer_entity);
         }
 
+        public async Task<DomainOfAggregate<Rescuers>?> GetByIdentityIdAsync(string identityID, CancellationToken cancellationToken)
+        {
+            var rescuer_entity = await context.Rescuers
+                .FirstOrDefaultAsync(x => x.IdentityId == identityID, cancellationToken);
 
+            if (rescuer_entity == null)
+            {
+                return null;
+            }
+
+            return new RescuersDomain(rescuer_entity);
+        }
 
         public async Task DeleteAsync(int aggregateId, CancellationToken cancellationToken)
         {

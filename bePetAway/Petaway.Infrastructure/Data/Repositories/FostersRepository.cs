@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterFosterProfileCommand command, CancellationToken cancellationToken)
         {
-            var foster = new Fosters(command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity); //, command.AnimalType, command.IsAggresive, command.IsSick, command.IsStray);
+            var foster = new Fosters(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity); //, command.AnimalType, command.IsAggresive, command.IsSick, command.IsStray);
 
             await context.Fosters.AddAsync(foster);
             await SaveAsync(cancellationToken);
@@ -48,8 +48,18 @@ namespace Petaway.Infrastructure.Data.Repositories
             return new FostersDomain(foster_entity);
         }
 
+        public async Task<DomainOfAggregate<Fosters>?> GetByIdentityIdAsync(string identityId, CancellationToken cancellationToken)
+        {
+            var foster_entity = await context.Fosters
+                .FirstOrDefaultAsync(x => x.IdentityId == identityId, cancellationToken);
 
+            if (foster_entity == null)
+            {
+                return null;
+            }
 
+            return new FostersDomain(foster_entity);
+        }
 
         public async Task DeleteAsync(int aggregateId, CancellationToken cancellationToken)
         {

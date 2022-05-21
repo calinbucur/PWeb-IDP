@@ -16,7 +16,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterOwnerProfileCommand command, CancellationToken cancellationToken)
         {
-            var user = new Owners(command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
+            var user = new Owners(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
 
             await context.Owners.AddAsync(user);
             await SaveAsync(cancellationToken);
@@ -41,6 +41,20 @@ namespace Petaway.Infrastructure.Data.Repositories
             var owner_entity = await context.Owners
                 .Include(x => x.Animals)
                 .FirstOrDefaultAsync(x => x.Email == aggregateEmail, cancellationToken);
+
+            if (owner_entity == null)
+            {
+                return null;
+            }
+
+            return new OwnersAnimalsDomain(owner_entity);
+        }
+
+        public async Task<DomainOfAggregate<Owners>?> GetByIdentityIdAsync(string identityId, CancellationToken cancellationToken)
+        {
+            var owner_entity = await context.Owners
+                .Include(x => x.Animals)
+                .FirstOrDefaultAsync(x => x.IdentityId == identityId, cancellationToken);
 
             if (owner_entity == null)
             {

@@ -2,7 +2,7 @@
 {
     public class Rescuers : Users
     {
-        public Rescuers(string email, string name, string phoneNumber, string address, string photoPath) : base(email, name, phoneNumber, address, photoPath) //, int maxCapacity, string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all"
+        public Rescuers(string identityId, string email, string name, string phoneNumber, string address, string photoPath) : base(identityId, email, name, phoneNumber, address, photoPath) //, int maxCapacity, string animalType = "all", string isAggresive = "all", string isSick = "all", string isStray = "all"
         {
 
             /*AnimalType = animalType; *//*all, cat, dog, rodent, bird, domestic, exotic*//*
