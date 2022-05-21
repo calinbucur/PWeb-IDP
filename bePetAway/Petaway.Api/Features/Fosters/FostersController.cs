@@ -2,6 +2,7 @@
 using Petaway.Api.Features.Fosters.GetFoster;
 using Petaway.Api.Features.Fosters.UpdateFoster;
 using Petaway.Api.Features.Fosters.ProposeTransfer;
+using Petaway.Api.Features.Fosters.ViewFosterAnimals;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +18,15 @@ namespace Petaway.Api.Features.Fosters
         private readonly IGetFosterCommandHandler getFosterCommandHandler;
         private readonly IUpdateFosterCommandHandler updateFosterCommandHandler;
         private readonly IProposeTransferCommandHandler proposeTransferCommandHandler;
+        private readonly IViewFosterAnimalsCommandHandler viewFosterAnimalsCommandHandler;
 
         public FostersController(
 
             IRegisterFosterCommandHandler registerFosterCommandHandler,
             IGetFosterCommandHandler getFosterCommandHandler,
             IUpdateFosterCommandHandler updateFosterCommandHandler,
-            IProposeTransferCommandHandler proposeTransferCommandHandler
+            IProposeTransferCommandHandler proposeTransferCommandHandler,
+            IViewFosterAnimalsCommandHandler viewFosterAnimalsCommandHandler
             )
 
         {
@@ -31,6 +34,7 @@ namespace Petaway.Api.Features.Fosters
             this.getFosterCommandHandler = getFosterCommandHandler;
             this.updateFosterCommandHandler = updateFosterCommandHandler;
             this.proposeTransferCommandHandler = proposeTransferCommandHandler;
+            this.viewFosterAnimalsCommandHandler = viewFosterAnimalsCommandHandler;
         }
 
         [HttpPost("registerFoster")]
@@ -94,6 +98,22 @@ namespace Petaway.Api.Features.Fosters
             await proposeTransferCommandHandler.HandleAsync(command, identityId, cancellationToken);
 
             return NoContent();
+        }
+
+        [HttpGet("viewFosterAnimals")]
+        [Authorize("FosterAccess")]
+        public async Task<IActionResult> ViewFosterAnimals(CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            var animals = await viewFosterAnimalsCommandHandler.HandleAsync(identityId, cancellationToken);
+
+            return Ok(animals);
         }
 
     }

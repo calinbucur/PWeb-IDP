@@ -2,6 +2,7 @@
 using Petaway.Api.Features.Owners;
 using Petaway.Api.Features.Fosters;
 using Petaway.Api.Features.Rescuers;
+using Petaway.Api.Features.Transports;
 
 
 namespace Petaway.Api.Web
@@ -17,6 +18,7 @@ namespace Petaway.Api.Web
 
             services.AddRescuersHandlers();
 
+            services.AddTransportsHandlers();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Petaway.Api.Features.Fosters.GetFoster;
 using Petaway.Api.Features.Fosters.UpdateFoster;
 using Petaway.Api.Features.Fosters.ProposeTransfer;
+using Petaway.Api.Features.Fosters.ViewFosterAnimals;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Petaway.Api.Features.Fosters
@@ -14,6 +15,8 @@ namespace Petaway.Api.Features.Fosters
             services.AddTransient<IUpdateFosterCommandHandler, UpdateFosterCommandHandler>();
             services.AddTransient<IGetFosterCommandHandler, GetFosterCommandHandler>();
             services.AddTransient<IProposeTransferCommandHandler, ProposeTransferCommandHandler>();
+            services.AddTransient<IViewFosterAnimalsCommandHandler, ViewFosterAnimalsCommandHandler>();
+
         }
     }
 }
