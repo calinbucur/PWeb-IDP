@@ -180,6 +180,13 @@ color: #0A448A;
   left: 30%;
 }
 
+.App-profile-desc {
+  height: 18%;
+  text-align: left;
+  line-height: 0px;
+  vertical-align: text-top;
+}
+
 .App-header {
   background-color: #215eda;
   min-height: 100vh;

@@ -45,6 +45,9 @@ function About () {
 
 function App () {
   const { isAuthenticated, loginWithRedirect, logout, getIdTokenClaims, getAccessTokenSilently } = useAuth0()
+  const [high, setHigh] = useState(null)
+  const [profile, setProfile] = useState(false)
+  const [addPet, setAddPet] = useState(false)
 
   // let app = () => {
   //   return <div className="App">
@@ -131,8 +134,8 @@ function App () {
           <header className = "App-side-prompt">
             Hey {idToken ? idToken['https://PetAway.com/role'] : ''}
           </header>
-          <Banner idToken = {idToken} setIdToken = {setIdToken}></Banner>
-          <Feed></Feed>
+          <Banner idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet}></Banner>
+          <Feed idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet}></Feed>
           
         </>} />
       </Routes>
