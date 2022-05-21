@@ -4,6 +4,6 @@ namespace Petaway.Api.Features.Rescuers.RegisterRescuer
 {
     public interface IRegisterRescuerCommandHandler
     {
-        public Task HandleAsync(RegisterRescuerCommand command, CancellationToken cancellation);
+        public Task HandleAsync(RegisterRescuerCommand command, string identityId, CancellationToken cancellation);
     }
 }

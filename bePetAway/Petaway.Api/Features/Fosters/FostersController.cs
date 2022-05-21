@@ -1,4 +1,5 @@
-﻿using Petaway.Api.Features.Fosters.RegisterFoster;
+﻿using Petaway.Api.Authorization;
+using Petaway.Api.Features.Fosters.RegisterFoster;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -21,11 +22,17 @@ namespace Petaway.Api.Features.Fosters
         }
 
         [HttpPost("registerFoster")]
-        //[Authorize] //(Policy = "FosterAccess")
-        public async Task<IActionResult> RegisterOwnerAsync(RegisterFosterCommand command, CancellationToken cancellationToken)
+        [Authorize("FosterAccess")]
+        public async Task<IActionResult> RegisterFosterAsync([FromBody] RegisterFosterCommand command, CancellationToken cancellationToken)
         {
+            var identityId = User.GetUserIdentityId();
 
-            await registerFosterCommandHandler.HandleAsync(command, cancellationToken);
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await registerFosterCommandHandler.HandleAsync(command, identityId, cancellationToken);
             return StatusCode((int)HttpStatusCode.Created);
         }
     }

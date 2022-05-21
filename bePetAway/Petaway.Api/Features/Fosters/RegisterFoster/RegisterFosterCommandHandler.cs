@@ -11,9 +11,9 @@ namespace Petaway.Api.Features.Fosters.RegisterFoster
             this.FostersRepository = FostersRepository;
         }
 
-        public Task HandleAsync(RegisterFosterCommand command, CancellationToken cancellationToken)
+        public Task HandleAsync(RegisterFosterCommand command, string identityId, CancellationToken cancellationToken)
             => FostersRepository.AddAsync(
-                new RegisterFosterProfileCommand(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity), 
+                new RegisterFosterProfileCommand(identityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity), 
                 cancellationToken);
     }
     

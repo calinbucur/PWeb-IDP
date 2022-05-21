@@ -2,6 +2,7 @@
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals;
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals;
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
+using Petaway.Api.Features.OwnersAnimals.Owner.GetOwner;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ namespace Petaway.Api.Features.Owners
     {
         private readonly IAddAnimalCommandHandler addAnimalCommandHandler;
         private readonly IRegisterOwnerCommandHandler registerOwnerCommandHandler;
+        private readonly IGetOwnerCommandHandler getOwnerCommandHandler;
         private readonly IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler;
         private readonly IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler;
 
@@ -22,13 +24,15 @@ namespace Petaway.Api.Features.Owners
             IAddAnimalCommandHandler addAnimalCommandHandler,
             IRegisterOwnerCommandHandler registerOwnerCommandHandler,
             IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler,
-            IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler
+            IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler,
+            IGetOwnerCommandHandler getOwnerCommandHandler
             )
         {
             this.addAnimalCommandHandler = addAnimalCommandHandler;
             this.registerOwnerCommandHandler = registerOwnerCommandHandler;
             this.viewOwnerAnimalsCommandHandler = viewOwnerAnimalsCommandHandler;
             this.viewRescuableAnimalsCommandHandler = viewRescuableAnimalsCommandHandler;
+            this.getOwnerCommandHandler = getOwnerCommandHandler;
         }
 
         [HttpPost("addAnimal")]
@@ -67,11 +71,10 @@ namespace Petaway.Api.Features.Owners
 
 
         [HttpPost("registerOwner")]
-        [Authorize("OwnerAccess")] //(Policy = "")
+        [Authorize("OwnerAccess")]
         public async Task<IActionResult> RegisterOwnerAsync([FromBody] RegisterOwnerCommand command, CancellationToken cancellationToken)
         {
             var identityId = User.GetUserIdentityId();
-            Console.WriteLine(identityId);
 
             if (identityId == null)
             {
@@ -94,6 +97,22 @@ namespace Petaway.Api.Features.Owners
             }
 
             var animals = await viewOwnerAnimalsCommandHandler.HandleAsync(identityId, cancellationToken);
+
+            return Ok(animals);
+        }
+
+        [HttpGet("getOwner")]
+        [Authorize("OwnerAccess")]
+        public async Task<IActionResult> GetOwner(CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            var animals = await getOwnerCommandHandler.HandleAsync(identityId, cancellationToken);
 
             return Ok(animals);
         }

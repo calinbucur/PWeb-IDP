@@ -1,4 +1,5 @@
 ﻿using Petaway.Api.Features.Rescuers.RegisterRescuer;
+using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -21,11 +22,17 @@ namespace Petaway.Api.Features.Rescuers
         }
 
         [HttpPost("registerRescuer")]
-        //[Authorize] //(Policy = "RescuerAccess")
+        [Authorize("RescuerAccess")]
         public async Task<IActionResult> RegisterOwnerAsync(RegisterRescuerCommand command, CancellationToken cancellationToken)
         {
+            var identityId = User.GetUserIdentityId();
 
-            await registerRescuerCommandHandler.HandleAsync(command, cancellationToken);
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await registerRescuerCommandHandler.HandleAsync(command, identityId, cancellationToken);
             return StatusCode((int)HttpStatusCode.Created);
         }
     }

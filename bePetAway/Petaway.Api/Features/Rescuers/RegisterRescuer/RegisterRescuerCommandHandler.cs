@@ -11,9 +11,9 @@ namespace Petaway.Api.Features.Rescuers.RegisterRescuer
             this.RescuersRepository = RescuersRepository;
         }
 
-        public Task HandleAsync(RegisterRescuerCommand command, CancellationToken cancellationToken)
+        public Task HandleAsync(RegisterRescuerCommand command, string identityId, CancellationToken cancellationToken)
             => RescuersRepository.AddAsync(
-                new RegisterRescuerProfileCommand(command.IdentityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
+                new RegisterRescuerProfileCommand(identityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath), 
                 cancellationToken);
     }
     
