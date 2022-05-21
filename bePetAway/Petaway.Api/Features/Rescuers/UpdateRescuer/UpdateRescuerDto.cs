@@ -6,7 +6,7 @@ namespace Petaway.Api.Features.Rescuers.UpdateRescuer
 {
     public record UpdateRescuerDto
     {
-        public UpdateRescuerDto(string name, string phoneNumber, string address, string photoPath, int maxCapacity)
+        public UpdateRescuerDto(string name, string phoneNumber, string address, string photoPath)
         {
             Name = name;
             PhoneNumber = phoneNumber;
