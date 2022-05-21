@@ -9,28 +9,28 @@ namespace Petaway.Api.Features.Fosters.UpdateFoster
 {
     public class UpdateFosterCommandHandler : IUpdateFosterCommandHandler
     {
-        private readonly IFostersRepository FostersAnimalsRepository;
+        private readonly IFostersRepository FostersRepository;
         private readonly IMediator mediator;
 
 
-        public UpdateFosterCommandHandler(IFostersRepository FostersAnimalsRepository, IMediator mediator)
+        public UpdateFosterCommandHandler(IFostersRepository FostersRepository, IMediator mediator)
         {
-            this.FostersAnimalsRepository = FostersAnimalsRepository;
+            this.FostersRepository = FostersRepository;
             this.mediator = mediator;
         }
 
         public async Task HandleAsync(UpdateFosterDto command, string identityId, CancellationToken cancellationToken)
         {
-            var Foster = await FostersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as FostersDomain;
+            var foster = await FostersRepository.GetByIdentityIdAsync(identityId, cancellationToken) as FostersDomain;
 
-            if (Foster == null)
+            if (foster == null)
             {
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Foster with identity {identityId} does not have a registered profile");
             }
 
-            Foster.UpdateFosterProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity);
+            foster.UpdateFosterProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity);
 
-            await FostersAnimalsRepository.SaveAsync(cancellationToken);
+            await FostersRepository.SaveAsync(cancellationToken);
         }
     }
     

@@ -4,15 +4,15 @@ namespace Petaway.Api.Features.Fosters.RegisterFoster
 {
     public class RegisterFosterCommandHandler : IRegisterFosterCommandHandler
     {
-        private readonly IFostersRepository FostersRepository;
+        private readonly IFostersRepository fostersRepository;
 
-        public RegisterFosterCommandHandler(IFostersRepository FostersRepository)
+        public RegisterFosterCommandHandler(IFostersRepository fostersRepository)
         {
-            this.FostersRepository = FostersRepository;
+            this.fostersRepository = fostersRepository;
         }
 
         public Task HandleAsync(RegisterFosterCommand command, string identityId, CancellationToken cancellationToken)
-            => FostersRepository.AddAsync(
+            => fostersRepository.AddAsync(
                 new RegisterFosterProfileCommand(identityId, command.Email, command.Name, command.PhoneNumber, command.Address, command.PhotoPath, command.MaxCapacity), 
                 cancellationToken);
     }

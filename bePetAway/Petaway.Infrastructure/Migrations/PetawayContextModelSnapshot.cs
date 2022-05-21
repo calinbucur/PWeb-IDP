@@ -154,9 +154,6 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasIndex("IdentityId")
                         .IsUnique();
 
-                    b.HasIndex("PhoneNumber")
-                        .IsUnique();
-
                     b.ToTable("Fosters");
                 });
 
@@ -213,9 +210,6 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasIndex("IdentityId")
                         .IsUnique();
 
-                    b.HasIndex("PhoneNumber")
-                        .IsUnique();
-
                     b.ToTable("Owners");
                 });
 
@@ -270,9 +264,6 @@ namespace Petaway.Infrastructure.Migrations
                         .IsUnique();
 
                     b.HasIndex("IdentityId")
-                        .IsUnique();
-
-                    b.HasIndex("PhoneNumber")
                         .IsUnique();
 
                     b.ToTable("Rescuers");

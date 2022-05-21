@@ -1,6 +1,6 @@
 ﻿using Petaway.Core.DataModel;
 using Petaway.Core.SeedWork;
-using Petaway.Core.Domain.Transport;
+using Petaway.Core.Domain.Owner;
 
 namespace Petaway.Core.Domain.Foster
 {
@@ -53,6 +53,26 @@ namespace Petaway.Core.Domain.Foster
 
             aggregate.CrtCapacity++;
             return new FosterProposeTransportEvent(aggregate.Id, ownerId, animalId);
+        }
+
+        public bool CheckCapacity()
+        {
+            return aggregate.CrtCapacity + 1 <= aggregate.MaxCapacity;
+        }
+
+        public void AddAnimal(Animals animal)
+        {
+            if(animal == null)
+            {
+                throw new NullAnimalException();
+            }
+
+            aggregate.Animals.Add(animal);
+            aggregate.CrtCapacity++;
+        }
+        public Fosters GetAggregate()
+        {
+            return aggregate;
         }
     }
 }

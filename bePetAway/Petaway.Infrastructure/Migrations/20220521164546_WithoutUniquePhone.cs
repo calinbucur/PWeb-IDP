@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Petaway.Infrastructure.Migrations
 {
-    public partial class AnimalsWithPhotos : Migration
+    public partial class WithoutUniquePhone : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -173,12 +173,6 @@ namespace Petaway.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Fosters_PhoneNumber",
-                table: "Fosters",
-                column: "PhoneNumber",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Owners_Email",
                 table: "Owners",
                 column: "Email",
@@ -191,12 +185,6 @@ namespace Petaway.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Owners_PhoneNumber",
-                table: "Owners",
-                column: "PhoneNumber",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Rescuers_Email",
                 table: "Rescuers",
                 column: "Email",
@@ -206,12 +194,6 @@ namespace Petaway.Infrastructure.Migrations
                 name: "IX_Rescuers_IdentityId",
                 table: "Rescuers",
                 column: "IdentityId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Rescuers_PhoneNumber",
-                table: "Rescuers",
-                column: "PhoneNumber",
                 unique: true);
 
             migrationBuilder.CreateIndex(

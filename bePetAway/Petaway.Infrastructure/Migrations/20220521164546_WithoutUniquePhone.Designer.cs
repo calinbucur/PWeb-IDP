@@ -12,8 +12,8 @@ using Petaway.Infrastructure.Data;
 namespace Petaway.Infrastructure.Migrations
 {
     [DbContext(typeof(PetawayContext))]
-    [Migration("20220521130135_AnimalsWithPhotos")]
-    partial class AnimalsWithPhotos
+    [Migration("20220521164546_WithoutUniquePhone")]
+    partial class WithoutUniquePhone
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -156,9 +156,6 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasIndex("IdentityId")
                         .IsUnique();
 
-                    b.HasIndex("PhoneNumber")
-                        .IsUnique();
-
                     b.ToTable("Fosters");
                 });
 
@@ -215,9 +212,6 @@ namespace Petaway.Infrastructure.Migrations
                     b.HasIndex("IdentityId")
                         .IsUnique();
 
-                    b.HasIndex("PhoneNumber")
-                        .IsUnique();
-
                     b.ToTable("Owners");
                 });
 
@@ -272,9 +266,6 @@ namespace Petaway.Infrastructure.Migrations
                         .IsUnique();
 
                     b.HasIndex("IdentityId")
-                        .IsUnique();
-
-                    b.HasIndex("PhoneNumber")
                         .IsUnique();
 
                     b.ToTable("Rescuers");

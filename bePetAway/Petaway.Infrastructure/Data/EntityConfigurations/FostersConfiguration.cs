@@ -32,10 +32,6 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
-                .HasIndex(x => x.PhoneNumber)
-                .IsUnique();
-
-            builder
                 .Property(x => x.Address)
                 .IsRequired();
 

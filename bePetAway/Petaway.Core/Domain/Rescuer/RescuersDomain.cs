@@ -44,5 +44,10 @@ namespace Petaway.Core.Domain.Rescuer
             return new RescuerFinishTransportEvent(transportId);
         }
 
+        public Rescuers GetAggregate()
+        {
+            return aggregate;
+        }
+
     }
 }

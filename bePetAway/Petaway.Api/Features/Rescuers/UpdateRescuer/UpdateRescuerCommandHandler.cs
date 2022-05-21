@@ -9,19 +9,19 @@ namespace Petaway.Api.Features.Rescuers.UpdateRescuer
 {
     public class UpdateRescuerCommandHandler : IUpdateRescuerCommandHandler
     {
-        private readonly IRescuersRepository RescuersAnimalsRepository;
+        private readonly IRescuersRepository RescuersRepository;
         private readonly IMediator mediator;
 
 
-        public UpdateRescuerCommandHandler(IRescuersRepository RescuersAnimalsRepository, IMediator mediator)
+        public UpdateRescuerCommandHandler(IRescuersRepository RescuersRepository, IMediator mediator)
         {
-            this.RescuersAnimalsRepository = RescuersAnimalsRepository;
+            this.RescuersRepository = RescuersRepository;
             this.mediator = mediator;
         }
 
         public async Task HandleAsync(UpdateRescuerDto command, string identityId, CancellationToken cancellationToken)
         {
-            var Rescuer = await RescuersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as RescuersDomain;
+            var Rescuer = await RescuersRepository.GetByIdentityIdAsync(identityId, cancellationToken) as RescuersDomain;
 
             if (Rescuer == null)
             {
@@ -30,7 +30,7 @@ namespace Petaway.Api.Features.Rescuers.UpdateRescuer
 
             Rescuer.UpdateRescuerProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
 
-            await RescuersAnimalsRepository.SaveAsync(cancellationToken);
+            await RescuersRepository.SaveAsync(cancellationToken);
         }
     }
     

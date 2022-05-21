@@ -2,7 +2,7 @@
 {
     public class NullAnimalException : Exception
     {
-        public NullAnimalException() : base($"Found null animal in owners list")
+        public NullAnimalException() : base($"Found null animal in owners/fosters list")
         {
         }
     }

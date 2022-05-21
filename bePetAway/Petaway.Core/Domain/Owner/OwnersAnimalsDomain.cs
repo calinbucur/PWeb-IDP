@@ -41,6 +41,23 @@ namespace Petaway.Core.Domain.Owner
             animal.AnimalPhotoPath = animalPhotoPath;
         }
 
+        public Animals GetRescuableAnimal(string animalName, string animalType)
+        {
+            var animal = aggregate.Animals.FirstOrDefault(x => (x.Name == animalName) && (x.Type == animalType));
+
+            if (animal == null)
+            {
+                throw new AnimalNotFoundException(aggregate.Name, animalName, animalType);
+            }
+
+            if (!String.Equals(animal.Status, "home"))
+            {
+                throw new AnimalNotHomeException(aggregate.Name, animalName, animalType);
+            }
+
+            return animal;
+        }
+
         public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string animalPhotoPath, string status = "home")
         {
             Animals new_animal = new Animals(name, type, age, status, description, animalPhotoPath);
@@ -53,15 +70,44 @@ namespace Petaway.Core.Domain.Owner
             return new AddAnimalToOwnerCommand(name, type, age, description, animalPhotoPath, status);
         }
 
-        public void MarkAnimalAsTaken(int animalId) {
+        public void AnimalAcceptedByFoster(int animalId, int fosterId) {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
             {
                 throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
 
-            animal.Status = "pending";
+
+            animal.Status = "travelling";
+            animal.CrtFosterId = fosterId;
         }
+
+        public void AnimalAcceptedByRescuer(int animalId, int rescuerId)
+        {
+            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
+            if (animal == null)
+            {
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
+            }
+
+
+            animal.Status = "travelling";
+            animal.CrtRescuerId = rescuerId;
+        }
+
+        public void AnimalArrivedAtDestination(int animalId)
+        {
+            var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
+            if (animal == null)
+            {
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
+            }
+
+
+            animal.Status = "foster";
+            animal.CrtRescuerId = -1;
+        }
+
 
         public OwnerAcceptTransportEvent AcceptTransport(int transportId, int fosterId, int animalId)
         {
@@ -106,6 +152,11 @@ namespace Petaway.Core.Domain.Owner
             }
 
             return new OwnerProposeTransportEvent(fosterId, aggregate.Id, animalId);
+        }
+
+        public Owners GetAggregate()
+        {
+            return aggregate;
         }
     }
 }

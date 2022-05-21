@@ -1,6 +1,7 @@
 ﻿using Petaway.Api.Features.Fosters.RegisterFoster;
 using Petaway.Api.Features.Fosters.GetFoster;
 using Petaway.Api.Features.Fosters.UpdateFoster;
+using Petaway.Api.Features.Fosters.ProposeTransfer;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,18 +16,21 @@ namespace Petaway.Api.Features.Fosters
         private readonly IRegisterFosterCommandHandler registerFosterCommandHandler;
         private readonly IGetFosterCommandHandler getFosterCommandHandler;
         private readonly IUpdateFosterCommandHandler updateFosterCommandHandler;
+        private readonly IProposeTransferCommandHandler proposeTransferCommandHandler;
 
         public FostersController(
 
             IRegisterFosterCommandHandler registerFosterCommandHandler,
             IGetFosterCommandHandler getFosterCommandHandler,
-            IUpdateFosterCommandHandler updateFosterCommandHandler
+            IUpdateFosterCommandHandler updateFosterCommandHandler,
+            IProposeTransferCommandHandler proposeTransferCommandHandler
             )
 
         {
             this.registerFosterCommandHandler = registerFosterCommandHandler;
             this.getFosterCommandHandler = getFosterCommandHandler;
             this.updateFosterCommandHandler = updateFosterCommandHandler;
+            this.proposeTransferCommandHandler = proposeTransferCommandHandler;
         }
 
         [HttpPost("registerFoster")]
@@ -76,6 +80,21 @@ namespace Petaway.Api.Features.Fosters
             return NoContent();
         }
 
+        [HttpPut("proposeTransfer")]
+        [Authorize("FosterAccess")]
+        public async Task<IActionResult> ProposeTransfer([FromBody] ProposeTransferCommand command, CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await proposeTransferCommandHandler.HandleAsync(command, identityId, cancellationToken);
+
+            return NoContent();
+        }
 
     }
 }
