@@ -1,22 +1,25 @@
 ﻿using Petaway.Core.Domain.Owner;
+using Petaway.Infrastructure.Data;
 using Petaway.Api.Web;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 using MediatR;
 
-namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
+namespace Petaway.Api.Features.OwnersAnimals.Owner.UpdateOwner
 {
-    public class AddAnimalCommandHandler : IAddAnimalCommandHandler
+    public class UpdateOwnerCommandHandler : IUpdateOwnerCommandHandler
     {
         private readonly IOwnersAnimalsRepository OwnersAnimalsRepository;
         private readonly IMediator mediator;
 
-        public AddAnimalCommandHandler(IOwnersAnimalsRepository OwnersAnimalsRepository, IMediator mediator)
+
+        public UpdateOwnerCommandHandler(IOwnersAnimalsRepository OwnersAnimalsRepository, IMediator mediator)
         {
             this.OwnersAnimalsRepository = OwnersAnimalsRepository;
             this.mediator = mediator;
         }
 
-        public async Task HandleAsync(AddAnimalCommand command, string identityId, CancellationToken cancellationToken)
+        public async Task HandleAsync(UpdateOwnerDto command, string identityId, CancellationToken cancellationToken)
         {
             var owner = await OwnersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as OwnersAnimalsDomain;
 
@@ -25,12 +28,10 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
-            var addAnimalEvent = owner.AddAnimal(command.Name, command.Type, command.Age, command.Description, command.AnimalPhotoPath, command.Status);
-            await mediator.Publish(addAnimalEvent, cancellationToken);
+            owner.UpdateOwnerProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
 
             await OwnersAnimalsRepository.SaveAsync(cancellationToken);
         }
-        
     }
-
+    
 }

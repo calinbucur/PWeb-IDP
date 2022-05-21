@@ -15,9 +15,8 @@ namespace Petaway.Core.Domain.Rescuer
             aggregate.Address = address;
         }
 
-        public void UpdateRescuerProfile(string email, string name, string phoneNumber, string address, string photoPath)
+        public void UpdateRescuerProfile(string name, string phoneNumber, string address, string photoPath)
         {
-            aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.Address = address;

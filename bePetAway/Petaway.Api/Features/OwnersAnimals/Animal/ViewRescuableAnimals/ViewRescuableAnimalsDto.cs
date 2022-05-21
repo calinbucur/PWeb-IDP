@@ -11,6 +11,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals
             Age = animal.Age;
             Status = animal.Status;
             Description = animal.Description;
+            AnimalPhotoPath = animal.AnimalPhotoPath;
             OwnerId = animal.OwnerId;
             CrtTransportId = animal.CrtTransportId;
             CrtFosterId = animal.CrtFosterId;
@@ -22,6 +23,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals
         public int Age { get; set; }
         public string Status { get; set; } /*home, pending, travelling, foster*/
         public string Description { get; set; }
+        public string AnimalPhotoPath { get; set; }
         public int OwnerId { get; set; }
         public int CrtTransportId { get; set; }
         public int CrtFosterId { get; set; }

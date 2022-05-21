@@ -18,16 +18,15 @@ namespace Petaway.Core.Domain.Owner
             }
         }
 
-        public void UpdateOwnerProfile(string email, string name, string phoneNumber, string address, string password, string photoPath)
+        public void UpdateOwnerProfile(string name, string phoneNumber, string address, string photoPath)
         {
-            aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.PhotoPath = photoPath;
             UpdateOwnerAddress(address);
         }
 
-        public void UpdateAnimalInfo(int animalId, string name, string type, bool isAgg, bool isSick, bool isStray, int age, string description)
+        public void UpdateAnimalInfo(int animalId, string name, string type, int age, string description, string animalPhotoPath) //bool isAgg, bool isSick, bool isStray,
         {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
@@ -39,19 +38,21 @@ namespace Petaway.Core.Domain.Owner
             animal.Type = type;
             animal.Age = age;
             animal.Description = description;
+            animal.AnimalPhotoPath = animalPhotoPath;
         }
 
-        public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string status = "home")
+        public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string animalPhotoPath, string status = "home")
         {
-            Animals new_animal = new Animals(name, type, age, status, description);
+            Animals new_animal = new Animals(name, type, age, status, description, animalPhotoPath);
             new_animal.OwnerId = aggregate.Id;
 
 
             aggregate.Animals.Add(new_animal);
             
 
-            return new AddAnimalToOwnerCommand(name, type, age, description, status);
+            return new AddAnimalToOwnerCommand(name, type, age, description, animalPhotoPath, status);
         }
+
         public void MarkAnimalAsTaken(int animalId) {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)

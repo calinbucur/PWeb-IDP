@@ -26,17 +26,21 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
             builder
                 .Property(x => x.Description);
 
-/*            builder
-                .Property(x => x.IsAggresive)
-                .IsRequired();
-
             builder
-                .Property(x => x.IsSick)
-                .IsRequired();
+                .Property(x => x.AnimalPhotoPath);
 
-            builder
-                .Property(x => x.IsStray)
-                .IsRequired();*/
+
+            /*            builder
+                            .Property(x => x.IsAggresive)
+                            .IsRequired();
+
+                        builder
+                            .Property(x => x.IsSick)
+                            .IsRequired();
+
+                        builder
+                            .Property(x => x.IsStray)
+                            .IsRequired();*/
 
             builder
                 .Property(x => x.OwnerId);

@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Petaway.Infrastructure.Migrations
 {
-    public partial class RestartMigrations : Migration
+    public partial class AnimalsWithPhotos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -114,6 +114,7 @@ namespace Petaway.Infrastructure.Migrations
                     Age = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
+                    AnimalPhotoPath = table.Column<string>(type: "text", nullable: false),
                     OwnerId = table.Column<int>(type: "integer", nullable: false),
                     CrtTransportId = table.Column<int>(type: "integer", nullable: false),
                     CrtFosterId = table.Column<int>(type: "integer", nullable: false),

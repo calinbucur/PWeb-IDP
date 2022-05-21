@@ -3,6 +3,7 @@ using Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals;
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals;
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
 using Petaway.Api.Features.OwnersAnimals.Owner.GetOwner;
+using Petaway.Api.Features.OwnersAnimals.Owner.UpdateOwner;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,14 @@ namespace Petaway.Api.Features.Owners
         private readonly IAddAnimalCommandHandler addAnimalCommandHandler;
         private readonly IRegisterOwnerCommandHandler registerOwnerCommandHandler;
         private readonly IGetOwnerCommandHandler getOwnerCommandHandler;
+        private readonly IUpdateOwnerCommandHandler updateOwnerCommandHandler;
         private readonly IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler;
         private readonly IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler;
 
         public OwnersController(
             IAddAnimalCommandHandler addAnimalCommandHandler,
             IRegisterOwnerCommandHandler registerOwnerCommandHandler,
+            IUpdateOwnerCommandHandler updateOwnerCommandHandler,
             IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler,
             IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler,
             IGetOwnerCommandHandler getOwnerCommandHandler
@@ -30,6 +33,7 @@ namespace Petaway.Api.Features.Owners
         {
             this.addAnimalCommandHandler = addAnimalCommandHandler;
             this.registerOwnerCommandHandler = registerOwnerCommandHandler;
+            this.updateOwnerCommandHandler = updateOwnerCommandHandler;
             this.viewOwnerAnimalsCommandHandler = viewOwnerAnimalsCommandHandler;
             this.viewRescuableAnimalsCommandHandler = viewRescuableAnimalsCommandHandler;
             this.getOwnerCommandHandler = getOwnerCommandHandler;
@@ -51,24 +55,6 @@ namespace Petaway.Api.Features.Owners
 
             return StatusCode((int)HttpStatusCode.Created);
         }
-
-        /*[HttpPost("addAnimalByEmail")]
-        //[Authorize] //(Policy = "OwnerAccess")
-        public async Task<IActionResult> AddAnimalByEmailAsync(AddAnimalCommand command, CancellationToken cancellationToken)
-        {
-            var identityId = User.GetUserIdentityId();
-
-            if (identityId == null)
-            {
-                return Unauthorized();
-            }
-
-
-            await addAnimalCommandHandler.HandleAsync(command, command.Email, cancellationToken);
-
-            return StatusCode((int)HttpStatusCode.Created);
-        }*/
-
 
         [HttpPost("registerOwner")]
         [Authorize("OwnerAccess")]
@@ -117,22 +103,6 @@ namespace Petaway.Api.Features.Owners
             return Ok(animals);
         }
 
-
-        /*[HttpGet("viewOwnerAnimals")]
-        public async Task<IActionResult> ViewOwnerAnimals(string ownerEmail, CancellationToken cancellationToken)
-        {
-            if (ownerEmail == null)
-            {
-                throw new ArgumentNullException(nameof(ownerEmail));
-            }
-
-            var animals = await viewOwnerAnimalsCommandHandler.HandleAsync(ownerEmail, cancellationToken);
-
-            return Ok(animals);
-        }
-*/
-
-
         [HttpGet("viewRescuableAnimals")]
         [Authorize("FosterAccess")]
         public async Task<IActionResult> ViewRescuableAnimals( CancellationToken cancellationToken)
@@ -140,6 +110,22 @@ namespace Petaway.Api.Features.Owners
             var animals = await viewRescuableAnimalsCommandHandler.HandleAsync(cancellationToken);
 
             return Ok(animals);
+        }
+
+        [HttpPut("updateOwner")]
+        [Authorize("OwnerAccess")]
+        public async Task<IActionResult> UpdateOwner([FromBody] UpdateOwnerDto command, CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await updateOwnerCommandHandler.HandleAsync(command, identityId, cancellationToken);
+
+            return NoContent();
         }
 
         //        [HttpDelete("deleteBook/{id}")]

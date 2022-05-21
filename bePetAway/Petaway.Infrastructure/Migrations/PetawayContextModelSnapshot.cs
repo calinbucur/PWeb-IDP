@@ -33,6 +33,10 @@ namespace Petaway.Infrastructure.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("integer");
 
+                    b.Property<string>("AnimalPhotoPath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp with time zone")

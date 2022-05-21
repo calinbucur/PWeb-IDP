@@ -1,11 +1,12 @@
 ﻿using Petaway.Core.Domain.Foster;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Petaway.Api.Features.Fosters.RegisterFoster
+namespace Petaway.Api.Features.Fosters.GetFoster
 {
-   public record RegisterFosterCommand
+    public record GetFosterDto
     {
-        public RegisterFosterCommand(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity)
+        public GetFosterDto(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity)
         {
             Email = email;
             Name = name;

@@ -1,18 +1,18 @@
-﻿using Petaway.Core.Domain.Foster;
+﻿using Petaway.Core.Domain.Rescuer;
+using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Petaway.Api.Features.Fosters.RegisterFoster
+namespace Petaway.Api.Features.Rescuers.GetRescuer
 {
-   public record RegisterFosterCommand
+    public record GetRescuerDto
     {
-        public RegisterFosterCommand(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity)
+        public GetRescuerDto(string email, string name, string phoneNumber, string address, string photoPath)
         {
             Email = email;
             Name = name;
             PhoneNumber = phoneNumber;
             Address = address;
             PhotoPath = photoPath;
-            MaxCapacity = maxCapacity;
         }
 
         public string Email { get; set; }
@@ -20,6 +20,5 @@ namespace Petaway.Api.Features.Fosters.RegisterFoster
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string PhotoPath { get; set; }
-        public int MaxCapacity { get; set; }
     }
 }

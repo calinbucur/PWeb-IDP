@@ -18,9 +18,8 @@ namespace Petaway.Core.Domain.Foster
             }
         }
 
-        public void UpdateFosterProfile(string email, string name, string phoneNumber, string address, string photoPath, int maxCapacity)
+        public void UpdateFosterProfile(string name, string phoneNumber, string address, string photoPath, int maxCapacity)
         {
-            aggregate.Email = email;
             aggregate.Name = name;
             aggregate.PhoneNumber = phoneNumber;
             aggregate.MaxCapacity = maxCapacity;
