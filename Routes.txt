@@ -3,6 +3,7 @@ POST: /api/v1/Fosters/registerFoster
 GET: /api/v1/Fosters/getFoster
 PUT: /api/v1/Fosters/updateFoster
 PUT: /api/v1/Fosters/proposeTransfer
+GET: /api/v1/Fosters/viewFosterAnimals
 
 Owner:
 POST: /api/v1/Owners/addAnimal

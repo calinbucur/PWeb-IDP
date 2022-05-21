@@ -28,8 +28,17 @@ IDP
 
 # Tactical Domain Driven Design
 
-![tddd](res/backend_architecture.png)
+![tddd](res/TDD.png)
 
+# TDDD with Databases
+
+![tddd](res/TDDD_Databases.png)
+
+# Interaction with Client:
+
+More about UserStories, the reasoning of the TDDD architecture, frontend inspiration and design stages (sketches, wireframes, prototypes) at:
+
+- https://www.figma.com/file/s5TtJGy882TNaEZQRPlgBf/Proiect_Pweb?node-id=0%3A1
 
 # Running instructions
 
