@@ -47,7 +47,11 @@ namespace Petaway.Api.Infrastructure
             using(var connection = factory.CreateConnection())
             using(var channel = connection.CreateModel())
             {
-                channel.QueueDeclare(queue: queue ?? defaultQueue);
+                channel.QueueDeclare(queue: queue ?? defaultQueue,
+                    durable: false,
+                    exclusive: false,
+                    autoDelete: false,
+                    arguments: null);
 
                 RabbitMQMessage message = new RabbitMQMessage()
                 {
