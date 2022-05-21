@@ -9,6 +9,8 @@ import './BannerButton.css'
 import LogoutPage from './LogoutPage'
 import Banner from './Banner'
 import Feed from './Feed'
+import {base, routes} from './Api'
+import axios from 'axios'
 
 function Home () {
   return (
@@ -42,7 +44,7 @@ function About () {
 }
 
 function App () {
-  const { isAuthenticated, loginWithRedirect, logout, getIdTokenClaims } = useAuth0()
+  const { isAuthenticated, loginWithRedirect, logout, getIdTokenClaims, getAccessTokenSilently } = useAuth0()
 
   // let app = () => {
   //   return <div className="App">
@@ -62,17 +64,63 @@ function App () {
   const getToken = async () => {
     const claims = await getIdTokenClaims()
     setIdToken(claims)
+    // console.log('GOT CLAIMS')
     // return claims;
   }
   // getRole().catch()
   // console.log(test)
+  const axiosInstance = axios.create({
+    baseURL: base,
+  });
   const navigate = useNavigate()
   useEffect(() => {
     if (isAuthenticated) {
-      getToken()
+      getToken().then(() => {
+      // console.log(idToken)
+        const role = idToken['https://PetAway.com/role']
+        let post_obj = {
+          "email": idToken.email,
+          "name": "",
+          "phoneNumber": "",
+          "address": "",
+          "photoPath": ""
+        }
+        if (role === 'foster') {
+          post_obj['maxCapacity'] = 0
+          post_obj['crtCapacity'] = 0
+        }
+        const post = () => {
+          (async () => {
+            const accessToken = await getAccessTokenSilently();
+            // console.log(accessToken)
+            axiosInstance
+              .post(routes[role]['add' + role], post_obj, {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              })
+              .then(() => {});
+          })();
+        }
+        const get = () => {
+          (async () => {
+            const accessToken = await getAccessTokenSilently();
+            // console.log(accessToken)
+            axiosInstance
+              .get(routes[role]['get' + role], {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              })
+              .then(() => {}).catch(post);
+          })();
+        }
+        // console.log(idToken)
+        get()
+      })
       navigate('/home')
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate, idToken])
   return (
     <div className='App'>
       <Routes>
@@ -80,11 +128,12 @@ function App () {
           <LogoutPage></LogoutPage>
         } />
         <Route path="/home" element={<>
-          <Banner idToken = {idToken}></Banner>
-          <Feed></Feed>
           <header className = "App-side-prompt">
             Hey {idToken ? idToken['https://PetAway.com/role'] : ''}
           </header>
+          <Banner idToken = {idToken} setIdToken = {setIdToken}></Banner>
+          <Feed></Feed>
+          
         </>} />
       </Routes>
     </div>
