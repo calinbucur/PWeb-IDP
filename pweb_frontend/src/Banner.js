@@ -5,6 +5,7 @@ import './App.css'
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import logo from './logo.png'
 import { useAuth0 } from '@auth0/auth0-react'
+import axios from 'axios'
 
 // Cata99*
 
@@ -12,6 +13,7 @@ const Banner = (props) => {
   const { idToken } = props
   const { logout, user, getAccessTokenSilently, getIdTokenClaims } = useAuth0()
   const [userMetadata, setUserMetadata] = useState(null)
+  const [profile, setProfile] = useState(false)
   const navigate = useNavigate()
   // useEffect(() => {
   //     const getUserMetadata = async () => {
@@ -42,21 +44,44 @@ const Banner = (props) => {
   //     };
   //     getUserMetadata();
   //   }, [getAccessTokenSilently, user?.sub]);
-
+  const axiosInstance = axios.create({
+    baseURL: 'http://localhost:5000/',
+    // timeout: 1000,
+  });
+  const post = () => {
+    (async () => {
+      const accessToken = await getAccessTokenSilently();
+      console.log(accessToken)
+      axiosInstance
+        .post("/api/v1/Owners/registerOwner", {
+          // "identityId": "striaffasdang",
+          "email": "stg",
+          "name": "stg",
+          "phoneNumber": "stg",
+          "address": "sg",
+          "photoPath": "strig"
+        }, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then(() => console.log(accessToken));
+    })();
+  }
   return (
         <header className="App-banner">
             <button className = "BannerButton" onClick={() => logout({ returnTo: window.location.origin })}>
               <header className="ButtonText">Log out</header>
             </button>
             {/* <a href="https://www.youtube.com/watch?v=tPKq8ffzMFY" target="_blank" rel="noreferrer"> */}
-            <button className = "BannerButton Donate" onClick = {() => { console.log(idToken) }}>
+            <button className = "BannerButton Donate" onClick = {post}>
               <header className="ButtonText">Donate</header>
             </button>
             {/* </a> */}
             {/* <Link to="home"> */}
             <img className = "App-lil-logo" src={logo} alt="Logo" onClick={() => { navigate('/home') }}/>
             {/* </Link> */}
-            <img className = "App-profile-pic" src={idToken ? idToken.picture : logo}/>
+            <img className = "App-profile-pic" src={idToken ? idToken.picture : logo} onClick = {() => setProfile(!profile)}/>
         </header>
   )
 }
