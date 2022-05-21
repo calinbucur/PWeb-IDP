@@ -192,9 +192,9 @@ services:
         - /var/lib/docker/volumes/portainer_portainer_data/_data/compose/7/configs/loki.yml:/etc/config/loki.yml
         - loki-data:/data/loki
         - loki-wal:/wal
-    entrypoint:
-        - /usr/bin/loki
-        - -config.file=/etc/config/loki.yml
+    command: >-
+       -config.file=/etc/loki/local-config.yaml
+       -frontend.instance-addr=127.0.0.1
     ports:
         - 3100:3100
     networks:
