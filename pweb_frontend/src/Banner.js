@@ -63,7 +63,7 @@ const Banner = (props) => {
           (async () => {
             const role = idToken?idToken['https://PetAway.com/role']:''
             const accessToken = await getAccessTokenSilently();
-            console.log(accessToken)
+            // console.log(accessToken)
             axiosInstance
               .get(routes[role]['get' + role], {
                 headers: {
