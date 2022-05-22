@@ -1,5 +1,6 @@
 ﻿using Petaway.Api.Features.Fosters.RegisterFoster;
 using Petaway.Api.Features.Fosters.GetFoster;
+using Petaway.Api.Features.Fosters.GetFosterExternal;
 using Petaway.Api.Features.Fosters.UpdateFoster;
 using Petaway.Api.Features.Fosters.ProposeTransfer;
 using Petaway.Api.Features.Fosters.ViewFosterAnimals;
@@ -16,6 +17,7 @@ namespace Petaway.Api.Features.Fosters
     {
         private readonly IRegisterFosterCommandHandler registerFosterCommandHandler;
         private readonly IGetFosterCommandHandler getFosterCommandHandler;
+        private readonly IGetFosterExternalCommandHandler getFosterExternalCommandHandler;
         private readonly IUpdateFosterCommandHandler updateFosterCommandHandler;
         private readonly IProposeTransferCommandHandler proposeTransferCommandHandler;
         private readonly IViewFosterAnimalsCommandHandler viewFosterAnimalsCommandHandler;
@@ -24,6 +26,7 @@ namespace Petaway.Api.Features.Fosters
 
             IRegisterFosterCommandHandler registerFosterCommandHandler,
             IGetFosterCommandHandler getFosterCommandHandler,
+            IGetFosterExternalCommandHandler getFosterExternalCommandHandler,
             IUpdateFosterCommandHandler updateFosterCommandHandler,
             IProposeTransferCommandHandler proposeTransferCommandHandler,
             IViewFosterAnimalsCommandHandler viewFosterAnimalsCommandHandler
@@ -32,6 +35,7 @@ namespace Petaway.Api.Features.Fosters
         {
             this.registerFosterCommandHandler = registerFosterCommandHandler;
             this.getFosterCommandHandler = getFosterCommandHandler;
+            this.getFosterExternalCommandHandler = getFosterExternalCommandHandler;
             this.updateFosterCommandHandler = updateFosterCommandHandler;
             this.proposeTransferCommandHandler = proposeTransferCommandHandler;
             this.viewFosterAnimalsCommandHandler = viewFosterAnimalsCommandHandler;
@@ -63,10 +67,21 @@ namespace Petaway.Api.Features.Fosters
                 return Unauthorized();
             }
 
-            var animals = await getFosterCommandHandler.HandleAsync(identityId, cancellationToken);
+            var foster = await getFosterCommandHandler.HandleAsync(identityId, cancellationToken);
 
-            return Ok(animals);
+            return Ok(foster);
         }
+
+        [HttpGet("getFosterExternal")]
+        [Authorize]
+        public async Task<IActionResult> GetOwnerExternal(string fosterEmail, CancellationToken cancellationToken)
+        {
+            var foster = await getFosterExternalCommandHandler.HandleAsync(fosterEmail, cancellationToken);
+
+            return Ok(foster);
+        }
+
+
 
         [HttpPut("updateFoster")]
         [Authorize("FosterAccess")]

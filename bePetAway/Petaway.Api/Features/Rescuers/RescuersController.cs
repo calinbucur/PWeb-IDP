@@ -1,5 +1,6 @@
 ﻿using Petaway.Api.Features.Rescuers.RegisterRescuer;
 using Petaway.Api.Features.Rescuers.GetRescuer;
+using Petaway.Api.Features.Rescuers.GetRescuerExternal;
 using Petaway.Api.Features.Rescuers.UpdateRescuer;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
@@ -14,18 +15,21 @@ namespace Petaway.Api.Features.Rescuers
     {
         private readonly IRegisterRescuerCommandHandler registerRescuerCommandHandler;
         private readonly IGetRescuerCommandHandler getRescuerCommandHandler;
+        private readonly IGetRescuerExternalCommandHandler getRescuerExternalCommandHandler;
         private readonly IUpdateRescuerCommandHandler updateRescuerCommandHandler;
 
         public RescuersController(
 
             IRegisterRescuerCommandHandler registerRescuerCommandHandler,
             IGetRescuerCommandHandler getRescuerCommandHandler,
+            IGetRescuerExternalCommandHandler getRescuerExternalCommandHandler,
             IUpdateRescuerCommandHandler updateRescuerCommandHandler
             )
 
         {
             this.registerRescuerCommandHandler = registerRescuerCommandHandler;
             this.getRescuerCommandHandler = getRescuerCommandHandler;
+            this.getRescuerExternalCommandHandler = getRescuerExternalCommandHandler;
             this.updateRescuerCommandHandler = updateRescuerCommandHandler;
         }
 
@@ -59,6 +63,17 @@ namespace Petaway.Api.Features.Rescuers
 
             return Ok(rescuer);
         }
+
+        [HttpGet("getRescuerExternal")]
+        [Authorize]
+        public async Task<IActionResult> GetOwnerExternal(string rescuerEmail, CancellationToken cancellationToken)
+        {
+            var rescuer = await getRescuerExternalCommandHandler.HandleAsync(rescuerEmail, cancellationToken);
+
+            return Ok(rescuer);
+        }
+
+
 
         [HttpPut("updateRescuer")]
         [Authorize("RescuerAccess")]

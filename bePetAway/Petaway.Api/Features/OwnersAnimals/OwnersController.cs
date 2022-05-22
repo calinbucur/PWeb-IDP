@@ -152,11 +152,11 @@ namespace Petaway.Api.Features.Owners
 
         [HttpGet("getOwnerSpecificAnimal")]
         [Authorize]
-        public async Task<IActionResult> GetOwnerSpecificAnimal(GetOwnerSpecificAnimalCommandRequirements command, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetOwnerSpecificAnimal([FromQuery]string ownerEmail, [FromQuery]string animalName, [FromQuery]string animalType, [FromQuery]int animalAge, CancellationToken cancellationToken)
         {
-            var owner = await getOwnerSpecificAnimalCommandHandler.HandleAsync(command, cancellationToken);
+            var animal = await getOwnerSpecificAnimalCommandHandler.HandleAsync(new GetOwnerSpecificAnimalCommandRequirements(ownerEmail, animalName, animalType, animalAge), cancellationToken);
 
-            return Ok(owner);
+            return Ok(animal);
         }
 
         [HttpPut("updateOwnerSpecificAnimal")]

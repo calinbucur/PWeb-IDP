@@ -1,5 +1,6 @@
 ﻿using Petaway.Api.Features.Rescuers.RegisterRescuer;
 using Petaway.Api.Features.Rescuers.GetRescuer;
+using Petaway.Api.Features.Rescuers.GetRescuerExternal;
 using Petaway.Api.Features.Rescuers.UpdateRescuer;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,6 +12,7 @@ namespace Petaway.Api.Features.Rescuers
         {
             services.AddTransient<IRegisterRescuerCommandHandler, RegisterRescuerCommandHandler>();
             services.AddTransient<IGetRescuerCommandHandler, GetRescuerCommandHandler>();
+            services.AddTransient<IGetRescuerExternalCommandHandler, GetRescuerExternalCommandHandler>();
             services.AddTransient<IUpdateRescuerCommandHandler, UpdateRescuerCommandHandler>();
         }
     }

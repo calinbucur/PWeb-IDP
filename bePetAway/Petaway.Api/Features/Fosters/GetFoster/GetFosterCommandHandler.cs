@@ -18,17 +18,17 @@ namespace Petaway.Api.Features.Fosters.GetFoster
 
         public async Task<GetFosterDto> HandleAsync(string identityId, CancellationToken cancellationToken)
         {
-            var Foster = await dbContext.Fosters
+            var foster = await dbContext.Fosters
                .Where(x => x.IdentityId == identityId)
                .Select(x => new GetFosterDto(x.Email, x.Name, x.PhoneNumber, x.Address, x.PhotoPath, x.CrtCapacity, x.MaxCapacity))
                .FirstOrDefaultAsync(cancellationToken);
 
-            if (Foster == null)
+            if (foster == null)
             {
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Foster with identity {identityId} does not have a registered profile");
             }
 
-            return Foster;
+            return foster;
         }
     }
     
