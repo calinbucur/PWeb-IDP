@@ -16,7 +16,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.UpdateOwnerSpecificAnimal
             this.OwnersAnimalsRepository = OwnersAnimalsRepository;
         }
 
-        public async Task<IEnumerable<UpdateOwnerSpecificAnimalDto>> HandleAsync(UpdateOwnerSpecificAnimalDto command, string identityId, CancellationToken cancellationToken)
+        public async Task HandleAsync(UpdateOwnerSpecificAnimalDto command, string identityId, CancellationToken cancellationToken)
         {
             var ownerDomain = await OwnersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as OwnersAnimalsDomain;
 
@@ -25,7 +25,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.UpdateOwnerSpecificAnimal
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
-            ownerDomain.UpdateAnimalInfo(command.Id, command.Name, command.Type, command.Age, command.Description, command.AnimalPhotoPath);
+            ownerDomain.UpdateAnimalInfo(command.AnimalId, command.Name, command.Type, command.Age, command.Description, command.AnimalPhotoPath);
 
             await OwnersAnimalsRepository.SaveAsync(cancellationToken);
         }

@@ -19,14 +19,14 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.UpdateOwner
 
         public async Task HandleAsync(UpdateOwnerDto command, string identityId, CancellationToken cancellationToken)
         {
-            var owner = await OwnersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as OwnersAnimalsDomain;
+            var ownerDomain = await OwnersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as OwnersAnimalsDomain;
 
-            if (owner == null)
+            if (ownerDomain == null)
             {
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
-            owner.UpdateOwnerProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
+            ownerDomain.UpdateOwnerProfile(command.Name, command.PhoneNumber, command.Address, command.PhotoPath);
 
             await OwnersAnimalsRepository.SaveAsync(cancellationToken);
         }

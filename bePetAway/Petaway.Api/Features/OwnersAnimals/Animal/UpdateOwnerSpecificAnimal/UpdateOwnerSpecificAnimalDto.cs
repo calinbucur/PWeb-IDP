@@ -4,17 +4,17 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.UpdateOwnerSpecificAnimal
 {
     public record UpdateOwnerSpecificAnimalDto
     {
-        public UpdateOwnerSpecificAnimalDto(Core.DataModel.Animals animal)
+        public UpdateOwnerSpecificAnimalDto(int animalId, string name, string type, int age, string description, string animalPhotoPath)
         {
-            Id = animal.Id;
-            Name = animal.Name;
-            Type = animal.Type; /* cat, dog, rodent, bird, domestic, exotic*/
-            Age = animal.Age;
-            Description = animal.Description;
-            AnimalPhotoPath = animal.AnimalPhotoPath;
+            AnimalId = animalId;
+            Name = name;
+            Type = type; /* cat, dog, rodent, bird, domestic, exotic*/
+            Age = age;
+            Description = description;
+            AnimalPhotoPath = animalPhotoPath;
         }
 
-        public string Id { get; set; }
+        public int AnimalId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
         public int Age { get; set; }
