@@ -21,6 +21,7 @@ const Banner = (props) => {
   const [auxData, setAuxData] = useState({})
   const {addPet, setAddPet} = props
   const {high, setHigh} = props
+  const {high2, setHigh2} = props
   const [auxPet, setAuxPet] = useState(undefined)
   const navigate = useNavigate()
   // useEffect(() => {
@@ -64,7 +65,7 @@ const Banner = (props) => {
             const role = idToken?idToken['https://PetAway.com/role']:''
             const accessToken = await getAccessTokenSilently();
             // console.log(accessToken)
-            axiosInstance
+            if (role) axiosInstance
               .get(routes[role]['get' + role], {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
@@ -105,6 +106,7 @@ const Banner = (props) => {
               setProfile(!profile);
               setAddPet(false);
               setHigh(null)
+              setHigh2(null)
               //console.log(profData)
               //auxData = JSON.parse(JSON.stringify(profData));
               //console.log(auxData)
@@ -115,6 +117,7 @@ const Banner = (props) => {
               setAddPet(true);
               setProfile(false);
               setHigh(null)
+              setHigh2(null)
               setAuxPet({
                 "name": "",
                 "type": "",

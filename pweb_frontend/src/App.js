@@ -46,6 +46,7 @@ function About () {
 function App () {
   const { isAuthenticated, loginWithRedirect, logout, getIdTokenClaims, getAccessTokenSilently } = useAuth0()
   const [high, setHigh] = useState(null)
+  const [high2, setHigh2] = useState(null)
   const [profile, setProfile] = useState(false)
   const [addPet, setAddPet] = useState(false)
 
@@ -80,9 +81,9 @@ function App () {
     if (isAuthenticated) {
       getToken().then(() => {
       // console.log(idToken)
-        const role = idToken['https://PetAway.com/role']
+        const role = idToken?idToken['https://PetAway.com/role']:''
         let post_obj = {
-          "email": idToken.email,
+          "email": idToken?idToken.email:'',
           "name": "",
           "phoneNumber": "",
           "address": "",
@@ -109,7 +110,7 @@ function App () {
           (async () => {
             const accessToken = await getAccessTokenSilently();
             // console.log(accessToken)
-            axiosInstance
+            if (role) axiosInstance
               .get(routes[role]['get' + role], {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
@@ -134,8 +135,8 @@ function App () {
           <header className = "App-side-prompt">
             Hey {idToken ? idToken['https://PetAway.com/role'] : ''}
           </header>
-          <Banner idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet}></Banner>
-          <Feed idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet}></Feed>
+          <Banner idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet} high2={high2} setHigh2={setHigh2}></Banner>
+          <Feed idToken = {idToken} setIdToken = {setIdToken} high={high} setHigh={setHigh} profile={profile} setProfile={setProfile} addPet={addPet} setAddPet={setAddPet} high2={high2} setHigh2={setHigh2}></Feed>
           
         </>} />
       </Routes>

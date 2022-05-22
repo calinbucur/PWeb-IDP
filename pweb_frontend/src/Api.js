@@ -8,6 +8,7 @@ const routes = {
         getowner: "/Owners/getOwner",
         updateowner: '/Owners/updateOwner',
         getanimals: '/Owners/viewOwnerAnimals',
+        getPetId: 'Owners/getOwnerSpecificAnimalByDbId'
     },
     foster: {
         addfoster: '/Fosters/registerFoster',
@@ -16,11 +17,16 @@ const routes = {
         getanimals: '/Owners/viewRescuableAnimals',
         acceptpet: '/Fosters/proposeTransfer',
         getext: '/Fosters/getFosterExternal',
+        gettaken: '/Fosters/viewFosterAnimals',
     },
     rescuer: {
         addrescuer: '/Rescuers/registerRescuer',
         getrescuer: '/Rescuers/getRescuer',
         updaterescuer: '/Rescuers/updateRescuer',
+        getanimals: '/Transports/viewDisponibleTransports',
+        takeTrans: '/Rescuers/takeTransport',
+        getTrans: '/Rescuers/viewRescuerPendingTransports',
+        endTrans: '/Rescuers/finishTransport',
     },
     animal: {
         add: "/Owners/addAnimal"
