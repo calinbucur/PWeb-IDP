@@ -1,6 +1,7 @@
 Foster:
 POST: /api/v1/Fosters/registerFoster
 GET: /api/v1/Fosters/getFoster
+GET: /api/v1/Fosters/getFosterExternal
 PUT: /api/v1/Fosters/updateFoster
 PUT: /api/v1/Fosters/proposeTransfer
 GET: /api/v1/Fosters/viewFosterAnimals
@@ -10,10 +11,29 @@ POST: /api/v1/Owners/addAnimal
 POST: /api/v1/Owners/registerOwner
 GET: /api/v1/Owners/viewOwnerAnimals
 GET: /api/v1/Owners/getOwner
+GET: /api/v1/Owners/getOwnerExternal
 GET: /api/v1/Owners/viewRescuableAnimals
 PUT: /api/v1/Owners/updateOwner
+GET: /api/v1/Owners/getOwnerSpecificAnimal
+GET: /api/v1/Owners/getOwnerSpecificAnimalByDbId
+PUT: /api/v1/Owners/updateOwnerSpecificAnimal
 
 Rescuer:
 POST: /api/v1/Rescuer/registerRescuer
 GET: /api/v1/Rescuer/getRescuer
+GET: /api/v1/Rescuer/getRescuerExternal
 PUT: /api/v1/Rescuer/updateRescuer
+GET: /api/v1/Rescuer/viewRescuerFinishedTransports
+GET: /api/v1/Rescuer/viewRescuerPendingTransports
+PUT: /api/v1/Rescuer/takeTransport
+PUT: /api/v1/Rescuer/finishTransport
+
+Transport:
+GET: /api/v1/Rescuer/viewDisponibleTransports
+GET: /api/v1/Rescuer/getSpecificTransportByDbId
+
+Email:
+GET: /api/v1/Email
+
+Status:
+Get: /api/v1/Status
