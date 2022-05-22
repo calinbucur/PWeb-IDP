@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const base = process.env.REACT_APP_API_HOSTNAME ? 
-    `http://${process.env.REACT_APP_API_HOSTNAME}:8001/api/`: 'http://localhost:5000/api/v1/';
+    `https://${process.env.REACT_APP_API_HOSTNAME}:8001/api/`: 'http://localhost:5000/api/v1/';
 console.log("api url " + base)
 const routes = {
     owner: {
