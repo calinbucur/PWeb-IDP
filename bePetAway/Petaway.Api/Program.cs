@@ -5,9 +5,11 @@ using Petaway.Api.Web;
 using MediatR;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
+using Petaway.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +25,12 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "DevelopmentCorsPolicy",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000", "https://petaway.northeurope.cloudapp.azure.com:8080/")
+            policy.WithOrigins("*")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
 });
+
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -53,6 +56,13 @@ builder.Services.AddPetawayAggregateRepositories();
 builder.Services.AddApiFeaturesHandlers();
 
 var app = builder.Build();
+
+// Run migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<PetawayContext>();
+    dataContext.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
