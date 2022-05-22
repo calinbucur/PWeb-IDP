@@ -35,7 +35,7 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          console.log(data)
+          // console.log(data)
           //console.log('hau')
           setProfData(data)
         })
@@ -57,7 +57,7 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          console.log(data)
+          // console.log(data)
           const x = fosters
           x[key] = data
           setFosters(x)
@@ -106,7 +106,7 @@ const Feed = (props) => {
                   (async () => {
                     const role = idToken['https://PetAway.com/role']
                     const accessToken = await getAccessTokenSilently();
-                    console.log(accessToken)
+                    // console.log(accessToken)
                     axiosInstance
                       .put(routes[role].acceptpet, {
                         "ownerEmail": profData[key].ownerEmail,

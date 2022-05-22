@@ -1,4 +1,5 @@
-const base = `http://kong:8001/api/`//"http://localhost:5000/";
+const base = `http://kong:8001/api/`
+// const base = "http://localhost:5000/api/v1/";
 const routes = {
     owner: {
         addowner: "/Owners/registerOwner",
