@@ -87,6 +87,9 @@ const Banner = (props) => {
   get()
   return (<>
         <header className="App-banner">
+            <header className="Banner-title">
+              PetAway
+            </header>
             <button className = "BannerButton" onClick={() => logout({ returnTo: window.location.origin })}>
               <header className="ButtonText">Log out</header>
             </button>
@@ -127,7 +130,7 @@ const Banner = (props) => {
         {profile && <div className = 'App-profile-div'>
           <img className = "img-responsive App-profile-pic-detail" src={auxData.photoPath ? auxData.photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
           <div className='App-profile-label App-email-label'>Email</div>
-          <input className='App-profile-input App-email-form' value = {auxData.email/*idToken.email*/} readOnly/>
+          <input className='App-profile-input App-email-form' value = {/*auxData.email*/idToken.email} readOnly/>
           <div className='App-profile-label'>Name</div>
           <input type="text" className='App-profile-input' value = {auxData.name} onChange={(e) => auxData['name'] = e.target.value}/>
           <div className='App-profile-label'>Phone number</div>
