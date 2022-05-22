@@ -36,7 +36,7 @@ services:
       - monitoring
       - logging
   rabbitmq:
-    image: rabbitmq:3.10-management-alpine
+    image: rabbitmq:3.8-management-alpine
     secrets:
       - rabbitmq_password
       - rabbitmq_username
@@ -69,15 +69,43 @@ services:
       - postgres_user
       - postgres_password
       - postgres_db
+      - rabbitmq_password
+      - rabbitmq_username
     environment:
       POSTGRES_USER_FILE: /run/secrets/postgres_user
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
       POSTGRES_DB_FILE: /run/secrets/postgres_db
       DB_HOSTNAME: database
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
+      RABBITMQ_HOSTNAME: rabbitmq
+      RABBITMQ_QUEUE: queue
+    logging:
+      driver: loki
+      options:
+          loki-url: http://host.docker.internal:3100/loki/api/v1/push
+          loki-external-labels: job=api,owner=petaway,environment=development
+    extra_hosts:
+      host.docker.internal: host-gateway
+ 
   mail:
     image: idpreg.azurecr.io/mail-service
     networks:
       - mail
+    secrets:
+      - rabbitmq_password
+      - rabbitmq_username
+      - mail_hostname
+      - mail_password
+      - mail_username
+    environment:
+      MAIL_HOSTNAME: /run/secrets/mail_hostname
+      MAIL_PASSWORD: /run/secrets/mail_password
+      MAIL_USERNAME: /run/secrets/mail_username
+      RABBITMQ_DEFAULT_PASS_FILE: /run/secrets/rabbitmq_password
+      RABBITMQ_DEFAULT_USER_FILE: /run/secrets/rabbitmq_username
+      RABBITMQ_HOSTNAME: rabbitmq
+      RABBITMQ_QUEUE: queue
   frontend:
     image: idpreg.azurecr.io/frontend
     ports:
@@ -87,7 +115,7 @@ services:
       - monitoring
       - logging
     environment:
-      API_HOSTNAME: kong
+      REACT_APP_API_HOSTNAME: petaway.northeurope.cloudapp.azure.com
   kong:
     image: kong:latest
     volumes:
@@ -117,6 +145,8 @@ services:
         - ./configs/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
         - 9090:9090
+    extra_hosts:
+      host.docker.internal: host-gateway
     networks:
         - monitoring
         - visualizing
@@ -138,6 +168,24 @@ services:
         - 9100:9100
     networks:
         - monitoring
+    environment:
+      - NODE_ID={{.Node.ID}}
+  
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    deploy:
+        mode: global
+    volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+        - /dev/disk:/dev/disk/:ro
+    ports:
+        - 8081:8080
+    networks:
+        - monitoring
+
   loki:
     image: grafana/loki
     volumes:
@@ -194,7 +242,17 @@ secrets:
     external: true
   postgres_db:
     external: true
+  pgadmin_default_mail:
+    external: true
+  pgadmin_default_password:
+    external: true
   rabbitmq_password:
     external: true
   rabbitmq_username:
+    external: true
+  mail_hostname:
+    external: true
+  mail_password:
+    external: true
+  mail_username:
     external: true
