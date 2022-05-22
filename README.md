@@ -99,7 +99,7 @@ All confidential information (eg. database username and password, email, etc.) a
 # Useful links
 
 - frontend: https://petaway.northeurope.cloudapp.azure.com:8080/
-- backend: http://petaway.northeurope.cloudapp.azure.com:8001/api
+- backend: https://petaway.northeurope.cloudapp.azure.com:8443/api
 - pgadmin: http://petaway.northeurope.cloudapp.azure.com:5050
 - prometheus: http://petaway.northeurope.cloudapp.azure.com:9090/graph
 - grafana: http://petaway.northeurope.cloudapp.azure.com:3000

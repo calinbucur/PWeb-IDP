@@ -23,7 +23,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "DevelopmentCorsPolicy",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000")
+            policy.WithOrigins("http://localhost:3000", "https://petaway.northeurope.cloudapp.azure.com:8080/")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
