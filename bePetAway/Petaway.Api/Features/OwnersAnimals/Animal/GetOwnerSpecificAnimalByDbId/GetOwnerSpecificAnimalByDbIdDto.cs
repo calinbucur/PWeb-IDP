@@ -1,11 +1,10 @@
 ﻿using Petaway.Core.Domain.Owner;
-using Petaway.Core.DataModel;
 
-namespace Petaway.Api.Features.Fosters.ViewFosterAnimals
+namespace Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimalByDbId
 {
-    public record ViewFosterAnimalsDto
+    public record GetOwnerSpecificAnimalByDbIdDto
     {
-        public ViewFosterAnimalsDto(Animals animal)
+        public GetOwnerSpecificAnimalByDbIdDto(Core.DataModel.Animals animal)
         {
             AnimalId = animal.Id;
             Name = animal.Name;

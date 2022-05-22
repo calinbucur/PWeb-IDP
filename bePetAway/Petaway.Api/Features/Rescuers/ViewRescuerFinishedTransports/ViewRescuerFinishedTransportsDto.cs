@@ -2,11 +2,11 @@
 using Petaway.Core.DataModel;
 
 
-namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
+namespace Petaway.Api.Features.Rescuers.ViewRescuerFinishedTransports
 {
-    public record ViewDisponibleTransportsDto
+    public record ViewRescuerFinishedTransportsDto
     {
-        public ViewDisponibleTransportsDto(Core.DataModel.Transports transport)
+        public ViewRescuerFinishedTransportsDto(Core.DataModel.Transports transport)
         {
             TransportId = transport.Id;
             //RejectedByOwnerOrFoster = rejectedByOwnerOrFoster

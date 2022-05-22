@@ -6,6 +6,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals
     {
         public ViewRescuableAnimalsDto(Core.DataModel.Animals animal)
         {
+            AnimalId = animal.Id;
             Name = animal.Name;
             Type = animal.Type; /* cat, dog, rodent, bird, domestic, exotic*/
             Age = animal.Age;
@@ -18,6 +19,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals
             CrtRescuerEmail = animal.CrtRescuerEmail;
         }
 
+        public int AnimalId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
         public int Age { get; set; }

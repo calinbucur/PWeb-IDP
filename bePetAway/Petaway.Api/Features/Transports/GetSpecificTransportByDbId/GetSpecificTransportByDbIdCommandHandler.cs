@@ -5,22 +5,22 @@ using System.Net;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 
-namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
+namespace Petaway.Api.Features.Transports.GetSpecificTransportByDbId
 {
-    public class ViewDisponibleTransportsCommandHandler : IViewDisponibleTransportsCommandHandler
+    public class GetSpecificTransportByDbIdCommandHandler : IGetSpecificTransportByDbIdCommandHandler
     {
         private readonly PetawayContext dbContext;
 
-        public ViewDisponibleTransportsCommandHandler(PetawayContext dbContext, IMediator mediator)
+        public GetSpecificTransportByDbIdCommandHandler(PetawayContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<ViewDisponibleTransportsDto>> HandleAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<GetSpecificTransportByDbIdDto>> HandleAsync(int transportId, CancellationToken cancellationToken)
         {
             var query = from transport in dbContext.Transports
-                        where transport.RescuerEmail == "none"
-                        select new ViewDisponibleTransportsDto(transport);
+                        where (transport.Id == transportId)
+                        select new GetSpecificTransportByDbIdDto(transport);
 
             var result = await query
                 .AsNoTracking()

@@ -2,8 +2,8 @@
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals;
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals;
 using Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimal;
+using Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimalByDbId;
 using Petaway.Api.Features.OwnersAnimals.Animal.UpdateOwnerSpecificAnimal;
-
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
 using Petaway.Api.Features.OwnersAnimals.Owner.GetOwner;
 using Petaway.Api.Features.OwnersAnimals.Owner.GetOwnerExternal;
@@ -27,6 +27,7 @@ namespace Petaway.Api.Features.Owners
         private readonly IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler;
         private readonly IGetOwnerExternalCommandHandler getOwnerExternalCommandHandler;
         private readonly IGetOwnerSpecificAnimalCommandHandler getOwnerSpecificAnimalCommandHandler;
+        private readonly IGetOwnerSpecificAnimalByDbIdCommandHandler getOwnerSpecificAnimalByDbIdCommandHandler;
         private readonly IUpdateOwnerSpecificAnimalCommandHandler updateOwnerSpecificAnimalCommandHandler;
 
         public OwnersController(
@@ -38,6 +39,7 @@ namespace Petaway.Api.Features.Owners
             IGetOwnerCommandHandler getOwnerCommandHandler,
             IGetOwnerExternalCommandHandler getOwnerExternalCommandHandler,
             IGetOwnerSpecificAnimalCommandHandler getOwnerSpecificAnimalCommandHandler,
+            IGetOwnerSpecificAnimalByDbIdCommandHandler getOwnerSpecificAnimalByDbIdCommandHandler,
             IUpdateOwnerSpecificAnimalCommandHandler updateOwnerSpecificAnimalCommandHandler
             )
         {
@@ -49,6 +51,7 @@ namespace Petaway.Api.Features.Owners
             this.getOwnerCommandHandler = getOwnerCommandHandler;
             this.getOwnerExternalCommandHandler = getOwnerExternalCommandHandler;
             this.getOwnerSpecificAnimalCommandHandler = getOwnerSpecificAnimalCommandHandler;
+            this.getOwnerSpecificAnimalByDbIdCommandHandler = getOwnerSpecificAnimalByDbIdCommandHandler;
             this.updateOwnerSpecificAnimalCommandHandler = updateOwnerSpecificAnimalCommandHandler;
         }
 
@@ -155,6 +158,15 @@ namespace Petaway.Api.Features.Owners
         public async Task<IActionResult> GetOwnerSpecificAnimal([FromQuery]string ownerEmail, [FromQuery]string animalName, [FromQuery]string animalType, [FromQuery]int animalAge, CancellationToken cancellationToken)
         {
             var animal = await getOwnerSpecificAnimalCommandHandler.HandleAsync(new GetOwnerSpecificAnimalCommandRequirements(ownerEmail, animalName, animalType, animalAge), cancellationToken);
+
+            return Ok(animal);
+        }
+
+        [HttpGet("getOwnerSpecificAnimalByDbId")]
+        [Authorize]
+        public async Task<IActionResult> GetOwnerSpecificAnimalByDbId([FromQuery] string ownerEmail, [FromQuery] int animalId, CancellationToken cancellationToken)
+        {
+            var animal = await getOwnerSpecificAnimalByDbIdCommandHandler.HandleAsync(new GetOwnerSpecificAnimalByDbIdCommandRequirements(ownerEmail, animalId), cancellationToken);
 
             return Ok(animal);
         }

@@ -1,12 +1,10 @@
-﻿using Petaway.Core.Domain.Transport;
-using Petaway.Core.DataModel;
+﻿using Petaway.Core.DataModel;
 
-
-namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
+namespace Petaway.Api.Features.Transports.GetSpecificTransportByDbId
 {
-    public record ViewDisponibleTransportsDto
+    public record GetSpecificTransportByDbIdDto
     {
-        public ViewDisponibleTransportsDto(Core.DataModel.Transports transport)
+        public GetSpecificTransportByDbIdDto(Core.DataModel.Transports transport)
         {
             TransportId = transport.Id;
             //RejectedByOwnerOrFoster = rejectedByOwnerOrFoster
@@ -29,6 +27,5 @@ namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
         public string RescuerEmail { get; set; }
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
-
     }
 }
