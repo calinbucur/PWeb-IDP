@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Petaway.Api.Features.Status;
@@ -12,6 +13,7 @@ public class StatusController : ControllerBase
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public string GetStatus()
     {
         return "up";
