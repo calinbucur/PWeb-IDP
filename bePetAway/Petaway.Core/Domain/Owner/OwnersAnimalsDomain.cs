@@ -117,7 +117,7 @@ namespace Petaway.Core.Domain.Owner
 
 
             animal.Status = "foster";
-            animal.CrtFosterEmail = "none";
+            animal.CrtRescuerEmail = "none";
             animal.CrtTransportId = -1;
         }
 
