@@ -75,10 +75,7 @@ else
     // app.UseHttpsRedirection();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("DevelopmentCorsPolicy");
-}
+app.UseCors("DevelopmentCorsPolicy");
 
 app.UseAuthenticationAndAuthorization();
 
