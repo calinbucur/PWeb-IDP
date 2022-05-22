@@ -25,14 +25,12 @@ const Feed = (props) => {
 
   const axiosInstance = axios.create({
     baseURL: base,
-    // timeout: 1000,
   });
 
   const get = () => {
     (async () => {
       const role = idToken?idToken['https://PetAway.com/role']:''
       const accessToken = await getAccessTokenSilently();
-      //console.log(accessToken)
       if (role) axiosInstance
         .get(routes[role].getanimals, {
           headers: {
@@ -40,8 +38,6 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          // console.log(data)
-          //console.log('hau')
           setProfData(data)
         })
     })();
@@ -50,11 +46,7 @@ const Feed = (props) => {
 
   const get_fext = (mail, key) => {
     (async () => {
-      // const role = idToken?idToken['https://PetAway.com/role']:''
-      // let p = {}
-      // p[role + 'Email'] = mail
       const accessToken = await getAccessTokenSilently();
-      //console.log(accessToken)
       axiosInstance
         .get(routes.foster.getext, {
           params: {fosterEmail:mail},
@@ -63,23 +55,15 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          // console.log(data)
           const x = fosters
           x[key] = data
           setFosters(x)
-          // fosters[key] = data;
-          //console.log('hau')
-          // setProfData(data)
         })
     })();
   }
   const get_aext = (mail, aid, key) => {
     (async () => {
-      // const role = idToken?idToken['https://PetAway.com/role']:''
-      // let p = {}
-      // p[role + 'Email'] = mail
       const accessToken = await getAccessTokenSilently();
-      //console.log(accessToken)
       axiosInstance
         .get(routes.owner.getPetId, {
           params: {
@@ -91,29 +75,19 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          // console.log(data)
           const x = anims
           x[key] = data
           setAnims(x)
-          // fosters[key] = data;
-          //console.log('hau')
-          // setProfData(data)
         })
     })();
   }
   get();
   const objs = []
-  // for (let i = 0; i < 20; i++) {
-  //   if (i === 4) {
-  //     objs.push(<div className = "Feed-item Feed-highlight" key = {i}></div>)
-  //   } else { objs.push(<div className = "Feed-item" key = {i}></div>) }
-  // }
   const rol = idToken?idToken['https://PetAway.com/role']:''
   const get_trans = () => {
     (async () => {
       const role = idToken?idToken['https://PetAway.com/role']:''
       const accessToken = await getAccessTokenSilently();
-      //console.log(accessToken)
       axiosInstance
         .get(routes[role].getTrans, {
           headers: {
@@ -121,8 +95,6 @@ const Feed = (props) => {
           },
         })
         .then(({data}) => {
-          // console.log(data)
-          //console.log('hau')
           setPendTrans(data)
         })
     })();
@@ -178,7 +150,6 @@ const Feed = (props) => {
       (async () => {
         const role = idToken?idToken['https://PetAway.com/role']:''
         const accessToken = await getAccessTokenSilently();
-        //console.log(accessToken)
         if (role) axiosInstance
           .get(routes.foster.gettaken, {
             headers: {
@@ -186,8 +157,6 @@ const Feed = (props) => {
             },
           })
           .then(({data}) => {
-            // console.log(data)
-            //console.log('hau')
             setTaken(data)
           })
       })();
@@ -207,7 +176,7 @@ const Feed = (props) => {
         }
         }}>
         <div className = "Feed-pet-info">{taken[key].name}, {taken[key].type}</div>
-        <img className = "img-responsive Feed-pet-pic" src={taken[key].animalPhotoPath ? taken[key].animalPhotoPath : pet_default} /*onError = {(ev) => {ev.target.src=pet_default}}*/></img>
+        <img className = "img-responsive Feed-pet-pic" src={taken[key].animalPhotoPath ? taken[key].animalPhotoPath : pet_default}></img>
         {(idToken && (idToken['https://PetAway.com/role'] === 'owner' || (idToken['https://PetAway.com/role'] === 'foster' && taken[key].status != 'home'))) && <>
           <div className={'Feed-btn Feed-stat-cell'+(taken[key].status==='travelling'?' red':'')}></div>
           <header className = "Feed-pet-status">Status: {taken[key].status==='travelling'?'pending':taken[key].status}</header>
@@ -216,11 +185,6 @@ const Feed = (props) => {
     }
   }
   for (const key in profData) {
-    // console.log(profData[0])
-    
-    // console.log(fosters)
-    // console.log(key)
-    // console.log(fosters[key]?fosters[key].name:'')
     if (idToken && idToken['https://PetAway.com/role'] != 'rescuer') {
       objs.push(<div className = {high === key?"Feed-item Feed-highlight":"Feed-item"} key = {key} onClick={()=>{
         setAddPet(false)
@@ -235,7 +199,7 @@ const Feed = (props) => {
         }
         }}>
         <div className = "Feed-pet-info">{profData[key].name}, {profData[key].type}</div>
-        <img className = "img-responsive Feed-pet-pic" src={profData[key].animalPhotoPath ? profData[key].animalPhotoPath : pet_default} /*onError = {(ev) => {ev.target.src=pet_default}}*/></img>
+        <img className = "img-responsive Feed-pet-pic" src={profData[key].animalPhotoPath ? profData[key].animalPhotoPath : pet_default}></img>
         {(idToken && (idToken['https://PetAway.com/role'] === 'owner' || (idToken['https://PetAway.com/role'] === 'foster' && profData[key].status != 'home'))) && <>
           <div className={'Feed-btn Feed-stat-cell'+(profData[key].status==='travelling'?' red':'')}></div>
           <header className = "Feed-pet-status">Status: {profData[key].status==='travelling'?'pending':profData[key].status}</header>
@@ -243,14 +207,12 @@ const Feed = (props) => {
         {idToken && idToken['https://PetAway.com/role'] === 'owner' && profData[key].status != 'home' && <>
           {get_fext(profData[key].crtFosterEmail, key)}
           <div className = "Feed-pet-info foster-opt">{fosters[key]?(fosters[key].name?fosters[key].name:fosters[key].email):''}</div>
-          <img className = "img-responsive Feed-pet-pic foster-opt-pic" src={fosters[key]?(fosters[key].photoPath ? profData[key].photoPath : pfp_default):pfp_default} /*onError = {(ev) => {ev.target.src=pet_default}}*/></img>
+          <img className = "img-responsive Feed-pet-pic foster-opt-pic" src={fosters[key]?(fosters[key].photoPath ? profData[key].photoPath : pfp_default):pfp_default}></img>
         </>}
         {idToken && idToken['https://PetAway.com/role'] === 'foster' && profData[key].status === 'home' && <button className='Feed-btn' onClick = {(e) => {
-                    // setHigh(null);
                     (async () => {
                       const role = idToken['https://PetAway.com/role']
                       const accessToken = await getAccessTokenSilently();
-                      // console.log(accessToken)
                       axiosInstance
                         .put(routes[role].acceptpet, {
                           "ownerEmail": profData[key].ownerEmail,
@@ -265,7 +227,6 @@ const Feed = (props) => {
                         .then(() => {});
                     })();
                     e.stopPropagation();
-                    // setHigh(null)
                   }}>
           <header className="ButtonText White-btn">Adopt</header>
         </button>}
@@ -273,10 +234,6 @@ const Feed = (props) => {
     } else if (idToken && idToken['https://PetAway.com/role'] === 'rescuer') {
       get_fext(profData[key].fosterEmail, key)
       get_aext(profData[key].ownerEmail, profData[key].animalId, key)
-      // console.log(key)
-      // console.log(profData)
-      // console.log(fosters)
-      // console.log(anims)
       objs.push(<div className = {high === key?"Feed-item Feed-highlight":"Feed-item"} key = {key} onClick={()=>{
         setAddPet(false)
         setProfile(false)
@@ -294,11 +251,9 @@ const Feed = (props) => {
           <div className = "Feed-pet-info foster-opt">{fosters[key]?(fosters[key].name?fosters[key].name:fosters[key].email):''}</div>
           <img className = "img-responsive Feed-pet-pic foster-opt-pic" src={fosters[key]?(fosters[key].photoPath ? fosters[key].photoPath : pfp_default):pfp_default} ></img>
           <button className='Feed-btn' onClick = {(e) => {
-                    // setHigh(null);
                     (async () => {
                       const role = idToken['https://PetAway.com/role']
                       const accessToken = await getAccessTokenSilently();
-                      // console.log(accessToken)
                       axiosInstance
                         .put(routes[role].takeTrans, {
                           "transportId": profData[key].transportId,
@@ -310,7 +265,6 @@ const Feed = (props) => {
                         .then(() => {});
                     })();
                     e.stopPropagation();
-                    // setHigh(null)
                   }}>
             <header className="ButtonText White-btn">Rescue</header>
           </button>
@@ -325,7 +279,7 @@ const Feed = (props) => {
         {idToken && idToken['https://PetAway.com/role'] != 'rescuer' && <div className='sideContainer'>
         <img className = "img-responsive App-profile-pic-detail" src={profData[high].animalPhotoPath ? profData[high].animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
         <div className='App-profile-label App-email-label'>Name</div>
-        <input className='App-profile-input App-email-form' value = {/*auxData.email*/profData[high].name} readOnly/>
+        <input className='App-profile-input App-email-form' value = {profData[high].name} readOnly/>
         <div className='App-profile-label'>Type</div>
         <input className='App-profile-input' value = {profData[high].type} readOnly/>
         <div className='App-profile-label'>Age</div>
@@ -336,7 +290,7 @@ const Feed = (props) => {
         {idToken && idToken['https://PetAway.com/role'] === 'rescuer' && <div className='sideContainer'>
         <img className = "img-responsive App-profile-pic-detail" src={anims[high][0].animalPhotoPath ? anims[high][0].animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
         <div className='App-profile-label App-email-label'>Name</div>
-        <input className='App-profile-input App-email-form' value = {/*auxData.email*/anims[high][0].name} readOnly/>
+        <input className='App-profile-input App-email-form' value = {anims[high][0].name} readOnly/>
         <div className='App-profile-label'>Type</div>
         <input className='App-profile-input' value = {anims[high][0].type} readOnly/>
         <div className='App-profile-label'>Age</div>
@@ -347,7 +301,7 @@ const Feed = (props) => {
         {fosters[high] && <div className = 'sideContainer'>
         <img className = "img-responsive App-profile-pic-detail" src={fosters[high].photoPath ? fosters[high].photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
         <div className='App-profile-label App-email-label'>Email</div>
-        <input className='App-profile-input App-email-form' value = {/*auxData.email*/fosters[high].email} readOnly/>
+        <input className='App-profile-input App-email-form' value = {fosters[high].email} readOnly/>
         <div className='App-profile-label'>Name</div>
         <input className='App-profile-input' value = {fosters[high].name} readOnly/>
         <div className='App-profile-label'>Phone Number</div>
@@ -362,7 +316,7 @@ const Feed = (props) => {
         {idToken && idToken['https://PetAway.com/role'] != 'rescuer' && <div className='sideContainer'>
         <img className = "img-responsive App-profile-pic-detail" src={taken[high2].animalPhotoPath ? taken[high2].animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
         <div className='App-profile-label App-email-label'>Name</div>
-        <input className='App-profile-input App-email-form' value = {/*auxData.email*/taken[high2].name} readOnly/>
+        <input className='App-profile-input App-email-form' value = {taken[high2].name} readOnly/>
         <div className='App-profile-label'>Type</div>
         <input className='App-profile-input' value = {taken[high2].type} readOnly/>
         <div className='App-profile-label'>Age</div>

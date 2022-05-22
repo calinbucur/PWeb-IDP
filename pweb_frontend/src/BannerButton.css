@@ -8,7 +8,6 @@
     border-radius: 10px 10px 10px 10px;
     display: table-cell;
     vertical-align: middle;
-    /* align-items: center; */
 }
 
 .Donate {
@@ -50,16 +49,9 @@
     white-space: pre;
     display: table-cell;
     vertical-align: middle;
-    /* transform: translate(0, -50%); */
-    /* line-height: ; */
     text-align: center;
-    /* vertical-align: middle;
-    padding: center; */
     text-decoration-line: underline;
     color: #1678F0;
-    /* flex: none;
-    order: 0;
-    flex-grow: 0; */
 }
 
 .White-btn {

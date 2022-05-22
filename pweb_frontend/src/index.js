@@ -13,9 +13,7 @@ root.render(
       domain="dev-rxvajvsu.us.auth0.com"
       clientId="YyrdH0HdCwE8J5ufDw5lUpIPVH1s9fM6"
       redirectUri={window.location.origin}
-      // audience="https://dev-rxvajvsu.us.auth0.com/api/v2/"
       audience='https://PetAway.com'
-      // scope="read:current_user update:current_user_metadata"
     >
       <App />
     </Auth0Provider>

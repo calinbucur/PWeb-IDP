@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useState, } from 'react'
 import './App.css'
-import { Routes, Route, Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from './logo.png'
 import pfp_default from './pfp_default.jpg'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -10,12 +10,9 @@ import axios from 'axios'
 import {base, routes} from './Api'
 import pet_default from './pet_default.png'
 
-// Cata99*
-
 const Banner = (props) => {
   const { idToken, setIdToken } = props
   const { logout, user, getAccessTokenSilently, getIdTokenClaims } = useAuth0()
-  const [userMetadata, setUserMetadata] = useState(null)
   const {profile, setProfile} = props
   const [profData, setProfData] = useState({})
   const [auxData, setAuxData] = useState({})
@@ -24,47 +21,13 @@ const Banner = (props) => {
   const {high2, setHigh2} = props
   const [auxPet, setAuxPet] = useState(undefined)
   const navigate = useNavigate()
-  // useEffect(() => {
-  //     const getUserMetadata = async () => {
-  //       const domain = "dev-rxvajvsu.us.auth0.com";
-
-  //       try {
-  //         const accessToken = await getAccessTokenSilently({
-  //           audience: `https://${domain}/api/v2/`,
-  //           scope: "read:current_user",
-  //         });
-
-  //         const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
-  //         console.log(accessToken);
-  //         const metadataResponse = await fetch(userDetailsByIdUrl, {
-  //           headers: {
-  //             Authorization: `Bearer ${accessToken}`,
-  //           },
-  //         });
-
-  //         const { user_metadata } = await metadataResponse.json();
-  //         if (accessToken) {
-  //             console.log('ok')
-  //         }
-  //         setUserMetadata(user_metadata);
-  //       } catch (e) {
-  //         console.log(e.message);
-  //       }
-  //     };
-  //     getUserMetadata();
-  //   }, [getAccessTokenSilently, user?.sub]);
   const axiosInstance = axios.create({
     baseURL: base,
-    // timeout: 1000,
   });
-  // useEffect(() => {
-  //   if (idToken) {
-  //     // console.log(idToken)
         const get = () => {
           (async () => {
             const role = idToken?idToken['https://PetAway.com/role']:''
             const accessToken = await getAccessTokenSilently();
-            // console.log(accessToken)
             if (role) axiosInstance
               .get(routes[role]['get' + role], {
                 headers: {
@@ -72,19 +35,10 @@ const Banner = (props) => {
                 },
               })
               .then(({data}) => {
-                //console.log(data)
-                //console.log('hau')
                 setProfData(data)
               })
           })();
         }     
-        // console.log(idToken)
-  //       get()
-  //   }
-  // }, [idToken])
-  // useEffect((
-  //   get_profile()
-  // ), [get_profile])
   get()
   return (<>
         <header className="App-banner">
@@ -94,22 +48,17 @@ const Banner = (props) => {
             <button className = "BannerButton" onClick={() => logout({ returnTo: window.location.origin })}>
               <header className="ButtonText">Log out</header>
             </button>
-            {/* <a href="https://www.youtube.com/watch?v=tPKq8ffzMFY" target="_blank" rel="noreferrer"> */}
+            <a href="https://www.youtube.com/watch?v=tPKq8ffzMFY" target="_blank" rel="noreferrer">
             <button className = "BannerButton Donate" onClick = {() => {}}>
               <header className="ButtonText">Donate</header>
             </button>
-            {/* </a> */}
-            {/* <Link to="home"> */}
+            </a>
             <img className = "App-lil-logo" src={logo} alt="Logo" onClick={() => { navigate('/home') }}/>
-            {/* </Link> */}
-            <img className = "App-profile-pic" src={profData.photoPath ? profData.photoPath : pfp_default} onClick = {() => {//get();
+            <img className = "App-profile-pic" src={profData.photoPath ? profData.photoPath : pfp_default} onClick = {() => {
               setProfile(!profile);
               setAddPet(false);
               setHigh(null)
               setHigh2(null)
-              //console.log(profData)
-              //auxData = JSON.parse(JSON.stringify(profData));
-              //console.log(auxData)
               setAuxData(profData)
             }}
             />
@@ -121,7 +70,6 @@ const Banner = (props) => {
               setAuxPet({
                 "name": "",
                 "type": "",
-                // "status": "home",
                 "age": 0,
                 "description": "",
                 "animalPhotoPath": ""
@@ -133,7 +81,7 @@ const Banner = (props) => {
         {profile && <div className = 'App-profile-div'>
           <img className = "img-responsive App-profile-pic-detail" src={auxData.photoPath ? auxData.photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
           <div className='App-profile-label App-email-label'>Email</div>
-          <input className='App-profile-input App-email-form' value = {/*auxData.email*/idToken.email} readOnly/>
+          <input className='App-profile-input App-email-form' value = {idToken.email} readOnly/>
           <div className='App-profile-label'>Name</div>
           <input type="text" className='App-profile-input' value = {auxData.name} onChange={(e) => auxData['name'] = e.target.value}/>
           <div className='App-profile-label'>Phone number</div>
@@ -165,7 +113,7 @@ const Banner = (props) => {
         {addPet && <div className = 'App-profile-div'>
           <img className = "img-responsive App-profile-pic-detail" src={auxPet.animalPhotoPath ? auxPet.animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
           <div className='App-profile-label App-email-label'>Name</div>
-          <input className='App-profile-input App-email-form' value = {/*auxData.email*/auxPet.name} onChange={(e) => auxPet['name'] = e.target.value}/>
+          <input className='App-profile-input App-email-form' value = {auxPet.name} onChange={(e) => auxPet['name'] = e.target.value}/>
           <div className='App-profile-label'>Type</div>
           <select className='App-profile-input' value = {auxPet.type} onChange={(e) => auxPet['type'] = e.target.value}>
             <option value = ''></option>
@@ -184,9 +132,7 @@ const Banner = (props) => {
           <input type='text' className='App-profile-input App-profile-desc' value = {auxPet.description} onChange={(e) => auxPet['description'] = e.target.value}/>
           <button className = "BannerButton Profile-submit Btn-right" onClick={() => {
                   (async () => {
-                    // const role = idToken['https://PetAway.com/role']
                     const accessToken = await getAccessTokenSilently();
-                    // console.log(accessToken)
                     axiosInstance
                       .post(routes.animal.add, auxPet, {
                         headers: {
