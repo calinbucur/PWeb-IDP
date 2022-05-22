@@ -2,6 +2,7 @@
 using Petaway.Api.Web;
 using System.Net;
 using MediatR;
+using Petaway.Api.Infrastructure.RabbitMQ;
 
 namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
 {
@@ -29,6 +30,8 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
             await mediator.Publish(addAnimalEvent, cancellationToken);
 
             await OwnersAnimalsRepository.SaveAsync(cancellationToken);
+
+            //_rabbitMqService.sendMail("petaway.test@gmail.com", "TEST EMAIL", "SUBJECT");
         }
         
     }

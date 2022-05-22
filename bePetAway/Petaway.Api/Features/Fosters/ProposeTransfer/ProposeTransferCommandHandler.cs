@@ -1,11 +1,9 @@
 ﻿using Petaway.Core.Domain.Foster;
 using Petaway.Core.Domain.Owner;
 using Petaway.Core.Domain.Transport;
-using Petaway.Infrastructure.Data;
 using Petaway.Api.Web;
 using System.Net;
-using Microsoft.EntityFrameworkCore;
-using MediatR;
+using Petaway.Api.Infrastructure.RabbitMQ;
 
 namespace Petaway.Api.Features.Fosters.ProposeTransfer
 {
@@ -14,15 +12,13 @@ namespace Petaway.Api.Features.Fosters.ProposeTransfer
         private readonly IOwnersAnimalsRepository ownersAnimalsRepository;
         private readonly IFostersRepository fostersRepository;
         private readonly ITransportsRepository transportRepository;
-        private readonly IMediator mediator;
 
 
-        public ProposeTransferCommandHandler(IOwnersAnimalsRepository ownersAnimalsRepository, IFostersRepository fostersRepository, ITransportsRepository transportRepository, IMediator mediator)
+        public ProposeTransferCommandHandler(IOwnersAnimalsRepository ownersAnimalsRepository, IFostersRepository fostersRepository, ITransportsRepository transportRepository)
         {
             this.ownersAnimalsRepository = ownersAnimalsRepository;
             this.fostersRepository = fostersRepository;
             this.transportRepository = transportRepository;
-            this.mediator = mediator;
         }
 
         public async Task HandleAsync(ProposeTransferCommand command, string identityId, CancellationToken cancellationToken)
@@ -58,6 +54,8 @@ namespace Petaway.Api.Features.Fosters.ProposeTransfer
             await transportRepository.AddAsync(
                 new RegisterTransportProfileCommand(ownerDomain.GetAggregate().Email, animal.Id, foster.Email, "none", "none", foster.Address),
                 cancellationToken);
+
+            RabbitMQService.sendMail(command.OwnerEmail, "Foster rescue for your animal", $"Foster {foster.Name} wants to help your animal: {animal.Name} {animal.Type}, {animal.Age} to get out of the danger zone");
         }
     }
     

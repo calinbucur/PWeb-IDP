@@ -7,7 +7,6 @@ using Petaway.Infrastructure.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
 
 namespace Petaway.Api.Infrastructure
 {
@@ -25,6 +24,7 @@ namespace Petaway.Api.Infrastructure
                 return null;
             }
         }
+
         public static void AddPetawayDbContext(this WebApplicationBuilder builder)
         {
             string dbHostname = Environment.GetEnvironmentVariable("DB_HOSTNAME") ?? "localhost";

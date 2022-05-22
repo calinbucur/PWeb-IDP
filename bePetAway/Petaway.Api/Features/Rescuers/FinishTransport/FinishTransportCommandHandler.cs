@@ -6,6 +6,8 @@ using Petaway.Api.Web;
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
+using Petaway.Api.Infrastructure.RabbitMQ;
+
 
 namespace Petaway.Api.Features.Rescuers.FinishTransport
 {
@@ -73,6 +75,10 @@ namespace Petaway.Api.Features.Rescuers.FinishTransport
 
             transportsDomain.MarkTransferAsFinished();
             await rescuersRepository.SaveAsync(cancellationToken);
+
+            var animal = ownerDomain.GetAnimalById(animalId);
+            RabbitMQService.sendMail(ownerEmail, "Rescuer arrived at foster's destination", $"Rescuer {rescuer.Email} has arrived with your animal: {animal.Name} {animal.Type}, {animal.Age} at foster's ({fosterEmail}) location: {transportsDomain.GetAggregate().EndPoint}.");
+            RabbitMQService.sendMail(fosterEmail, "Rescuer arrived at your location", $"Rescuer {rescuer.Email} has arrived with animal: {animal.Name} {animal.Type}, {animal.Age} to your location.");
         }
     }
     

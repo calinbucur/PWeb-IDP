@@ -13,7 +13,11 @@ export async function connectToChannel(
 
     const channel = await queueConnection.createChannel();
 
-    await channel.assertQueue(queue);
+    await channel.assertQueue(queue, {
+        durable: false,
+        exclusive: false,
+        autoDelete: false,
+        arguments: null});
 
     return channel;
 }

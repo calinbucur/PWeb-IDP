@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Petaway.Api.Infrastructure;
+using Petaway.Api.Infrastructure.RabbitMQ;
 
 namespace Petaway.Api.Features.Email;
 
@@ -7,16 +7,18 @@ namespace Petaway.Api.Features.Email;
 [ApiController]
 public class EmailController : ControllerBase
 {
-    private IRabbitMQService _rabbitMqService;
+    //private IRabbitMQService _rabbitMqService;
     
-    public EmailController(IRabbitMQService rabbitMqService)
+    //public EmailController(IRabbitMQService rabbitMqService)
+    public EmailController()
     {
-        _rabbitMqService = rabbitMqService;
+        //_rabbitMqService = rabbitMqService;
     }
     
     [HttpGet]
     public void SendMail()
     {
-        _rabbitMqService.sendMail("petaway.test@gmail.com", "TEST EMAIL", "SUBJECT");
+        RabbitMQService.sendMail("petaway.test@gmail.com", "Test email", "SUBJECT");
+        //_rabbitMqService.sendMail("petaway.test@gmail.com", "TEST EMAIL", "SUBJECT");
     }
 }
