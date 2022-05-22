@@ -102,6 +102,6 @@ All confidential information (eg. database username and password, email, etc.) a
 - backend: http://petaway.northeurope.cloudapp.azure.com:8001/api
 - pgadmin: http://petaway.northeurope.cloudapp.azure.com:5050
 - prometheus: http://petaway.northeurope.cloudapp.azure.com:9090/graph
-- graphana: http://petaway.northeurope.cloudapp.azure.com:3000
+- grafana: http://petaway.northeurope.cloudapp.azure.com:3000
 - portainer: https://petaway.northeurope.cloudapp.azure.com:9443
 - rabbitmq: http://petaway.northeurope.cloudapp.azure.com:15672/
