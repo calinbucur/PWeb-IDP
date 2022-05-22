@@ -30,8 +30,8 @@ border: 8px solid #FFDB49;
 
 .Feed-pet-pic {
     position: absolute;
-    width: 10%;
-    height: 30%;
+    width: 12%;
+    height: 35%;
     left:2%;
     top: 5%;
     border: 2px solid #000000;
@@ -42,7 +42,7 @@ border: 8px solid #FFDB49;
     box-sizing: border-box;
 
     position: absolute;
-    width: 62%;
+    width: 75%;
     height: 15%;
     left: 8%;
     top: 7%;
@@ -95,7 +95,7 @@ border: 8px solid #FFDB49;
     position: absolute;
     width: 20%;
     height: 30%;
-    left: 59%;
+    left: 79%;
     top: 65%;
     background: #11672A;
     border-radius: 10px 10px 10px 10px;
@@ -105,8 +105,26 @@ border: 8px solid #FFDB49;
 
 .Feed-stat-cell {
     width: 40%;
+    left: 59%;
 }
 
 .red {
     background: #67114E;
+}
+.foster-opt {
+    top:30%;
+    left: 15%;
+    background: #0A448A;
+    color: #FFDB49;
+}
+
+.foster-opt-pic {
+    left: 85%;
+    top: 15%
+}
+
+.sideContainer {
+    position:relative;
+    height: 100%;
+    width:  100%;
 }
