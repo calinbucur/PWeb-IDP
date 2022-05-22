@@ -11,6 +11,7 @@ const routes = {
         getfoster: 'api/v1/Fosters/getFoster',
         updatefoster: 'api/v1/Fosters/updateFoster',
         getanimals: '/api/v1/Owners/viewRescuableAnimals',
+        acceptpet: '/api/v1/Fosters/proposeTransfer'
     },
     rescuer: {
         addrescuer: 'api/v1/Rescuers/registerRescuer',
