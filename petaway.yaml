@@ -115,7 +115,7 @@ services:
       - monitoring
       - logging
     environment:
-      API_HOSTNAME: kong
+      REACT_APP_API_HOSTNAME: petaway.northeurope.cloudapp.azure.com
   kong:
     image: kong:latest
     volumes:
