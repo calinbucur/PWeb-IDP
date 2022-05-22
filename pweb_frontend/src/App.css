@@ -110,6 +110,7 @@
   height: 80%;
   left: 57.5%;
   top: 17.5%;
+  overflow-y:auto;
 
   background: #1678F0;
   border: 5px solid #000000;

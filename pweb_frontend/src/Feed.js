@@ -8,6 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import {base, routes} from './Api'
 import pet_default from './pet_default.png'
+import pfp_default from './pfp_default.jpg'
 
 const Feed = (props) => {
   const { idToken, setIdToken } = props;
@@ -40,6 +41,32 @@ const Feed = (props) => {
         })
     })();
   }
+  const [fosters, setFosters] = useState({})
+  const get_fext = (mail, key) => {
+    (async () => {
+      // const role = idToken?idToken['https://PetAway.com/role']:''
+      // let p = {}
+      // p[role + 'Email'] = mail
+      const accessToken = await getAccessTokenSilently();
+      //console.log(accessToken)
+      axiosInstance
+        .get(routes.foster.getext, {
+          params: {fosterEmail:mail},
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then(({data}) => {
+          console.log(data)
+          const x = fosters
+          x[key] = data
+          setFosters(x)
+          // fosters[key] = data;
+          //console.log('hau')
+          // setProfData(data)
+        })
+    })();
+  }
   get();
   const objs = []
   // for (let i = 0; i < 20; i++) {
@@ -49,6 +76,10 @@ const Feed = (props) => {
   // }
   for (const key in profData) {
     // console.log(profData[0])
+    
+    // console.log(fosters)
+    // console.log(key)
+    // console.log(fosters[key]?fosters[key].name:'')
     objs.push(<div className = {high === key?"Feed-item Feed-highlight":"Feed-item"} key = {key} onClick={()=>{
       setAddPet(false)
       setProfile(false)
@@ -64,6 +95,11 @@ const Feed = (props) => {
       {(idToken && (idToken['https://PetAway.com/role'] === 'owner' || (idToken['https://PetAway.com/role'] === 'foster' && profData[key].status != 'home'))) && <>
         <div className={'Feed-btn Feed-stat-cell'+(profData[key].status==='travelling'?' red':'')}></div>
         <header className = "Feed-pet-status">Status: {profData[key].status==='travelling'?'pending':profData[key].status}</header>
+      </>}
+      {idToken && idToken['https://PetAway.com/role'] === 'owner' && profData[key].status != 'home' && <>
+        {get_fext(profData[key].crtFosterEmail, key)}
+        <div className = "Feed-pet-info foster-opt">{fosters[key]?(fosters[key].name?fosters[key].name:fosters[key].email):''}</div>
+        <img className = "img-responsive Feed-pet-pic foster-opt-pic" src={fosters[key]?(fosters[key].photoPath ? profData[key].photoPath : pfp_default):pfp_default} /*onError = {(ev) => {ev.target.src=pet_default}}*/></img>
       </>}
       {idToken && idToken['https://PetAway.com/role'] === 'foster' && profData[key].status === 'home' && <button className='Feed-btn' onClick = {(e) => {
                   // setHigh(null);
@@ -96,6 +132,7 @@ const Feed = (props) => {
             {objs}
         </div>
         {high != null && <div className = 'App-profile-div'>
+        <div className='sideContainer'>
         <img className = "img-responsive App-profile-pic-detail" src={profData[high].animalPhotoPath ? profData[high].animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
         <div className='App-profile-label App-email-label'>Name</div>
         <input className='App-profile-input App-email-form' value = {/*auxData.email*/profData[high].name} readOnly/>
@@ -105,6 +142,20 @@ const Feed = (props) => {
         <input type='text' className='App-profile-input' value = {profData[high].age} readOnly/>
         <div className='App-profile-label'>Description</div>
         <input type='text' className='App-profile-input App-profile-desc' value = {profData[high].description} readOnly/>
+        </div>
+        {fosters[high] && <div className = 'sideContainer'>
+        <img className = "img-responsive App-profile-pic-detail" src={fosters[high].photoPath ? fosters[high].photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
+        <div className='App-profile-label App-email-label'>Email</div>
+        <input className='App-profile-input App-email-form' value = {/*auxData.email*/fosters[high].email} readOnly/>
+        <div className='App-profile-label'>Name</div>
+        <input className='App-profile-input' value = {fosters[high].name} readOnly/>
+        <div className='App-profile-label'>Phone Number</div>
+        <input type='text' className='App-profile-input' value = {fosters[high].phoneNumber} readOnly/>
+        <div className='App-profile-label'>Address</div>
+        <input type='text' className='App-profile-input' value = {fosters[high].address} readOnly/>
+        <div className='App-profile-label'>Capacity</div>
+        <input type='text' className='App-profile-input' value = {fosters[high].crtCapacity + '/' + fosters[high].maxCapacity} readOnly/>
+        </div>}
       </div>}
       </> 
   )
