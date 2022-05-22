@@ -29,10 +29,7 @@
   position: absolute;
   width: 100%;
   height: 15%;
-  /*left: calc(50% - 1512px/2); /**/
-  /*top: 0px; /**/
   background: #0A448A;
-  /*border-radius: 0px; /**/
 }
 
 .App-title {
@@ -124,19 +121,12 @@
   height: 50px;
   left: 7%;
   top: 25%;
-
-  /* TitluMic */
-
   white-space: pre;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: 41px;
   line-height: 50px;
-  /* identical to box height */
-
-
-  /* ComponenteUcr/Galben */
 
   color: #FFDB49;
 }
@@ -150,8 +140,6 @@ height: 5%;
 left: -12%;
 top: 25%;
 
-/* ComponenteUcr/Galben */
-
 background: #FFDB49;
 border: 2px solid #000000;
 border-radius: 10px;
@@ -163,8 +151,6 @@ font-weight: 700;
 font-size: 30px;
 line-height: 36px;
 text-align: center;
-
-/* ComponenteUcr/AlbastruInchis */
 
 color: #0A448A;
 }

@@ -5,7 +5,6 @@
     top: 15%;
     overflow-y: auto;
     overflow-x: hidden;
-    /* background: #e20d8a; */
 }
 
 .Feed-item {
@@ -46,23 +45,15 @@ border: 8px solid #FFDB49;
     height: 15%;
     left: 8%;
     top: 7%;
-
-    /* ComponenteUcr/Galben */
-
     background: #FFDB49;
     border: 2px solid #000000;
     border-radius: 10px;
-
-
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 36px;
     text-align: center;
-
-    /* ComponenteUcr/AlbastruInchis */
-
     color: #0A448A;
 }
 
@@ -79,16 +70,8 @@ border: 8px solid #FFDB49;
     white-space: pre;
     display: table-cell;
     vertical-align: middle;
-    /* transform: translate(0, -50%); */
-    /* line-height: ; */
     text-align: center;
-    /* vertical-align: middle;
-    padding: center; */
-    /* text-decoration-line: underline; */
     color: #FFFFFF;
-    /* flex: none;
-    order: 0;
-    flex-grow: 0; */
 }
 
 .Feed-btn {
