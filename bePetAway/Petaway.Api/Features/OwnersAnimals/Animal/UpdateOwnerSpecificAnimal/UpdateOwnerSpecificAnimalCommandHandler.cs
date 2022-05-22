@@ -1,22 +1,22 @@
 ﻿using Petaway.Core.Domain.Owner;
+using Petaway.Infrastructure.Data;
 using Petaway.Api.Web;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 using MediatR;
 
-namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
+namespace Petaway.Api.Features.OwnersAnimals.Animal.UpdateOwnerSpecificAnimal
 {
-    public class AddAnimalCommandHandler : IAddAnimalCommandHandler
+    public class UpdateOwnerSpecificAnimalCommandHandler : IUpdateOwnerSpecificAnimalCommandHandler
     {
         private readonly IOwnersAnimalsRepository OwnersAnimalsRepository;
-        private readonly IMediator mediator;
 
-        public AddAnimalCommandHandler(IOwnersAnimalsRepository OwnersAnimalsRepository, IMediator mediator)
+        public UpdateOwnerSpecificAnimalCommandHandler(IOwnersAnimalsRepository OwnersAnimalsRepository)
         {
             this.OwnersAnimalsRepository = OwnersAnimalsRepository;
-            this.mediator = mediator;
         }
 
-        public async Task HandleAsync(AddAnimalCommand command, string identityId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UpdateOwnerSpecificAnimalDto>> HandleAsync(UpdateOwnerSpecificAnimalDto command, string identityId, CancellationToken cancellationToken)
         {
             var ownerDomain = await OwnersAnimalsRepository.GetByIdentityIdAsync(identityId, cancellationToken) as OwnersAnimalsDomain;
 
@@ -25,8 +25,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
-            var addAnimalEvent = ownerDomain.AddAnimal(command.Name, command.Type, command.Age, command.Description, command.AnimalPhotoPath, "home");
-            await mediator.Publish(addAnimalEvent, cancellationToken);
+            ownerDomain.UpdateAnimalInfo(command.Id, command.Name, command.Type, command.Age, command.Description, command.AnimalPhotoPath);
 
             await OwnersAnimalsRepository.SaveAsync(cancellationToken);
         }

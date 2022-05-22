@@ -25,10 +25,8 @@ namespace Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals
                 throw new ApiException(HttpStatusCode.Unauthorized, $"Owner with identity {identityId} does not have a registered profile");
             }
 
-            var ownerProfileId = owner.Id;
-
             var query = from animal in dbContext.Animals
-                        where animal.OwnerId == ownerProfileId
+                        where animal.OwnerEmail == owner.Email
                         select new ViewOwnerAnimalsDto(animal);
 
             var result = await query

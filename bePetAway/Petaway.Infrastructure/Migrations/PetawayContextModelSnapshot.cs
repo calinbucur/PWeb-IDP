@@ -42,11 +42,13 @@ namespace Petaway.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("now()");
 
-                    b.Property<int>("CrtFosterId")
-                        .HasColumnType("integer");
+                    b.Property<string>("CrtFosterEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<int>("CrtRescuerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("CrtRescuerEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("CrtTransportId")
                         .HasColumnType("integer");
@@ -62,8 +64,9 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("OwnerEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int?>("OwnersId")
                         .HasColumnType("integer");
@@ -289,20 +292,23 @@ namespace Petaway.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("FosterId")
-                        .HasColumnType("integer");
+                    b.Property<string>("FosterEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsFinished")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("OwnerEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<bool>("RejectedByOwnerOrFoster")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("RescuerId")
-                        .HasColumnType("integer");
+                    b.Property<string>("RescuerEmail")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int?>("RescuersId")
                         .HasColumnType("integer");

@@ -4,12 +4,12 @@ namespace Petaway.Core.DataModel
 {
     public class Transports : Entity, IAggregateRoot
     {
-        public Transports(int ownerId, int animalId, int fosterId, int rescuerId, string startPoint, string endPoint)
+        public Transports(string ownerEmail, int animalId, string fosterEmail, string rescuerEmail, string startPoint, string endPoint)
         {
-            OwnerId = ownerId;
+            OwnerEmail = ownerEmail;
             AnimalId = animalId;
-            FosterId = fosterId;
-            RescuerId = rescuerId;
+            FosterEmail = fosterEmail;
+            RescuerEmail = rescuerEmail;
             StartPoint = startPoint;
             EndPoint = endPoint;
         }
@@ -19,10 +19,10 @@ namespace Petaway.Core.DataModel
         //Deleted if RejectedByOwnerOrFoster = true
         public bool RejectedByOwnerOrFoster { get; set; } = false;
         public bool IsFinished { get; set; } = false;
-        public int OwnerId { get; set; }
+        public string OwnerEmail { get; set; } = "none";
         public int AnimalId { get; set; }
-        public int FosterId { get; set; }
-        public int RescuerId { get; set; }
+        public string FosterEmail { get; set; } = "none";
+        public string RescuerEmail { get; set; } = "none";
         public string StartPoint { get; set; }
         public string EndPoint { get; set; }
         public virtual ICollection<Animals> Animals { get; set; } = new List<Animals>();

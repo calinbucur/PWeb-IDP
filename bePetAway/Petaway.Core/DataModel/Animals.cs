@@ -29,9 +29,9 @@ namespace Petaway.Core.DataModel
                 public bool IsSick { get; set; }
                 public bool IsStray { get; set; }*/
 
-        public int OwnerId { get; set; } = -1;
+        public string OwnerEmail { get; set; } = "none";
         public int CrtTransportId { get; set; } = -1;
-        public int CrtFosterId { get; set; } = -1; 
-        public int CrtRescuerId { get; set; } = -1;
+        public string CrtFosterEmail { get; set; } = "none";
+        public string CrtRescuerEmail { get; set; } = "none";
     }
 }

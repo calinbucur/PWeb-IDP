@@ -41,18 +41,18 @@ namespace Petaway.Core.Domain.Owner
             animal.AnimalPhotoPath = animalPhotoPath;
         }
 
-        public Animals GetRescuableAnimal(string animalName, string animalType)
+        public Animals GetRescuableAnimal(string animalName, string animalType, int animalAge)
         {
-            var animal = aggregate.Animals.FirstOrDefault(x => (x.Name == animalName) && (x.Type == animalType));
+            var animal = aggregate.Animals.FirstOrDefault(x => (x.Name == animalName) && (x.Type == animalType) && (x.Age == animalAge));
 
             if (animal == null)
             {
-                throw new AnimalNotFoundException(aggregate.Name, animalName, animalType);
+                throw new AnimalNotFoundException(aggregate.Name, animalName, animalType, animalAge);
             }
 
             if (!String.Equals(animal.Status, "home"))
             {
-                throw new AnimalNotHomeException(aggregate.Name, animalName, animalType);
+                throw new AnimalNotHomeException(aggregate.Name, animalName, animalType, animalAge);
             }
 
             return animal;
@@ -61,28 +61,27 @@ namespace Petaway.Core.Domain.Owner
         public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string animalPhotoPath, string status = "home")
         {
             Animals new_animal = new Animals(name, type, age, status, description, animalPhotoPath);
-            new_animal.OwnerId = aggregate.Id;
+            new_animal.OwnerEmail = aggregate.Email;
 
 
             aggregate.Animals.Add(new_animal);
-            
+            aggregate.NumberOfAnimals++;
 
             return new AddAnimalToOwnerCommand(name, type, age, description, animalPhotoPath, status);
         }
 
-        public void AnimalAcceptedByFoster(int animalId, int fosterId) {
+        public void AnimalAcceptedByFoster(int animalId, string fosterEmail) {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
             {
                 throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
 
-
             animal.Status = "travelling";
-            animal.CrtFosterId = fosterId;
+            animal.CrtFosterEmail = fosterEmail;
         }
 
-        public void AnimalAcceptedByRescuer(int animalId, int rescuerId)
+        public void AnimalAcceptedByRescuer(int animalId, string rescuerEmail)
         {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
@@ -92,7 +91,7 @@ namespace Petaway.Core.Domain.Owner
 
 
             animal.Status = "travelling";
-            animal.CrtRescuerId = rescuerId;
+            animal.CrtRescuerEmail = rescuerEmail;
         }
 
         public void AnimalArrivedAtDestination(int animalId)
@@ -105,11 +104,11 @@ namespace Petaway.Core.Domain.Owner
 
 
             animal.Status = "foster";
-            animal.CrtRescuerId = -1;
+            animal.CrtFosterEmail = "none";
         }
 
 
-        public OwnerAcceptTransportEvent AcceptTransport(int transportId, int fosterId, int animalId)
+        public OwnerAcceptTransportEvent AcceptTransport(int transportId, string fosterEmail, int animalId)
         {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
@@ -123,11 +122,11 @@ namespace Petaway.Core.Domain.Owner
             }
 
             animal.CrtTransportId = transportId;
-            animal.CrtFosterId = fosterId;
+            animal.CrtFosterEmail = fosterEmail;
             
-            return new OwnerAcceptTransportEvent(transportId, fosterId, animalId);
+            return new OwnerAcceptTransportEvent(transportId, fosterEmail, animalId);
         }
-        public OwnerRejectTransportEvent RejectTransport(int transportId, int fosterId, int animalId)
+        public OwnerRejectTransportEvent RejectTransport(int transportId, string fosterEmail, int animalId)
         {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
@@ -140,7 +139,7 @@ namespace Petaway.Core.Domain.Owner
                 throw new AnimalNotHomeException(aggregate.Name, animalId);
             }
 
-            return new OwnerRejectTransportEvent(transportId, fosterId, animalId);
+            return new OwnerRejectTransportEvent(transportId, fosterEmail, animalId);
         }
 
         public OwnerProposeTransportEvent ProposeTransport(int fosterId, int animalId)

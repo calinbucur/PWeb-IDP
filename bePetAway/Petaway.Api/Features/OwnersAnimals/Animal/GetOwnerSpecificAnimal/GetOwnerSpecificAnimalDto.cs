@@ -1,12 +1,12 @@
 ﻿using Petaway.Core.Domain.Owner;
-using Petaway.Core.DataModel;
 
-namespace Petaway.Api.Features.Fosters.ViewFosterAnimals
+namespace Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimal
 {
-    public record ViewFosterAnimalsDto
+    public record GetOwnerSpecificAnimalDto
     {
-        public ViewFosterAnimalsDto(Animals animal)
+        public GetOwnerSpecificAnimalDto(Core.DataModel.Animals animal)
         {
+            AnimalId = animal.Id;
             Name = animal.Name;
             Type = animal.Type; /* cat, dog, rodent, bird, domestic, exotic*/
             Age = animal.Age;
@@ -19,6 +19,7 @@ namespace Petaway.Api.Features.Fosters.ViewFosterAnimals
             CrtRescuerEmail = animal.CrtRescuerEmail;
         }
 
+        public int AnimalId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; } /*cat, dog, exotic (zoo animals), etc*/
         public int Age { get; set; }

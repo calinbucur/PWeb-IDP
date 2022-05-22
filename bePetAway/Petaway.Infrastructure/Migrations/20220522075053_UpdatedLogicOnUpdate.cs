@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Petaway.Infrastructure.Migrations
 {
-    public partial class WithoutUniquePhone : Migration
+    public partial class UpdatedLogicOnUpdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -83,10 +83,10 @@ namespace Petaway.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     RejectedByOwnerOrFoster = table.Column<bool>(type: "boolean", nullable: false),
                     IsFinished = table.Column<bool>(type: "boolean", nullable: false),
-                    OwnerId = table.Column<int>(type: "integer", nullable: false),
+                    OwnerEmail = table.Column<string>(type: "text", nullable: false),
                     AnimalId = table.Column<int>(type: "integer", nullable: false),
-                    FosterId = table.Column<int>(type: "integer", nullable: false),
-                    RescuerId = table.Column<int>(type: "integer", nullable: false),
+                    FosterEmail = table.Column<string>(type: "text", nullable: false),
+                    RescuerEmail = table.Column<string>(type: "text", nullable: false),
                     StartPoint = table.Column<string>(type: "text", nullable: false),
                     EndPoint = table.Column<string>(type: "text", nullable: false),
                     RescuersId = table.Column<int>(type: "integer", nullable: true),
@@ -115,10 +115,10 @@ namespace Petaway.Infrastructure.Migrations
                     Status = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
                     AnimalPhotoPath = table.Column<string>(type: "text", nullable: false),
-                    OwnerId = table.Column<int>(type: "integer", nullable: false),
+                    OwnerEmail = table.Column<string>(type: "text", nullable: false),
                     CrtTransportId = table.Column<int>(type: "integer", nullable: false),
-                    CrtFosterId = table.Column<int>(type: "integer", nullable: false),
-                    CrtRescuerId = table.Column<int>(type: "integer", nullable: false),
+                    CrtFosterEmail = table.Column<string>(type: "text", nullable: false),
+                    CrtRescuerEmail = table.Column<string>(type: "text", nullable: false),
                     FostersId = table.Column<int>(type: "integer", nullable: true),
                     OwnersId = table.Column<int>(type: "integer", nullable: true),
                     TransportsId = table.Column<int>(type: "integer", nullable: true),

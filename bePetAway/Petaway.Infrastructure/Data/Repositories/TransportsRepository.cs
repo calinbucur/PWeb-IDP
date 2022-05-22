@@ -17,7 +17,7 @@ namespace Petaway.Infrastructure.Data.Repositories
 
         public async Task AddAsync(RegisterTransportProfileCommand command, CancellationToken cancellationToken)
         {
-            var transport_entity = new Transports(command.OwnerId, command.AnimalId, command.FosterId, command.RescuerId, command.StartingPoint, command.EndPoint);
+            var transport_entity = new Transports(command.OwnerEmail, command.AnimalId, command.FosterEmail, command.RescuerEmail, command.StartingPoint, command.EndPoint);
 
             await context.Transports.AddAsync(transport_entity);
             await SaveAsync(cancellationToken);

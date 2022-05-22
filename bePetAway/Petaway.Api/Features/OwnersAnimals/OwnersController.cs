@@ -1,8 +1,10 @@
 ﻿using Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal;
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewOwnerAnimals;
 using Petaway.Api.Features.OwnersAnimals.Animal.ViewRescuableAnimals;
+using Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimal;
 using Petaway.Api.Features.OwnersAnimals.Owner.RegisterOwner;
 using Petaway.Api.Features.OwnersAnimals.Owner.GetOwner;
+using Petaway.Api.Features.OwnersAnimals.Owner.GetOwnerExternal;
 using Petaway.Api.Features.OwnersAnimals.Owner.UpdateOwner;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
@@ -21,6 +23,8 @@ namespace Petaway.Api.Features.Owners
         private readonly IUpdateOwnerCommandHandler updateOwnerCommandHandler;
         private readonly IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler;
         private readonly IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler;
+        private readonly IGetOwnerExternalCommandHandler getOwnerExternalCommandHandler;
+        private readonly IGetOwnerSpecificAnimalCommandHandler getOwnerSpecificAnimalCommandHandler;
 
         public OwnersController(
             IAddAnimalCommandHandler addAnimalCommandHandler,
@@ -28,7 +32,9 @@ namespace Petaway.Api.Features.Owners
             IUpdateOwnerCommandHandler updateOwnerCommandHandler,
             IViewOwnerAnimalsCommandHandler viewOwnerAnimalsCommandHandler,
             IViewRescuableAnimalsCommandHandler viewRescuableAnimalsCommandHandler,
-            IGetOwnerCommandHandler getOwnerCommandHandler
+            IGetOwnerCommandHandler getOwnerCommandHandler,
+            IGetOwnerExternalCommandHandler getOwnerExternalCommandHandler,
+            IGetOwnerSpecificAnimalCommandHandler getOwnerSpecificAnimalCommandHandler
             )
         {
             this.addAnimalCommandHandler = addAnimalCommandHandler;
@@ -37,6 +43,8 @@ namespace Petaway.Api.Features.Owners
             this.viewOwnerAnimalsCommandHandler = viewOwnerAnimalsCommandHandler;
             this.viewRescuableAnimalsCommandHandler = viewRescuableAnimalsCommandHandler;
             this.getOwnerCommandHandler = getOwnerCommandHandler;
+            this.getOwnerExternalCommandHandler = getOwnerExternalCommandHandler;
+            this.getOwnerSpecificAnimalCommandHandler = getOwnerSpecificAnimalCommandHandler;
         }
 
         [HttpPost("addAnimal")]
@@ -98,9 +106,18 @@ namespace Petaway.Api.Features.Owners
                 return Unauthorized();
             }
 
-            var animals = await getOwnerCommandHandler.HandleAsync(identityId, cancellationToken);
+            var owner = await getOwnerCommandHandler.HandleAsync(identityId, cancellationToken);
 
-            return Ok(animals);
+            return Ok(owner);
+        }
+
+        [HttpGet("getOwnerExternal")]
+        [Authorize]
+        public async Task<IActionResult> GetOwnerExternal(string ownerEmail, CancellationToken cancellationToken)
+        {
+            var owner = await getOwnerExternalCommandHandler.HandleAsync(ownerEmail, cancellationToken);
+
+            return Ok(owner);
         }
 
         [HttpGet("viewRescuableAnimals")]
@@ -127,6 +144,16 @@ namespace Petaway.Api.Features.Owners
 
             return NoContent();
         }
+
+        [HttpGet("getOwnerSpecificAnimal")]
+        [Authorize]
+        public async Task<IActionResult> GetOwnerSpecificAnimal(GetOwnerSpecificAnimalCommandRequirements command, CancellationToken cancellationToken)
+        {
+            var owner = await getOwnerSpecificAnimalCommandHandler.HandleAsync(command, cancellationToken);
+
+            return Ok(owner);
+        }
+
 
         //        [HttpDelete("deleteBook/{id}")]
     }

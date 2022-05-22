@@ -2,11 +2,22 @@
 
 namespace Petaway.Api.Features.OwnersAnimals.Animal.AddAnimal
 {
-    public record AddAnimalCommand : AddAnimalToOwnerCommand
+    public record AddAnimalCommand
     {
-        public AddAnimalCommand(string name, string type, int age, string description, string animalPhotoPath, string status) : base(name, type, age, description, animalPhotoPath, status)
+        public AddAnimalCommand(string name, string type, int age, string description, string animalPhotoPath)
         {
-
+            Name = name;
+            Type = type;
+            Age = age;
+            Description = description;
+            AnimalPhotoPath = animalPhotoPath;
         }
+
+        public string Name { get; init; }
+        public string Type { get; init; }
+        public int Age { get; init; }
+        public string Description { get; init; }
+        public string AnimalPhotoPath { get; init; }
+
     }
 }

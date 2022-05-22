@@ -13,10 +13,10 @@ namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
             Status = animal.Status;
             Description = animal.Description;
             AnimalPhotoPath = animal.AnimalPhotoPath;
-            OwnerId = animal.OwnerId;
+            OwnerEmail = animal.OwnerEmail;
             CrtTransportId = animal.CrtTransportId;
-            CrtFosterId = animal.CrtFosterId;
-            CrtRescuerId = animal.CrtRescuerId;
+            CrtFosterEmail = animal.CrtFosterEmail;
+            CrtRescuerEmail = animal.CrtRescuerEmail;
         }
 
         public string Name { get; set; }
@@ -25,9 +25,9 @@ namespace Petaway.Api.Features.Transports.ViewDisponibleTransports
         public string Status { get; set; } /*home, pending, travelling, foster*/
         public string Description { get; set; }
         public string AnimalPhotoPath { get; set; }
-        public int OwnerId { get; set; }
+        public string OwnerEmail { get; set; }
         public int CrtTransportId { get; set; }
-        public int CrtFosterId { get; set; }
-        public int CrtRescuerId { get; set; }
+        public string CrtFosterEmail { get; set; }
+        public string CrtRescuerEmail { get; set; }
     }
 }

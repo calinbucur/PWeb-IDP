@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Petaway.Api.Features.OwnersAnimals.Owner.GetOwner
+namespace Petaway.Api.Features.OwnersAnimals.Owner.GetOwnerExternal
 {
-    public record GetOwnerDto
+    public record GetOwnerExternalDto
     {
-        public GetOwnerDto(string email, string name, string phoneNumber, string address, string photoPath, int numberOfAnimals)
+        public GetOwnerExternalDto(string email, string name, string phoneNumber, string address, string photoPath, int numberOfAnimals)
         {
             Email = email;
             Name = name;

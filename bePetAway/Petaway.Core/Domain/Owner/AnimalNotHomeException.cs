@@ -2,7 +2,7 @@
 {
     public class AnimalNotHomeException : Exception
     {
-        public AnimalNotHomeException(string userName, string animalName, string animalType) : base($"User's {userName} animal {animalType} with name {animalName} has already left the danger zone.")
+        public AnimalNotHomeException(string userName, string animalName, string animalType, int animalAge) : base($"User's {userName} animal {animalType} with name {animalName} and age {animalAge} has already left the danger zone.")
         {
 
         }

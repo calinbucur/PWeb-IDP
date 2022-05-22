@@ -2,11 +2,11 @@
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 
-namespace Petaway.Api.Features.Fosters.ProposeTransfer
+namespace Petaway.Api.Features.OwnersAnimals.Animal.GetOwnerSpecificAnimal
 {
-    public record ProposeTransferCommand
+    public record GetOwnerSpecificAnimalCommandRequirements
     {
-        public ProposeTransferCommand(string ownerEmail, string animalName, string animalType, int animalAge)
+        public GetOwnerSpecificAnimalCommandRequirements(string ownerEmail, string animalName, string animalType, int animalAge)
         {
             OwnerEmail = ownerEmail;
             AnimalName = animalName;

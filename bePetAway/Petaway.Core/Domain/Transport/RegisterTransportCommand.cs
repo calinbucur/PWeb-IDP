@@ -4,21 +4,20 @@ namespace Petaway.Core.Domain.Transport
 {
     public record RegisterTransportProfileCommand : ICreateAggregateCommand
     {
-        public RegisterTransportProfileCommand(int ownerId, int animalId, int fosterId, int rescuerId, string startPoint, string endPoint)
+        public RegisterTransportProfileCommand(string ownerEmail, int animalId, string fosterEmail, string rescuerEmail, string startPoint, string endPoint)
         {
-            TransportState = -1;
-            OwnerId = ownerId;
+            OwnerEmail = ownerEmail;
             AnimalId = animalId;
-            FosterId = fosterId;
-            RescuerId = rescuerId;
+            FosterEmail = fosterEmail;
+            RescuerEmail = rescuerEmail;
             StartingPoint = startPoint;
             EndPoint = endPoint;
         }
-        public int TransportState { get; set; }
-        public int OwnerId { get; set; }
+
+        public string OwnerEmail { get; set; } = "none";
         public int AnimalId { get; set; }
-        public int FosterId { get; set; }
-        public int RescuerId { get; set; }
+        public string FosterEmail { get; set; } = "none";
+        public string RescuerEmail { get; set; } = "none";
         public string StartingPoint { get; set; }
         public string EndPoint { get; set; }
     }

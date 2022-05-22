@@ -26,7 +26,7 @@ namespace Petaway.Api.Features.Fosters.ViewFosterAnimals
             }
 
             var query = from animal in dbContext.Animals
-                        where animal.CrtFosterId == foster.Id
+                        where animal.CrtFosterEmail == foster.Email
                         select new ViewFosterAnimalsDto(animal);
 
             var result = await query

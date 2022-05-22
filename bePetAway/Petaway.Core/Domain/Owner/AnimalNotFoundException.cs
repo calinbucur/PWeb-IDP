@@ -2,7 +2,7 @@
 {
     public class AnimalNotFoundException : Exception
     {
-        public AnimalNotFoundException(string userName, string animalName, string animalType) : base($"User's {userName} animal {animalType} with name {animalName} not found!")
+        public AnimalNotFoundException(string userName, string animalName, string animalType, int animalAge) : base($"User's {userName} animal {animalType} with name {animalName} and age {animalAge} not found!")
         {
 
         }

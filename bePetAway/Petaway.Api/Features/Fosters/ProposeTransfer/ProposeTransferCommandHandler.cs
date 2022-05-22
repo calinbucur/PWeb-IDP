@@ -47,16 +47,16 @@ namespace Petaway.Api.Features.Fosters.ProposeTransfer
                 throw new ApiException(HttpStatusCode.NotFound, $"Owner with Email {command.OwnerEmail} not found!");
             }
 
-            var animal = ownerDomain.GetRescuableAnimal(command.AnimalName, command.AnimalType);
+            var animal = ownerDomain.GetRescuableAnimal(command.AnimalName, command.AnimalType, command.AnimalAge);
 
-            ownerDomain.AnimalAcceptedByFoster(animal.Id, foster.Id);
+            ownerDomain.AnimalAcceptedByFoster(animal.Id, foster.Email);
             await ownersAnimalsRepository.SaveAsync(cancellationToken);
 
             fosterDomain.AddAnimal(animal);
             await fostersRepository.SaveAsync(cancellationToken);
 
             await transportRepository.AddAsync(
-                new RegisterTransportProfileCommand(ownerDomain.GetAggregate().Id, animal.Id, foster.Id, -1, "none", foster.Address),
+                new RegisterTransportProfileCommand(ownerDomain.GetAggregate().Email, animal.Id, foster.Email, "none", "none", foster.Address),
                 cancellationToken);
         }
     }

@@ -20,7 +20,7 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.GetOwner
         {
             var owner = await dbContext.Owners
                .Where(x => x.IdentityId == identityId)
-               .Select(x => new GetOwnerDto(x.Email, x.Name, x.PhoneNumber, x.Address, x.PhotoPath))
+               .Select(x => new GetOwnerDto(x.Email, x.Name, x.PhoneNumber, x.Address, x.PhotoPath, x.NumberOfAnimals))
                .FirstOrDefaultAsync(cancellationToken);
 
             if (owner == null)

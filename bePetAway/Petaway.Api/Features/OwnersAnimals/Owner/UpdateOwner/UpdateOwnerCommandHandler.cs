@@ -10,13 +10,11 @@ namespace Petaway.Api.Features.OwnersAnimals.Owner.UpdateOwner
     public class UpdateOwnerCommandHandler : IUpdateOwnerCommandHandler
     {
         private readonly IOwnersAnimalsRepository OwnersAnimalsRepository;
-        private readonly IMediator mediator;
 
 
         public UpdateOwnerCommandHandler(IOwnersAnimalsRepository OwnersAnimalsRepository, IMediator mediator)
         {
             this.OwnersAnimalsRepository = OwnersAnimalsRepository;
-            this.mediator = mediator;
         }
 
         public async Task HandleAsync(UpdateOwnerDto command, string identityId, CancellationToken cancellationToken)

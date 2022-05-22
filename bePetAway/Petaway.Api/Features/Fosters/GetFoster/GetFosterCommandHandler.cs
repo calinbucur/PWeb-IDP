@@ -20,7 +20,7 @@ namespace Petaway.Api.Features.Fosters.GetFoster
         {
             var Foster = await dbContext.Fosters
                .Where(x => x.IdentityId == identityId)
-               .Select(x => new GetFosterDto(x.Email, x.Name, x.PhoneNumber, x.Address, x.PhotoPath, x.MaxCapacity))
+               .Select(x => new GetFosterDto(x.Email, x.Name, x.PhoneNumber, x.Address, x.PhotoPath, x.CrtCapacity, x.MaxCapacity))
                .FirstOrDefaultAsync(cancellationToken);
 
             if (Foster == null)

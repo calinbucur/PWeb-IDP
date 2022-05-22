@@ -8,7 +8,7 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
         public override void Configure(EntityTypeBuilder<Transports> builder)
         {
             builder
-                .Property(x => x.OwnerId)
+                .Property(x => x.OwnerEmail)
                 .IsRequired();
 
             builder
@@ -16,12 +16,12 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                 .IsRequired();
 
             builder
-                .Property(x => x.FosterId)
+                .Property(x => x.FosterEmail)
                 .IsRequired();
 
             builder
-                .Property(x => x.RescuerId)
-                .IsRequired();
+                .Property(x => x.RescuerEmail)
+                .IsRequired(); //Tehnic ar putea sa fie null, dar felul cum verific transporturile se bazeaza pe RescuerEmail = null => RescuerEmail = "none"
 
             builder
                 .Property(x => x.StartPoint);

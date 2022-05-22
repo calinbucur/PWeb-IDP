@@ -43,16 +43,16 @@ namespace Petaway.Infrastructure.Data.EntityConfigurations
                             .IsRequired();*/
 
             builder
-                .Property(x => x.OwnerId);
+                .Property(x => x.OwnerEmail);
 
             builder
                 .Property(x => x.CrtTransportId);
 
             builder
-                .Property(x => x.CrtFosterId);
+                .Property(x => x.CrtFosterEmail);
 
             builder
-                .Property(x => x.CrtRescuerId);
+                .Property(x => x.CrtRescuerEmail);
 
             base.Configure(builder);
         }
