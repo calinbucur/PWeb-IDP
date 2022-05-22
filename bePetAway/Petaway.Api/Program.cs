@@ -58,11 +58,11 @@ builder.Services.AddApiFeaturesHandlers();
 var app = builder.Build();
 
 // Run migrations
-using (var scope = app.Services.CreateScope())
-{
-    var dataContext = scope.ServiceProvider.GetRequiredService<PetawayContext>();
-    dataContext.Database.Migrate();
-}
+// using (var scope = app.Services.CreateScope())
+// {
+//     var dataContext = scope.ServiceProvider.GetRequiredService<PetawayContext>();
+//     dataContext.Database.Migrate();
+// }
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
