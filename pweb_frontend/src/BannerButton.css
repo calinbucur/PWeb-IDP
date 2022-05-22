@@ -23,6 +23,20 @@
     background: #11672A;
 }
 
+.Create {
+    left: 59.5%;
+    background: #11672A;
+}
+
+.Btn-right {
+    left: 67.5%;
+}
+
+.Bad-btn {
+    left: 2.5%;
+    background: #67114E;
+}
+
 .ButtonText {
     position: absolute;
     width: 100%;

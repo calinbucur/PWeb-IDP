@@ -8,6 +8,7 @@ import pfp_default from './pfp_default.jpg'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import {base, routes} from './Api'
+import pet_default from './pet_default.png'
 
 // Cata99*
 
@@ -15,9 +16,12 @@ const Banner = (props) => {
   const { idToken, setIdToken } = props
   const { logout, user, getAccessTokenSilently, getIdTokenClaims } = useAuth0()
   const [userMetadata, setUserMetadata] = useState(null)
-  const [profile, setProfile] = useState(false)
+  const {profile, setProfile} = props
   const [profData, setProfData] = useState({})
   const [auxData, setAuxData] = useState({})
+  const {addPet, setAddPet} = props
+  const {high, setHigh} = props
+  const [auxPet, setAuxPet] = useState(undefined)
   const navigate = useNavigate()
   // useEffect(() => {
   //     const getUserMetadata = async () => {
@@ -49,7 +53,7 @@ const Banner = (props) => {
   //     getUserMetadata();
   //   }, [getAccessTokenSilently, user?.sub]);
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: base,
     // timeout: 1000,
   });
   // useEffect(() => {
@@ -57,7 +61,7 @@ const Banner = (props) => {
   //     // console.log(idToken)
         const get = () => {
           (async () => {
-            const role = idToken['https://PetAway.com/role']
+            const role = idToken?idToken['https://PetAway.com/role']:''
             const accessToken = await getAccessTokenSilently();
             //console.log(accessToken)
             axiosInstance
@@ -96,17 +100,34 @@ const Banner = (props) => {
             {/* </Link> */}
             <img className = "App-profile-pic" src={profData.photoPath ? profData.photoPath : pfp_default} onClick = {() => {//get();
               setProfile(!profile);
+              setAddPet(false);
+              setHigh(null)
               //console.log(profData)
               //auxData = JSON.parse(JSON.stringify(profData));
               //console.log(auxData)
               setAuxData(profData)
             }}
             />
+            {idToken && idToken['https://PetAway.com/role'] === 'owner' &&<button className = "BannerButton Create" onClick = {() => {
+              setAddPet(true);
+              setProfile(false);
+              setHigh(null)
+              setAuxPet({
+                "name": "",
+                "type": "",
+                // "status": "home",
+                "age": 0,
+                "description": "",
+                "animalPhotoPath": ""
+              })
+              }}>
+              <header className="ButtonText White-btn">Add pet</header>
+            </button>}
         </header>
-        {profile && <div className = 'App-profile-div' on>
+        {profile && <div className = 'App-profile-div'>
           <img className = "img-responsive App-profile-pic-detail" src={auxData.photoPath ? auxData.photoPath : pfp_default} onError = {(ev) => {ev.target.src=pfp_default}}></img>
           <div className='App-profile-label App-email-label'>Email</div>
-          <input className='App-profile-input App-email-form' value = {/*auxData.email*/idToken.email} readOnly/>
+          <input className='App-profile-input App-email-form' value = {auxData.email/*idToken.email*/} readOnly/>
           <div className='App-profile-label'>Name</div>
           <input type="text" className='App-profile-input' value = {auxData.name} onChange={(e) => auxData['name'] = e.target.value}/>
           <div className='App-profile-label'>Phone number</div>
@@ -133,6 +154,47 @@ const Banner = (props) => {
                   setProfile(!profile)
                 }}>
               <header className="ButtonText White-btn">Submit</header>
+          </button>
+        </div>}
+        {addPet && <div className = 'App-profile-div'>
+          <img className = "img-responsive App-profile-pic-detail" src={auxPet.animalPhotoPath ? auxPet.animalPhotoPath : pet_default} onError = {(ev) => {ev.target.src=pet_default}}></img>
+          <div className='App-profile-label App-email-label'>Name</div>
+          <input className='App-profile-input App-email-form' value = {/*auxData.email*/auxPet.name} onChange={(e) => auxPet['name'] = e.target.value}/>
+          <div className='App-profile-label'>Type</div>
+          <select className='App-profile-input' value = {auxPet.type} onChange={(e) => auxPet['type'] = e.target.value}>
+            <option value = ''></option>
+            <option value = 'cat'>Cat</option>
+            <option value = 'dog'>Dog</option>
+            <option value = 'bird'>Bird</option>
+            <option value = 'rodent'>Rodent</option>
+            <option value = 'domestic'>Domestic</option>
+            <option value = 'exotic'>Exotic</option>
+          </select>
+          <div className='App-profile-label'>Age</div>
+          <input type='number' className='App-profile-input' value = {auxPet.age} onChange={(e) => auxPet['age'] = e.target.value}/>
+          <div className='App-profile-label'>Pet picture URL</div>
+          <input type='text' className='App-profile-input' value = {auxPet.animalPhotoPath} onChange={(e) => auxPet['animalPhotoPath'] = e.target.value}/>
+          <div className='App-profile-label'>Description</div>
+          <input type='text' className='App-profile-input App-profile-desc' value = {auxPet.description} onChange={(e) => auxPet['description'] = e.target.value}/>
+          <button className = "BannerButton Profile-submit Btn-right" onClick={() => {
+                  (async () => {
+                    // const role = idToken['https://PetAway.com/role']
+                    const accessToken = await getAccessTokenSilently();
+                    // console.log(accessToken)
+                    axiosInstance
+                      .post(routes.animal.add, auxPet, {
+                        headers: {
+                          Authorization: `Bearer ${accessToken}`,
+                        },
+                      })
+                      .then(() => {});
+                  })();
+                  setAddPet(false)
+                }}>
+            <header className="ButtonText White-btn">Add</header>
+          </button>
+          <button className = "BannerButton Profile-submit Bad-btn" onClick={() => {setAddPet(false)}}>
+            <header className="ButtonText White-btn">Cancel</header>
           </button>
         </div>}      
   </>)
