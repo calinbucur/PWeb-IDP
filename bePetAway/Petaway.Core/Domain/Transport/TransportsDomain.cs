@@ -22,5 +22,16 @@ namespace Petaway.Core.Domain.Transport
         public void MarkTransferAsAcceptedByRescuer(string rescuerEmail) => aggregate.RescuerEmail = rescuerEmail;
 
         public bool TransferCanBeDeleted() => aggregate.RejectedByOwnerOrFoster; //|| aggregate.IsFinished;
+
+        public void SetRescuerData(string rescuerEmail, string rescuerAddress)
+        {
+            aggregate.RescuerEmail = rescuerEmail;
+            aggregate.StartPoint = rescuerAddress;
+        }
+
+        public Transports GetAggregate()
+        {
+            return aggregate;
+        }
     }
 }

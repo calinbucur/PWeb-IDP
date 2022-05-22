@@ -4,6 +4,8 @@ using Petaway.Api.Features.Rescuers.GetRescuerExternal;
 using Petaway.Api.Features.Rescuers.UpdateRescuer;
 using Petaway.Api.Features.Rescuers.ViewRescuerFinishedTransports;
 using Petaway.Api.Features.Rescuers.ViewRescuerPendingTransports;
+using Petaway.Api.Features.Rescuers.TakeTransport;
+using Petaway.Api.Features.Rescuers.FinishTransport;
 using Petaway.Api.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,17 +23,19 @@ namespace Petaway.Api.Features.Rescuers
         private readonly IUpdateRescuerCommandHandler updateRescuerCommandHandler;
         private readonly IViewRescuerFinishedTransportsCommandHandler viewRescuerFinishedTransportsCommandHandler;
         private readonly IViewRescuerPendingTransportsCommandHandler viewRescuerPendingTransportsCommandHandler;
-        public RescuersController(
+        private readonly ITakeTransportCommandHandler takeTransportCommandHandler;
+        private readonly IFinishTransportCommandHandler finishTransportCommandHandler;
 
+        public RescuersController(
             IRegisterRescuerCommandHandler registerRescuerCommandHandler,
             IGetRescuerCommandHandler getRescuerCommandHandler,
             IGetRescuerExternalCommandHandler getRescuerExternalCommandHandler,
             IUpdateRescuerCommandHandler updateRescuerCommandHandler,
             IViewRescuerFinishedTransportsCommandHandler viewRescuerFinishedTransportsCommandHandler,
-            IViewRescuerPendingTransportsCommandHandler viewRescuerPendingTransportsCommandHandler
-
+            IViewRescuerPendingTransportsCommandHandler viewRescuerPendingTransportsCommandHandler,
+            ITakeTransportCommandHandler takeTransportCommandHandler,
+            IFinishTransportCommandHandler finishTransportCommandHandler
             )
-
         {
             this.registerRescuerCommandHandler = registerRescuerCommandHandler;
             this.getRescuerCommandHandler = getRescuerCommandHandler;
@@ -39,6 +43,8 @@ namespace Petaway.Api.Features.Rescuers
             this.updateRescuerCommandHandler = updateRescuerCommandHandler;
             this.viewRescuerFinishedTransportsCommandHandler = viewRescuerFinishedTransportsCommandHandler;
             this.viewRescuerPendingTransportsCommandHandler = viewRescuerPendingTransportsCommandHandler;
+            this.takeTransportCommandHandler = takeTransportCommandHandler;
+            this.finishTransportCommandHandler = finishTransportCommandHandler;
         }
 
         [HttpPost("registerRescuer")]
@@ -128,5 +134,38 @@ namespace Petaway.Api.Features.Rescuers
 
             return Ok(transports);
         }
+
+        [HttpPut("takeTransport")]
+        [Authorize("RescuerAccess")]
+        public async Task<IActionResult> TakeTransport([FromBody] TakeTransportCommand command, CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await takeTransportCommandHandler.HandleAsync(command, identityId, cancellationToken);
+
+            return NoContent();
+        }
+
+        [HttpPut("finishTransport")]
+        [Authorize("RescuerAccess")]
+        public async Task<IActionResult> FinishTransport(CancellationToken cancellationToken)
+        {
+            var identityId = User.GetUserIdentityId();
+
+            if (identityId == null)
+            {
+                return Unauthorized();
+            }
+
+            await finishTransportCommandHandler.HandleAsync(identityId, cancellationToken);
+
+            return NoContent();
+        }
+
     }
 }

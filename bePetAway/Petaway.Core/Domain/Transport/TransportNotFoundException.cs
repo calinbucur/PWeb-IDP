@@ -1,8 +1,8 @@
 ﻿namespace Petaway.Core.Domain.Transport
 {
-    public class TransportIsNullException : Exception
+    public class TransportNotFound : Exception
     {
-        public TransportIsNullException() : base($"Proposed transport doesn't exist")
+        public TransportNotFound() : base($"Proposed transport doesn't exist")
         {
         }
     }

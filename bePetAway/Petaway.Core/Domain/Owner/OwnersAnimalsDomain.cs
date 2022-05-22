@@ -58,6 +58,19 @@ namespace Petaway.Core.Domain.Owner
             return animal;
         }
 
+        public Animals GetAnimalById(int animalId)
+        {
+            var animal = aggregate.Animals.FirstOrDefault(x => (x.Id == animalId));
+
+            if (animal == null)
+            {
+                throw new AnimalNotFoundException(aggregate.Name, animalId);
+            }
+
+            return animal;
+        }
+
+
         public AddAnimalToOwnerCommand AddAnimal(string name, string type, int age, string description, string animalPhotoPath, string status = "home")
         {
             Animals new_animal = new Animals(name, type, age, status, description, animalPhotoPath);
@@ -81,7 +94,7 @@ namespace Petaway.Core.Domain.Owner
             animal.CrtFosterEmail = fosterEmail;
         }
 
-        public void AnimalAcceptedByRescuer(int animalId, string rescuerEmail)
+        public void AnimalAcceptedByRescuer(int animalId, string rescuerEmail, int transportId)
         {
             var animal = aggregate.Animals.FirstOrDefault(x => x.Id == animalId);
             if (animal == null)
@@ -89,9 +102,9 @@ namespace Petaway.Core.Domain.Owner
                 throw new AnimalNotFoundException(aggregate.Name, animalId);
             }
 
-
             animal.Status = "travelling";
             animal.CrtRescuerEmail = rescuerEmail;
+            animal.CrtTransportId = transportId;
         }
 
         public void AnimalArrivedAtDestination(int animalId)
@@ -105,6 +118,7 @@ namespace Petaway.Core.Domain.Owner
 
             animal.Status = "foster";
             animal.CrtFosterEmail = "none";
+            animal.CrtTransportId = -1;
         }
 
 

@@ -44,6 +44,26 @@ namespace Petaway.Core.Domain.Rescuer
             return new RescuerFinishTransportEvent(transportId);
         }
 
+        public void SetTransport(int transportId) => aggregate.CrtTransportId = transportId;
+
+        public void FinishedTransport(Transports transport)
+        {
+            if (transport == null)
+            {
+                throw new NullTransportException();
+            }
+
+            if ((transport.EndPoint == null) || (transport.EndPoint == "none"))
+            {
+                throw new NullTransportException();
+            }
+
+            AddTransportToHistory(transport);
+            aggregate.CrtTransportId = -1;
+            aggregate.Address = transport.EndPoint;
+        }
+        
+        public void AddTransportToHistory(Transports transport) => aggregate.TransportHistory.Add(transport);
         public Rescuers GetAggregate()
         {
             return aggregate;
